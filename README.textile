@@ -1,0 +1,9 @@
+h1. OpenDataRennesApi
+
+Il s'agit d'un librairie Java pour permettre l'accès aux API temps réelles du site data.keolis-rennnes
+
+h1. License
+
+L'ensemble du code source est sous "GPL v3":http://www.gnu.org/licenses/gpl-3.0.html.
+
+
