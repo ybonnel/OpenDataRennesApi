@@ -30,10 +30,6 @@ import java.util.List;
  * @author ybonnel
  *
  */
-
-/**
- * @author ybonnel
- */
 @SuppressWarnings("serial")
 public class Alert implements Serializable {
 
