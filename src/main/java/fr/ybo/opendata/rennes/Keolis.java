@@ -27,15 +27,16 @@ import fr.ybo.opendata.rennes.sax.GetParkRelaiHandler;
 import fr.ybo.opendata.rennes.sax.GetPointDeVenteHandler;
 import fr.ybo.opendata.rennes.sax.GetStationHandler;
 import fr.ybo.opendata.rennes.sax.KeolisHandler;
+import fr.ybo.opendata.rennes.util.Connecteur;
+import fr.ybo.opendata.rennes.util.HttpConnecteur;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
-import java.net.URL;
-import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -74,6 +75,12 @@ public class Keolis {
      */
     private static final String COMMANDE_POS = "getpos";
 
+    private Connecteur connecteur;
+
+    protected void setConnecteur(Connecteur connecteur) {
+        this.connecteur = connecteur;
+    }
+
     /**
      * Constructeur.
      *
@@ -81,6 +88,7 @@ public class Keolis {
      */
     public Keolis(String apiKey) {
         key = apiKey;
+        connecteur = new HttpConnecteur();
     }
 
     private final String key;
@@ -93,17 +101,24 @@ public class Keolis {
      * @throws KeolisReseauException en cas d'erreur réseau.
      * @throws KeolisException       en cas d'erreur lors de l'appel aux API Keolis.
      */
-    private static <T> List<T> appelKeolis(String url, KeolisHandler<T> handler) throws KeolisReseauException {
+    private <T> List<T> appelKeolis(String url, KeolisHandler<T> handler) throws KeolisReseauException {
         Answer<T> answer;
         try {
-            URL myUrl = new URL(url);
-            URLConnection connection = myUrl.openConnection();
             SAXParserFactory factory = SAXParserFactory.newInstance();
             SAXParser parser = factory.newSAXParser();
-            parser.parse(connection.getInputStream(), handler);
-            answer = handler.getAnswer();
-        } catch (IOException socketException) {
-            throw new KeolisReseauException(socketException);
+
+            InputStream inputStream = connecteur.openInputStream(url);
+            try {
+                parser.parse(inputStream, handler);
+                answer = handler.getAnswer();
+            } finally {
+                try {
+                    inputStream.close();
+                } catch (Exception ignore) {
+                }
+            }
+        } catch (IOException ioException) {
+            throw new KeolisReseauException(ioException);
         } catch (SAXException saxException) {
             throw new KeolisReseauException(saxException);
         } catch (ParserConfigurationException exception) {

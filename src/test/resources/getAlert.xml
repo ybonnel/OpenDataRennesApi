@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<opendata>
+    <request>http://data.keolis-rennes.com/xml/?version=2.0&amp;key=G7JE45LI1RK3W1P&amp;cmd=getlinesalerts</request>
+    <answer>
+        <status code="0" message="OK"/>
+        <data>
+            <alert>
+                <title>74 Marché à Bourgbarré</title>
+                <starttime>2010-09-27T00:00:00+02:00</starttime>
+                <endtime>2012-07-27T00:00:00+02:00</endtime>
+                <lines>
+                    <line>74</line>
+                </lines>
+                <majordisturbance>0</majordisturbance>
+                <detail>Le Vendredi à partir de 13h30 et jusqu'aux derniers départs : Marché à Bourgbarré&#13;
+                    Ligne 19 vers Rennes&#13;
+                    L'arrêt Mairie est reporté à l'arrêt provisoire situé près du N 161, rue de l'Ancienne Mairie&#13;
+                    Ligne 19 vers Bourgbarré&#13;
+                    L'arrêt Mairie est reporté à l'arrêt provisoire situé près de l'entée de l'entreprise Panaget
+                </detail>
+                <link/>
+            </alert>
+            <alert>
+                <title>59 marché Corps Nuds</title>
+                <starttime>2010-09-27T09:33:30+02:00</starttime>
+                <endtime>2012-07-27T00:00:00+02:00</endtime>
+                <lines>
+                    <line>59</line>
+                    <line>64</line>
+                </lines>
+                <majordisturbance>1</majordisturbance>
+                <detail>Le dimanche matin, jusqu'à 14h environ : Marché à Corps Nuds&#13;
+                    Ligne 59 dans les deux sens&#13;
+                    L'arrêt Place de Kildare est reporté à l'arrêt Corps Nuds Mairie.&#13;
+                    Le Star vous remercie de votre compréhension.&#13;
+                    Pour plus d'information contactez INFOSTAR au 09 70 821 800 (Appel non surtaxé)
+                </detail>
+                <link/>
+            </alert>
+        </data>
+    </answer>
+</opendata>

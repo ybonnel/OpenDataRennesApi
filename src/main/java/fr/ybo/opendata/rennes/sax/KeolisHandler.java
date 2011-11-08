@@ -73,10 +73,10 @@ public abstract class KeolisHandler<T> extends DefaultHandler {
     public void endElement(String uri, String localName, String qName) throws SAXException {
         super.endElement(uri, localName, qName);
         if (answer != null) {
-            if (localName.equals(getBaliseData())) {
+            if (qName.equals(getBaliseData())) {
                 answer.getData().add(currentObjetKeolis);
             } else {
-                remplirObjectKeolis(currentObjetKeolis, localName, contenu.toString());
+                remplirObjectKeolis(currentObjetKeolis, qName, contenu.toString());
             }
             contenu.setLength(0);
         }
@@ -123,13 +123,13 @@ public abstract class KeolisHandler<T> extends DefaultHandler {
     @Override
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
         super.startElement(uri, localName, qName, attributes);
-        if (localName.equals(ANSWER)) {
+        if (qName.equals(ANSWER)) {
             answer = new Answer<T>();
-        } else if (localName.equals(STATUS)) {
+        } else if (qName.equals(STATUS)) {
             answer.setStatus(new StatusKeolis());
             answer.getStatus().setCode(attributes.getValue(attributes.getIndex(CODE)));
             answer.getStatus().setMessage(attributes.getValue(attributes.getIndex(MESSAGE)));
-        } else if (localName.equals(getBaliseData())) {
+        } else if (qName.equals(getBaliseData())) {
             currentObjetKeolis = getNewObjetKeolis();
         }
         contenu.setLength(0);

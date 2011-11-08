@@ -53,7 +53,7 @@ public class GetAlertsHandler extends KeolisHandler<Alert> {
         MAJORDISTURBANCE("majordisturbance") {
             @Override
             void remplirObjectKeolis(Alert currentObjectKeolis, String contenuOfBalise) {
-                currentObjectKeolis.setMajordisturbance(Boolean.parseBoolean(contenuOfBalise));
+                currentObjectKeolis.setMajordisturbance("1".equals(contenuOfBalise));
             }
         },
         DETAIL("detail") {
