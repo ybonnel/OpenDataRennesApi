@@ -23,28 +23,19 @@ package fr.ybo;
  */
 public class KeolisException extends RuntimeException {
 
-	/**
-	 * Serial.
-	 */
-	private static final long serialVersionUID = 1L;
+    /**
+     * Serial.
+     */
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * Constructeur avec message.
-	 *
-	 * @param message message.
-	 */
-	public KeolisException(String message) {
-		super(message);
-	}
-
-	/**
-	 * Constructeur avec message et exception.
-	 *
-	 * @param message message.
-	 * @param cause   exception.
-	 */
-	public KeolisException(String message, Throwable cause) {
-		super(message, cause);
-	}
+    /**
+     * Constructeur avec message et exception.
+     *
+     * @param message message.
+     * @param cause   exception.
+     */
+    public KeolisException(String message, Throwable cause) {
+        super(message, cause);
+    }
 
 }

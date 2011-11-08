@@ -25,83 +25,107 @@ import fr.ybo.modele.bus.PointDeVente;
  */
 public class GetPointDeVenteHandler extends KeolisHandler<PointDeVente> {
 
-	/**
-	 * POS.
-	 */
-	private static final String POS = "pos";
-	/**
-	 * NAME.
-	 */
-	private static final String NAME = "name";
-	/**
-	 * TYPE.
-	 */
-	private static final String TYPE = "type";
-	/**
-	 * ADRESSE.
-	 */
-	private static final String ADRESSE = "address";
-	/**
-	 * CODE_POSTAL.
-	 */
-	private static final String CODE_POSTAL = "zipcode";
-	/**
-	 * VILLE.
-	 */
-	private static final String VILLE = "city";
-	/**
-	 * DISTRICT.
-	 */
-	private static final String DISTRICT = "district";
-	/**
-	 * TELEPHONE.
-	 */
-	private static final String TELEPHONE = "phone";
-	/**
-	 * SCHEDULE.
-	 */
-	private static final String SCHEDULE = "schedule";
-	/**
-	 * LATITUDE.
-	 */
-	private static final String LATITUDE = "latitude";
-	/**
-	 * LONGITUDE.
-	 */
-	private static final String LONGITUDE = "longitude";
 
-	@Override
-	protected String getBaliseData() {
-		return POS;
-	}
+    private enum Balise {
+        NAME("name") {
+            @Override
+            void remplirObjectKeolis(PointDeVente currentObjectKeolis, String contenuOfBalise) {
+                currentObjectKeolis.setName(contenuOfBalise);
+            }
+        },
+        TYPE("type") {
+            @Override
+            void remplirObjectKeolis(PointDeVente currentObjectKeolis, String contenuOfBalise) {
+                currentObjectKeolis.setType(contenuOfBalise);
+            }
+        },
+        ADRESSE("address") {
+            @Override
+            void remplirObjectKeolis(PointDeVente currentObjectKeolis, String contenuOfBalise) {
+                currentObjectKeolis.setAdresse(contenuOfBalise);
+            }
+        },
+        CODE_POSTAL("zipcode") {
+            @Override
+            void remplirObjectKeolis(PointDeVente currentObjectKeolis, String contenuOfBalise) {
+                currentObjectKeolis.setCodePostal(contenuOfBalise);
+            }
+        },
+        VILLE("city") {
+            @Override
+            void remplirObjectKeolis(PointDeVente currentObjectKeolis, String contenuOfBalise) {
+                currentObjectKeolis.setVille(contenuOfBalise);
+            }
+        },
+        DISTRICT("district") {
+            @Override
+            void remplirObjectKeolis(PointDeVente currentObjectKeolis, String contenuOfBalise) {
+                currentObjectKeolis.setDistrict(contenuOfBalise);
+            }
+        },
+        TELEPHONE("phone") {
+            @Override
+            void remplirObjectKeolis(PointDeVente currentObjectKeolis, String contenuOfBalise) {
+                currentObjectKeolis.setTelephone(contenuOfBalise);
+            }
+        },
+        SCHEDULE("schedule") {
+            @Override
+            void remplirObjectKeolis(PointDeVente currentObjectKeolis, String contenuOfBalise) {
+                currentObjectKeolis.setSchedule(contenuOfBalise);
+            }
+        },
+        LATITUDE("latitude") {
+            @Override
+            void remplirObjectKeolis(PointDeVente currentObjectKeolis, String contenuOfBalise) {
+                currentObjectKeolis.setLatitude(Double.parseDouble(contenuOfBalise));
+            }
+        },
+        LONGITUDE("longitude") {
+            @Override
+            void remplirObjectKeolis(PointDeVente currentObjectKeolis, String contenuOfBalise) {
+                currentObjectKeolis.setLongitude(Double.parseDouble(contenuOfBalise));
+            }
+        };
 
-	@Override
-	protected PointDeVente getNewObjetKeolis() {
-		return new PointDeVente();
-	}
+        abstract void remplirObjectKeolis(PointDeVente currentObjectKeolis, String contenuOfBalise);
 
-	@Override
-	protected void remplirObjectKeolis(PointDeVente currentObjectKeolis, String baliseName, String contenuOfBalise) {
-		if (baliseName.equals(NAME)) {
-			currentObjectKeolis.setName(contenuOfBalise);
-		} else if (baliseName.equals(TYPE)) {
-			currentObjectKeolis.setType(contenuOfBalise);
-		} else if (baliseName.equals(ADRESSE)) {
-			currentObjectKeolis.setAdresse(contenuOfBalise);
-		} else if (baliseName.equals(CODE_POSTAL)) {
-			currentObjectKeolis.setCodePostal(contenuOfBalise);
-		} else if (baliseName.equals(VILLE)) {
-			currentObjectKeolis.setVille(contenuOfBalise);
-		} else if (baliseName.equals(DISTRICT)) {
-			currentObjectKeolis.setDistrict(contenuOfBalise);
-		} else if (baliseName.equals(TELEPHONE)) {
-			currentObjectKeolis.setTelephone(contenuOfBalise);
-		} else if (baliseName.equals(SCHEDULE)) {
-			currentObjectKeolis.setSchedule(contenuOfBalise);
-		} else if (baliseName.equals(LATITUDE)) {
-			currentObjectKeolis.setLatitude(Double.parseDouble(contenuOfBalise));
-		} else if (baliseName.equals(LONGITUDE)) {
-			currentObjectKeolis.setLongitude(Double.parseDouble(contenuOfBalise));
-		}
-	}
+        private String value;
+
+        Balise(String value) {
+            this.value = value;
+        }
+
+        public static Balise fromValue(String val) {
+            for (Balise balise : values()) {
+                if (balise.value.equals(val)) {
+                    return balise;
+                }
+            }
+            return null;
+        }
+    }
+
+    /**
+     * POS.
+     */
+    private static final String POS = "pos";
+
+    @Override
+    protected String getBaliseData() {
+        return POS;
+    }
+
+    @Override
+    protected PointDeVente getNewObjetKeolis() {
+        return new PointDeVente();
+    }
+
+    @Override
+    protected void remplirObjectKeolis(PointDeVente currentObjectKeolis, String baliseName, String contenuOfBalise) {
+        Balise balise = Balise.fromValue(baliseName);
+        if (balise != null) {
+            balise.remplirObjectKeolis(currentObjectKeolis, contenuOfBalise);
+        }
+    }
 }

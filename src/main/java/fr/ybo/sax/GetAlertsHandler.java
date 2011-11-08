@@ -25,65 +25,88 @@ import fr.ybo.modele.bus.Alert;
  */
 public class GetAlertsHandler extends KeolisHandler<Alert> {
 
-	/**
-	 * TITLE.
-	 */
-	private static final String TITLE = "title";
-	/**
-	 * STARTTIME.
-	 */
-	private static final String STARTTIME = "starttime";
-	/**
-	 * ENDTIME.
-	 */
-	private static final String ENDTIME = "endtime";
-	/**
-	 * LINE.
-	 */
-	private static final String LINE = "line";
-	/**
-	 * MAJORDISTURBANCE.
-	 */
-	private static final String MAJORDISTURBANCE = "majordisturbance";
-	/**
-	 * DETAIL.
-	 */
-	private static final String DETAIL = "detail";
-	/**
-	 * LINK.
-	 */
-	private static final String LINK = "link";
-	/**
-	 * ALERT.
-	 */
-	private static final String ALERT = "alert";
+    private enum Balise {
+        TITLE("title") {
+            @Override
+            void remplirObjectKeolis(Alert currentObjectKeolis, String contenuOfBalise) {
+                currentObjectKeolis.setTitle(contenuOfBalise);
+            }
+        },
+        STARTTIME("starttime") {
+            @Override
+            void remplirObjectKeolis(Alert currentObjectKeolis, String contenuOfBalise) {
+                currentObjectKeolis.setStarttime(contenuOfBalise);
+            }
+        },
+        ENDTIME("endtime") {
+            @Override
+            void remplirObjectKeolis(Alert currentObjectKeolis, String contenuOfBalise) {
+                currentObjectKeolis.setEndtime(contenuOfBalise);
+            }
+        },
+        LINE("line") {
+            @Override
+            void remplirObjectKeolis(Alert currentObjectKeolis, String contenuOfBalise) {
+                currentObjectKeolis.getLines().add(contenuOfBalise);
+            }
+        },
+        MAJORDISTURBANCE("majordisturbance") {
+            @Override
+            void remplirObjectKeolis(Alert currentObjectKeolis, String contenuOfBalise) {
+                currentObjectKeolis.setMajordisturbance(Boolean.parseBoolean(contenuOfBalise));
+            }
+        },
+        DETAIL("detail") {
+            @Override
+            void remplirObjectKeolis(Alert currentObjectKeolis, String contenuOfBalise) {
+                currentObjectKeolis.setDetail(contenuOfBalise);
+            }
+        },
+        LINK("link") {
+            @Override
+            void remplirObjectKeolis(Alert currentObjectKeolis, String contenuOfBalise) {
+                currentObjectKeolis.setLink(contenuOfBalise);
+            }
+        };
 
-	@Override
-	protected String getBaliseData() {
-		return ALERT;
-	}
+        abstract void remplirObjectKeolis(Alert currentObjectKeolis, String contenuOfBalise);
 
-	@Override
-	protected Alert getNewObjetKeolis() {
-		return new Alert();
-	}
+        private String value;
 
-	@Override
-	protected void remplirObjectKeolis(Alert currentObjectKeolis, String baliseName, String contenuOfBalise) {
-		if (baliseName.equals(TITLE)) {
-			currentObjectKeolis.setTitle(contenuOfBalise);
-		} else if (baliseName.equals(STARTTIME)) {
-			currentObjectKeolis.setStarttime(contenuOfBalise);
-		} else if (baliseName.equals(ENDTIME)) {
-			currentObjectKeolis.setEndtime(contenuOfBalise);
-		} else if (baliseName.equals(LINE)) {
-			currentObjectKeolis.getLines().add(contenuOfBalise);
-		} else if (baliseName.equals(MAJORDISTURBANCE)) {
-			currentObjectKeolis.setMajordisturbance(Boolean.parseBoolean(contenuOfBalise));
-		} else if (baliseName.equals(DETAIL)) {
-			currentObjectKeolis.setDetail(contenuOfBalise);
-		} else if (baliseName.equals(LINK)) {
-			currentObjectKeolis.setLink(contenuOfBalise);
-		}
-	}
+        Balise(String value) {
+            this.value = value;
+        }
+
+        public static Balise fromValue(String val) {
+            for (Balise balise : values()) {
+                if (balise.value.equals(val)) {
+                    return balise;
+                }
+            }
+            return null;
+        }
+    }
+
+    /**
+     * ALERT.
+     */
+    private static final String ALERT = "alert";
+
+    @Override
+    protected String getBaliseData() {
+        return ALERT;
+    }
+
+    @Override
+    protected Alert getNewObjetKeolis() {
+        return new Alert();
+    }
+
+    @Override
+    protected void remplirObjectKeolis(Alert currentObjectKeolis, String baliseName, String contenuOfBalise) {
+        Balise balise = Balise.fromValue(baliseName);
+        if (balise != null) {
+            balise.remplirObjectKeolis(currentObjectKeolis, contenuOfBalise);
+        }
+    }
 }

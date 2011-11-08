@@ -22,45 +22,45 @@ import java.util.List;
 /**
  * Réponse Kéolis.
  *
- * @param <ObjectKeolis> type d'objet kéolis.
+ * @param <T> type d'objet kéolis.
  * @author ybonnel
  */
-public class Answer<ObjectKeolis> {
+public class Answer<T> {
 
-	/**
-	 * Status.
-	 */
-	private StatusKeolis status;
-	/**
-	 * Liste d'objet Keolis.
-	 */
-	private List<ObjectKeolis> data;
+    /**
+     * Status.
+     */
+    private StatusKeolis status;
+    /**
+     * Liste d'objet Keolis.
+     */
+    private List<T> data;
 
-	/**
-	 * @return les liste d'objet Keolis.
-	 */
-	public List<ObjectKeolis> getData() {
-		if (data == null) {
-			data = new ArrayList<ObjectKeolis>(50);
-		}
-		return data;
-	}
+    /**
+     * @return les liste d'objet Keolis.
+     */
+    public List<T> getData() {
+        if (data == null) {
+            data = new ArrayList<T>();
+        }
+        return data;
+    }
 
-	/**
-	 * Getter.
-	 *
-	 * @return le status.
-	 */
-	public StatusKeolis getStatus() {
-		return status;
-	}
+    /**
+     * Getter.
+     *
+     * @return le status.
+     */
+    public StatusKeolis getStatus() {
+        return status;
+    }
 
-	/**
-	 * Setter.
-	 *
-	 * @param pStatus le status.
-	 */
-	public void setStatus(StatusKeolis pStatus) {
-		status = pStatus;
-	}
+    /**
+     * Setter.
+     *
+     * @param pStatus le status.
+     */
+    public void setStatus(StatusKeolis pStatus) {
+        status = pStatus;
+    }
 }

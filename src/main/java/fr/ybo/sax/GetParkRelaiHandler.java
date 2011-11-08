@@ -24,66 +24,88 @@ import fr.ybo.modele.bus.ParkRelai;
  * @author ybonnel
  */
 public class GetParkRelaiHandler extends KeolisHandler<ParkRelai> {
+    private enum Balise {
+        NAME("name") {
+            @Override
+            void remplirObjectKeolis(ParkRelai currentObjectKeolis, String contenuOfBalise) {
+                currentObjectKeolis.setName(contenuOfBalise);
+            }
+        },
+        LATITUDE("latitude") {
+            @Override
+            void remplirObjectKeolis(ParkRelai currentObjectKeolis, String contenuOfBalise) {
+                currentObjectKeolis.setLatitude(Double.parseDouble(contenuOfBalise));
+            }
+        },
+        LONGITUDE("longitude") {
+            @Override
+            void remplirObjectKeolis(ParkRelai currentObjectKeolis, String contenuOfBalise) {
+                currentObjectKeolis.setLongitude(Double.parseDouble(contenuOfBalise));
+            }
+        },
+        CAR_PARK_AVAILABLE("carparkavailable") {
+            @Override
+            void remplirObjectKeolis(ParkRelai currentObjectKeolis, String contenuOfBalise) {
+                currentObjectKeolis.setCarParkAvailable(Integer.parseInt(contenuOfBalise));
+            }
+        },
+        CAR_PARK_CAPACITY("carparkcapacity") {
+            @Override
+            void remplirObjectKeolis(ParkRelai currentObjectKeolis, String contenuOfBalise) {
+                currentObjectKeolis.setCarParkCapacity(Integer.parseInt(contenuOfBalise));
+            }
+        },
+        LAST_UPDATE("lastupdate") {
+            @Override
+            void remplirObjectKeolis(ParkRelai currentObjectKeolis, String contenuOfBalise) {
+                currentObjectKeolis.setLastupdate(contenuOfBalise);
+            }
+        },
+        STATE("state") {
+            @Override
+            void remplirObjectKeolis(ParkRelai currentObjectKeolis, String contenuOfBalise) {
+                currentObjectKeolis.setState(Integer.parseInt(contenuOfBalise));
+            }
+        };
 
-	/**
-	 * RELAY_PARK.
-	 */
-	private static final String RELAY_PARK = "relaypark";
-	/**
-	 * NAME.
-	 */
-	private static final String NAME = "name";
-	/**
-	 * LATITUDE.
-	 */
-	private static final String LATITUDE = "latitude";
-	/**
-	 * LONGITUDE.
-	 */
-	private static final String LONGITUDE = "longitude";
-	/**
-	 * CAR_PARK_AVAILABLE.
-	 */
-	private static final String CAR_PARK_AVAILABLE = "carparkavailable";
-	/**
-	 * CAR_PARK_CAPACITY.
-	 */
-	private static final String CAR_PARK_CAPACITY = "carparkcapacity";
-	/**
-	 * LAST_UPDATE.
-	 */
-	private static final String LAST_UPDATE = "lastupdate";
-	/**
-	 * STATE.
-	 */
-	private static final String STATE = "state";
+        abstract void remplirObjectKeolis(ParkRelai currentObjectKeolis, String contenuOfBalise);
 
-	@Override
-	protected String getBaliseData() {
-		return RELAY_PARK;
-	}
+        private String value;
 
-	@Override
-	protected ParkRelai getNewObjetKeolis() {
-		return new ParkRelai();
-	}
+        Balise(String value) {
+            this.value = value;
+        }
 
-	@Override
-	protected void remplirObjectKeolis(ParkRelai currentObjectKeolis, String baliseName, String contenuOfBalise) {
-		if (baliseName.equals(NAME)) {
-			currentObjectKeolis.setName(contenuOfBalise);
-		} else if (baliseName.equals(LATITUDE)) {
-			currentObjectKeolis.setLatitude(Double.parseDouble(contenuOfBalise));
-		} else if (baliseName.equals(LONGITUDE)) {
-			currentObjectKeolis.setLongitude(Double.parseDouble(contenuOfBalise));
-		} else if (baliseName.equals(CAR_PARK_AVAILABLE)) {
-			currentObjectKeolis.setCarParkAvailable(Integer.parseInt(contenuOfBalise));
-		} else if (baliseName.equals(CAR_PARK_CAPACITY)) {
-			currentObjectKeolis.setCarParkCapacity(Integer.parseInt(contenuOfBalise));
-		} else if (baliseName.equals(LAST_UPDATE)) {
-			currentObjectKeolis.setLastupdate(contenuOfBalise);
-		} else if (baliseName.equals(STATE)) {
-			currentObjectKeolis.setState(Integer.parseInt(contenuOfBalise));
-		}
-	}
+        public static Balise fromValue(String val) {
+            for (Balise balise : values()) {
+                if (balise.value.equals(val)) {
+                    return balise;
+                }
+            }
+            return null;
+        }
+    }
+
+    /**
+     * RELAY_PARK.
+     */
+    private static final String RELAY_PARK = "relaypark";
+
+    @Override
+    protected String getBaliseData() {
+        return RELAY_PARK;
+    }
+
+    @Override
+    protected ParkRelai getNewObjetKeolis() {
+        return new ParkRelai();
+    }
+
+    @Override
+    protected void remplirObjectKeolis(ParkRelai currentObjectKeolis, String baliseName, String contenuOfBalise) {
+        Balise balise = Balise.fromValue(baliseName);
+        if (balise != null) {
+            balise.remplirObjectKeolis(currentObjectKeolis, contenuOfBalise);
+        }
+    }
 }

@@ -23,35 +23,35 @@ package fr.ybo.modele;
  */
 public class ParametreUrl {
 
-	/**
-	 * name.
-	 */
-	private final String name;
-	/**
-	 * value.
-	 */
-	private final String value;
+    /**
+     * name.
+     */
+    private final String name;
+    /**
+     * value.
+     */
+    private final String value;
 
-	/**
-	 * @param pName  name.
-	 * @param pValue value.
-	 */
-	public ParametreUrl(String pName, String pValue) {
-		name = pName;
-		value = pValue;
-	}
+    /**
+     * @param pName  name.
+     * @param pValue value.
+     */
+    public ParametreUrl(String pName, String pValue) {
+        name = pName;
+        value = pValue;
+    }
 
-	/**
-	 * @return the name
-	 */
-	public String getName() {
-		return name;
-	}
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
 
-	/**
-	 * @return the value
-	 */
-	public String getValue() {
-		return value;
-	}
+    /**
+     * @return the value
+     */
+    public String getValue() {
+        return value;
+    }
 }
