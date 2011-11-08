@@ -1,0 +1,28 @@
+-classpath
+'/Users/ybonnel/dev/projects/OpenDataRennesApi/target/classes:/Users/ybonnel/dev/projects/OpenDataRennesApi/target/test-classes:/Users/ybonnel/.m2/repository/junit/junit/4.8.2/junit-4.8.2.jar'
+-encoding
+'UTF-8'
+-public
+-sourcepath
+'/Users/ybonnel/dev/projects/OpenDataRennesApi/src/test/java'
+-author
+-bottom
+'Copyright &#169; 2011. All Rights Reserved.'
+-charset
+'UTF-8'
+-d
+'/Users/ybonnel/dev/projects/OpenDataRennesApi/target/site/testapidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'open-data-rennes-api 1.0-SNAPSHOT Test API'
+-link
+'http://java.sun.com/j2se/1.6.0/docs/api'
+-link
+'../apidocs'
+-linkoffline
+'http://download.oracle.com/javase/6/docs/api' '/Users/ybonnel/dev/projects/OpenDataRennesApi/target/javadoc-bundle-options'
+-use
+-version
+-windowtitle
+'open-data-rennes-api 1.0-SNAPSHOT Test API'
