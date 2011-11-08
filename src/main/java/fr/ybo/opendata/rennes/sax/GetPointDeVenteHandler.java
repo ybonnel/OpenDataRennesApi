@@ -14,9 +14,9 @@
  * Contributors:
  *     ybonnel - initial API and implementation
  */
-package fr.ybo.sax;
+package fr.ybo.opendata.rennes.sax;
 
-import fr.ybo.modele.bus.PointDeVente;
+import fr.ybo.opendata.rennes.modele.bus.PointDeVente;
 
 /**
  * Handler permettant de rÃ©cupÃ©rer les points de vente.

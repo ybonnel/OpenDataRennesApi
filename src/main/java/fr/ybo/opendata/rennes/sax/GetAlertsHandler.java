@@ -14,9 +14,9 @@
  * Contributors:
  *     ybonnel - initial API and implementation
  */
-package fr.ybo.sax;
+package fr.ybo.opendata.rennes.sax;
 
-import fr.ybo.modele.bus.Alert;
+import fr.ybo.opendata.rennes.modele.bus.Alert;
 
 /**
  * Handler SAX pour la réponse du getdistrict.

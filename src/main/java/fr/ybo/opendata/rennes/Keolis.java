@@ -14,19 +14,19 @@
  * Contributors:
  *     ybonnel - initial API and implementation
  */
-package fr.ybo;
+package fr.ybo.opendata.rennes;
 
-import fr.ybo.modele.Answer;
-import fr.ybo.modele.ParametreUrl;
-import fr.ybo.modele.bus.Alert;
-import fr.ybo.modele.bus.ParkRelai;
-import fr.ybo.modele.bus.PointDeVente;
-import fr.ybo.modele.velos.Station;
-import fr.ybo.sax.GetAlertsHandler;
-import fr.ybo.sax.GetParkRelaiHandler;
-import fr.ybo.sax.GetPointDeVenteHandler;
-import fr.ybo.sax.GetStationHandler;
-import fr.ybo.sax.KeolisHandler;
+import fr.ybo.opendata.rennes.modele.Answer;
+import fr.ybo.opendata.rennes.modele.ParametreUrl;
+import fr.ybo.opendata.rennes.modele.bus.Alert;
+import fr.ybo.opendata.rennes.modele.bus.ParkRelai;
+import fr.ybo.opendata.rennes.modele.bus.PointDeVente;
+import fr.ybo.opendata.rennes.modele.velos.Station;
+import fr.ybo.opendata.rennes.sax.GetAlertsHandler;
+import fr.ybo.opendata.rennes.sax.GetParkRelaiHandler;
+import fr.ybo.opendata.rennes.sax.GetPointDeVenteHandler;
+import fr.ybo.opendata.rennes.sax.GetStationHandler;
+import fr.ybo.opendata.rennes.sax.KeolisHandler;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;

@@ -14,44 +14,50 @@
  * Contributors:
  *     ybonnel - initial API and implementation
  */
-package fr.ybo.modele;
+package fr.ybo.opendata.rennes.modele;
 
 /**
- * Paramètre d'une URL.
+ * Représente le status de retour des apis keolis.
  *
  * @author ybonnel
  */
-public class ParametreUrl {
+public class StatusKeolis {
 
     /**
-     * name.
+     * Le code du status (0 pour ok).
      */
-    private final String name;
-    /**
-     * value.
-     */
-    private final String value;
+    private String code;
 
     /**
-     * @param pName  name.
-     * @param pValue value.
+     * Message associé au status.
      */
-    public ParametreUrl(String pName, String pValue) {
-        name = pName;
-        value = pValue;
+    private String message;
+
+    /**
+     * @return the code
+     */
+    public String getCode() {
+        return code;
     }
 
     /**
-     * @return the name
+     * @return the message
      */
-    public String getName() {
-        return name;
+    public String getMessage() {
+        return message;
     }
 
     /**
-     * @return the value
+     * @param pCode the code to set
      */
-    public String getValue() {
-        return value;
+    public void setCode(String pCode) {
+        code = pCode;
+    }
+
+    /**
+     * @param pMessage the message to set
+     */
+    public void setMessage(String pMessage) {
+        message = pMessage;
     }
 }

@@ -14,7 +14,7 @@
  * Contributors:
  *     ybonnel - initial API and implementation
  */
-package fr.ybo.modele.bus;
+package fr.ybo.opendata.rennes.modele.bus;
 
 import java.io.Serializable;
 
@@ -25,46 +25,46 @@ import java.io.Serializable;
  */
 @SuppressWarnings("serial")
 public class PointDeVente implements Serializable {
-	/**
-	 * Nom du point de vente.
-	 */
-	private String name;
-	/**
-	 * Type du point de vente.
-	 */
-	private String type;
-	/**
-	 * Adresse du point de vente.
-	 */
-	private String adresse;
-	/**
-	 * Code postal du point de vente.
-	 */
-	private String codePostal;
-	/**
-	 * Ville du point de vente.
-	 */
-	private String ville;
-	/**
-	 * District du point de vente.
-	 */
-	private String district;
-	/**
-	 * Téléphone du point de vente.
-	 */
-	private String telephone;
-	/**
-	 * Schedule du point de vente.
-	 */
-	private String schedule;
-	/**
-	 * Latitude du point de vente.
-	 */
-	private double latitude;
-	/**
-	 * Longitude du point de vente.
-	 */
-	private double longitude;
+    /**
+     * Nom du point de vente.
+     */
+    private String name;
+    /**
+     * Type du point de vente.
+     */
+    private String type;
+    /**
+     * Adresse du point de vente.
+     */
+    private String adresse;
+    /**
+     * Code postal du point de vente.
+     */
+    private String codePostal;
+    /**
+     * Ville du point de vente.
+     */
+    private String ville;
+    /**
+     * District du point de vente.
+     */
+    private String district;
+    /**
+     * Téléphone du point de vente.
+     */
+    private String telephone;
+    /**
+     * Schedule du point de vente.
+     */
+    private String schedule;
+    /**
+     * Latitude du point de vente.
+     */
+    private double latitude;
+    /**
+     * Longitude du point de vente.
+     */
+    private double longitude;
 
     public String getName() {
         return name;

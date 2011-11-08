@@ -14,9 +14,9 @@
  * Contributors:
  *     ybonnel - initial API and implementation
  */
-package fr.ybo.sax;
+package fr.ybo.opendata.rennes.sax;
 
-import fr.ybo.modele.velos.Station;
+import fr.ybo.opendata.rennes.modele.velos.Station;
 
 /**
  * Handler SAX pour l'api getstation.

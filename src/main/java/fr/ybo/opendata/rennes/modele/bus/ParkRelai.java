@@ -14,7 +14,7 @@
  * Contributors:
  *     ybonnel - initial API and implementation
  */
-package fr.ybo.modele.bus;
+package fr.ybo.opendata.rennes.modele.bus;
 
 import java.io.Serializable;
 
@@ -24,34 +24,34 @@ import java.io.Serializable;
 @SuppressWarnings("serial")
 public class ParkRelai implements Serializable {
 
-	/**
-	 * name.
-	 */
-	private String name;
-	/**
-	 * latitude.
-	 */
-	private double latitude;
-	/**
-	 * longitude.
-	 */
-	private double longitude;
-	/**
-	 * carParkAvailable.
-	 */
-	private Integer carParkAvailable;
-	/**
-	 * carParkCapacity.
-	 */
-	private Integer carParkCapacity;
-	/**
-	 * lastupdate.
-	 */
-	private String lastupdate;
-	/**
-	 * state.
-	 */
-	private Integer state;
+    /**
+     * name.
+     */
+    private String name;
+    /**
+     * latitude.
+     */
+    private double latitude;
+    /**
+     * longitude.
+     */
+    private double longitude;
+    /**
+     * carParkAvailable.
+     */
+    private Integer carParkAvailable;
+    /**
+     * carParkCapacity.
+     */
+    private Integer carParkCapacity;
+    /**
+     * lastupdate.
+     */
+    private String lastupdate;
+    /**
+     * state.
+     */
+    private Integer state;
 
     public String getName() {
         return name;

@@ -14,10 +14,10 @@
  * Contributors:
  *     ybonnel - initial API and implementation
  */
-package fr.ybo.sax;
+package fr.ybo.opendata.rennes.sax;
 
-import fr.ybo.modele.Answer;
-import fr.ybo.modele.StatusKeolis;
+import fr.ybo.opendata.rennes.modele.Answer;
+import fr.ybo.opendata.rennes.modele.StatusKeolis;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;

@@ -14,7 +14,7 @@
  * Contributors:
  *     ybonnel - initial API and implementation
  */
-package fr.ybo.util;
+package fr.ybo.opendata.rennes.util;
 
 public final class Formatteur {
 

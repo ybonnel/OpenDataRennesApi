@@ -14,9 +14,9 @@
  * Contributors:
  *     ybonnel - initial API and implementation
  */
-package fr.ybo.sax;
+package fr.ybo.opendata.rennes.sax;
 
-import fr.ybo.modele.bus.ParkRelai;
+import fr.ybo.opendata.rennes.modele.bus.ParkRelai;
 
 /**
  * Handler pour rÃ©cupÃ©rer les parks relais.

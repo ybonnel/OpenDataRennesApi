@@ -14,24 +14,44 @@
  * Contributors:
  *     ybonnel - initial API and implementation
  */
-package fr.ybo;
+package fr.ybo.opendata.rennes.modele;
 
 /**
- * Exception sur les problèmes réseaux.
+ * Paramètre d'une URL.
  *
  * @author ybonnel
  */
-public class KeolisReseauException extends Exception {
+public class ParametreUrl {
 
     /**
-     * Serial.
+     * name.
      */
-    private static final long serialVersionUID = 1L;
+    private final String name;
+    /**
+     * value.
+     */
+    private final String value;
 
-    public KeolisReseauException() {
+    /**
+     * @param pName  name.
+     * @param pValue value.
+     */
+    public ParametreUrl(String pName, String pValue) {
+        name = pName;
+        value = pValue;
     }
 
-    public KeolisReseauException(Throwable throwable) {
-        super(throwable);
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @return the value
+     */
+    public String getValue() {
+        return value;
     }
 }

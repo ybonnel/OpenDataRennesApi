@@ -14,50 +14,24 @@
  * Contributors:
  *     ybonnel - initial API and implementation
  */
-package fr.ybo.modele;
+package fr.ybo.opendata.rennes;
 
 /**
- * Représente le status de retour des apis keolis.
+ * Exception sur les problèmes réseaux.
  *
  * @author ybonnel
  */
-public class StatusKeolis {
+public class KeolisReseauException extends Exception {
 
-	/**
-	 * Le code du status (0 pour ok).
-	 */
-	private String code;
+    /**
+     * Serial.
+     */
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * Message associé au status.
-	 */
-	private String message;
+    public KeolisReseauException() {
+    }
 
-	/**
-	 * @return the code
-	 */
-	public String getCode() {
-		return code;
-	}
-
-	/**
-	 * @return the message
-	 */
-	public String getMessage() {
-		return message;
-	}
-
-	/**
-	 * @param pCode the code to set
-	 */
-	public void setCode(String pCode) {
-		code = pCode;
-	}
-
-	/**
-	 * @param pMessage the message to set
-	 */
-	public void setMessage(String pMessage) {
-		message = pMessage;
-	}
+    public KeolisReseauException(Throwable throwable) {
+        super(throwable);
+    }
 }

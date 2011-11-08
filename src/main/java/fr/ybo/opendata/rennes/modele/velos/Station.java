@@ -14,7 +14,7 @@
  * Contributors:
  *     ybonnel - initial API and implementation
  */
-package fr.ybo.modele.velos;
+package fr.ybo.opendata.rennes.modele.velos;
 
 import java.io.Serializable;
 
@@ -25,53 +25,53 @@ import java.io.Serializable;
  */
 @SuppressWarnings("serial")
 public class Station implements Serializable {
-	/**
-	 * Numéro de la station.
-	 */
-	private String number;
-	/**
-	 * Nom de la station.
-	 */
-	private String name;
-	/**
-	 * adresse de la station.
-	 */
-	private String adresse;
+    /**
+     * Numéro de la station.
+     */
+    private String number;
+    /**
+     * Nom de la station.
+     */
+    private String name;
+    /**
+     * adresse de la station.
+     */
+    private String adresse;
 
-	/**
-	 * Etat de la station.
-	 */
-	private boolean state;
+    /**
+     * Etat de la station.
+     */
+    private boolean state;
 
-	/**
-	 * Latitude.
-	 */
-	private double latitude;
+    /**
+     * Latitude.
+     */
+    private double latitude;
 
-	/**
-	 * Longitude.
-	 */
-	private double longitude;
-	/**
-	 * Places libres.
-	 */
-	private int slotsavailable;
-	/**
-	 * Vélos libres.
-	 */
-	private int bikesavailable;
-	/**
-	 * Position.
-	 */
-	private boolean pos;
-	/**
-	 * Nom du district.
-	 */
-	private String district;
-	/**
-	 * Date de dernière mise à jour.
-	 */
-	private String lastupdate;
+    /**
+     * Longitude.
+     */
+    private double longitude;
+    /**
+     * Places libres.
+     */
+    private int slotsavailable;
+    /**
+     * Vélos libres.
+     */
+    private int bikesavailable;
+    /**
+     * Position.
+     */
+    private boolean pos;
+    /**
+     * Nom du district.
+     */
+    private String district;
+    /**
+     * Date de dernière mise à jour.
+     */
+    private String lastupdate;
 
     public String getNumber() {
         return number;

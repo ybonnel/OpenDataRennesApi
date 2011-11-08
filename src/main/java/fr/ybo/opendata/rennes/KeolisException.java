@@ -14,53 +14,28 @@
  * Contributors:
  *     ybonnel - initial API and implementation
  */
-package fr.ybo.modele;
-
-import java.util.ArrayList;
-import java.util.List;
+package fr.ybo.opendata.rennes;
 
 /**
- * Réponse Kéolis.
+ * Exception sur les traitements associés aux API Keolis.
  *
- * @param <T> type d'objet kéolis.
  * @author ybonnel
  */
-public class Answer<T> {
+public class KeolisException extends RuntimeException {
 
     /**
-     * Status.
+     * Serial.
      */
-    private StatusKeolis status;
-    /**
-     * Liste d'objet Keolis.
-     */
-    private List<T> data;
+    private static final long serialVersionUID = 1L;
 
     /**
-     * @return les liste d'objet Keolis.
-     */
-    public List<T> getData() {
-        if (data == null) {
-            data = new ArrayList<T>();
-        }
-        return data;
-    }
-
-    /**
-     * Getter.
+     * Constructeur avec message et exception.
      *
-     * @return le status.
+     * @param message message.
+     * @param cause   exception.
      */
-    public StatusKeolis getStatus() {
-        return status;
+    public KeolisException(String message, Throwable cause) {
+        super(message, cause);
     }
 
-    /**
-     * Setter.
-     *
-     * @param pStatus le status.
-     */
-    public void setStatus(StatusKeolis pStatus) {
-        status = pStatus;
-    }
 }
