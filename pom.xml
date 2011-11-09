@@ -162,18 +162,18 @@
 
     <repositories>
         <repository>
-            <id>ybonnel-repo</id>
-            <url>https://raw.github.com/ybonnel/ybonnel-mvn-repo/master/releases</url>
+            <id>ybonnel-release</id>
+            <url>https://repository-ybonnel.forge.cloudbees.com/release/</url>
         </repository>
     </repositories>
     <distributionManagement>
         <repository>
-            <id>repo</id>
-            <url>https://raw.github.com/ybonnel/ybonnel-mvn-repo/master/releases</url>
+            <id>ybonnel-release</id>
+            <url>https://repository-ybonnel.forge.cloudbees.com/release/</url>
         </repository>
         <snapshotRepository>
-            <id>snapshot-repo</id>
-            <url>https://raw.github.com/ybonnel/ybonnel-mvn-repo/master/snapshots</url>
+            <id>ybonnel-snapshot</id>
+            <url>https://repository-ybonnel.forge.cloudbees.com/snapshot/</url>
         </snapshotRepository>
     </distributionManagement>
 </project>
