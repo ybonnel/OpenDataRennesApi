@@ -48,7 +48,7 @@ public class GetStationHandler extends KeolisHandler<Station> {
         STATE("state") {
             @Override
             void remplirObjectKeolis(Station currentObjectKeolis, String contenuOfBalise) {
-                currentObjectKeolis.setState(Boolean.parseBoolean(contenuOfBalise));
+                currentObjectKeolis.setState("1".equals(contenuOfBalise));
             }
         },
         LATITUDE("latitude") {

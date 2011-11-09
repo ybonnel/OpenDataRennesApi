@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<opendata>
+	<request>http://data.keolis-rennes.com/xml/?version=2.0&amp;key=G7JE45LI1RK3W1P&amp;cmd=getbikestations</request>
+	<answer>
+		<status code="0" message="OK"/>
+		<data>
+			<station>
+				<number>75</number>
+				<name>ZAC SAINT SULPICE</name>
+				<address>RUE DE FOUGÈRES</address>
+				<state>1</state>
+				<latitude>48.1321</latitude>
+				<longitude>-1.63528</longitude>
+				<slotsavailable>14</slotsavailable>
+				<bikesavailable>16</bikesavailable>
+				<pos>0</pos>
+				<district>Maurepas - Patton</district>
+				<lastupdate>2011-11-09T19:59:06+01:00</lastupdate>
+			</station>
+			<station>
+				<number>52</number>
+				<name>VILLEJEAN-UNIVERSITE</name>
+				<address>RUE D'ALSACE </address>
+				<state>1</state>
+				<latitude>48.121075</latitude>
+				<longitude>-1.704122</longitude>
+				<slotsavailable>23</slotsavailable>
+				<bikesavailable>1</bikesavailable>
+				<pos>1</pos>
+				<district>Villejean-Beauregard</district>
+				<lastupdate>2011-11-09T19:59:06+01:00</lastupdate>
+			</station>
+		</data>
+	</answer>
+</opendata>

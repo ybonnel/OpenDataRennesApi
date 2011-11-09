@@ -76,9 +76,13 @@ public abstract class KeolisHandler<T> extends DefaultHandler {
             if (qName.equals(getBaliseData())) {
                 answer.getData().add(currentObjetKeolis);
             } else {
-                remplirObjectKeolis(currentObjetKeolis, qName, contenu.toString());
+                if (contenu != null) {
+                    remplirObjectKeolis(currentObjetKeolis, qName, contenu.toString());
+                }
             }
-            contenu.setLength(0);
+            if (contenu != null) {
+                contenu.setLength(0);
+            }
         }
     }
 

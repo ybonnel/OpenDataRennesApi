@@ -17,6 +17,7 @@
 package fr.ybo.opendata.rennes.sax;
 
 import fr.ybo.opendata.rennes.modele.bus.ParkRelai;
+import fr.ybo.opendata.rennes.modele.bus.StateParkRelai;
 
 /**
  * Handler pour rÃ©cupÃ©rer les parks relais.
@@ -64,7 +65,7 @@ public class GetParkRelaiHandler extends KeolisHandler<ParkRelai> {
         STATE("state") {
             @Override
             void remplirObjectKeolis(ParkRelai currentObjectKeolis, String contenuOfBalise) {
-                currentObjectKeolis.setState(Integer.parseInt(contenuOfBalise));
+                currentObjectKeolis.setState(StateParkRelai.fromValue(Integer.parseInt(contenuOfBalise)));
             }
         };
 

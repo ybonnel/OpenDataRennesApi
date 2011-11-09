@@ -51,7 +51,7 @@ public class ParkRelai implements Serializable {
     /**
      * state.
      */
-    private Integer state;
+    private StateParkRelai state;
 
     public String getName() {
         return name;
@@ -101,11 +101,11 @@ public class ParkRelai implements Serializable {
         this.lastupdate = lastupdate;
     }
 
-    public Integer getState() {
+    public StateParkRelai getState() {
         return state;
     }
 
-    public void setState(Integer state) {
+    public void setState(StateParkRelai state) {
         this.state = state;
     }
 }

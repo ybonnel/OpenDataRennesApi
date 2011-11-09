@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<opendata>
+	<request>http://data.keolis-rennes.com/xml/?version=2.0&amp;key=G7JE45LI1RK3W1P&amp;cmd=getrelayparks</request>
+	<answer>
+		<status code="0" message="OK"/>
+		<data>
+			<relaypark>
+				<name>Henri Fréville</name>
+				<latitude>48.0875369773</latitude>
+				<longitude>-1.6745548715</longitude>
+				<carparkavailable>317</carparkavailable>
+				<carparkcapacity>406</carparkcapacity>
+				<lastupdate>2011-11-09T20:06:07+01:00</lastupdate>
+				<state>0</state>
+			</relaypark>
+			<relaypark>
+				<name>J.F. Kennedy</name>
+				<latitude>48.1210803663</latitude>
+				<longitude>-1.7136311256</longitude>
+				<carparkavailable>338</carparkavailable>
+				<carparkcapacity>378</carparkcapacity>
+				<lastupdate>2011-11-09T20:06:07+01:00</lastupdate>
+				<state>1</state>
+			</relaypark>
+			<relaypark>
+				<name>La Poterie</name>
+				<latitude>48.0868139293</latitude>
+				<longitude>-1.6434973209</longitude>
+				<carparkavailable>285</carparkavailable>
+				<carparkcapacity>388</carparkcapacity>
+				<lastupdate>2011-11-09T20:06:07+01:00</lastupdate>
+				<state>2</state>
+			</relaypark>
+			<relaypark>
+				<name>Villejean-Université</name>
+				<latitude>48.1219060927</latitude>
+				<longitude>-1.7041822798</longitude>
+				<carparkavailable>290</carparkavailable>
+				<carparkcapacity>372</carparkcapacity>
+				<lastupdate>2011-11-09T20:06:07+01:00</lastupdate>
+				<state>3</state>
+			</relaypark>
+		</data>
+	</answer>
+</opendata>
