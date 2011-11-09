@@ -15,7 +15,7 @@
 -docencoding
 'UTF-8'
 -doctitle
-'open-data-rennes-api 1.0-SNAPSHOT Test API'
+'open-data-rennes-api 1.1-SNAPSHOT Test API'
 -link
 'http://java.sun.com/j2se/1.6.0/docs/api'
 -link
@@ -25,4 +25,4 @@
 -use
 -version
 -windowtitle
-'open-data-rennes-api 1.0-SNAPSHOT Test API'
+'open-data-rennes-api 1.1-SNAPSHOT Test API'
