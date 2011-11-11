@@ -1,5 +1,5 @@
 -classpath
-'/scratch/hudson/workspace/OpenDataRennesApi/target/classes'
+'/scratch/hudson/workspace/OpenDataRennesApi/target/classes:/scratch/hudson/workspace/OpenDataRennesApi/.repository/fr/ybo/moteurcsv/1.0.3/moteurcsv-1.0.3.jar'
 -encoding
 'UTF-8'
 -public
