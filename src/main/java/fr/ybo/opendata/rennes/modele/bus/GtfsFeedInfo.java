@@ -17,8 +17,11 @@ package fr.ybo.opendata.rennes.modele.bus;
 import fr.ybo.moteurcsv.annotation.BaliseCsv;
 import fr.ybo.moteurcsv.annotation.FichierCsv;
 
+import java.io.Serializable;
+
 @FichierCsv("feed_info.txt")
-public class GtfsFeedInfo {
+public class GtfsFeedInfo implements Serializable {
+    private static final long serialVersionUID = 8815113618441661239L;
     @BaliseCsv("feed_publisher_name")
     private String publisherName;
     @BaliseCsv("feed_publisher_url")

@@ -14,10 +14,12 @@
 
 package fr.ybo.opendata.rennes.modele.bus;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class GtfsFile {
+public class GtfsFile implements Serializable {
 
+    private static final long serialVersionUID = -5452814256977509096L;
     private Date date;
     private String url;
 
