@@ -56,8 +56,8 @@ public class GtfsTest {
         assertEquals("Keolis Rennes", info.getPublisherName());
         assertEquals("http://data.keolis-rennes.com/fr/les-donnees/donnees-telechargeables.html", info.getPublisherUrl());
         assertEquals("FR", info.getLang());
-        assertEquals("20111114", info.getStartDate());
-        assertEquals("20111218", info.getEndDate());
+        assertEquals("20111114", new SimpleDateFormat("yyyyMMdd").format(info.getStartDate()));
+        assertEquals("20111218", new SimpleDateFormat("yyyyMMdd").format(info.getEndDate()));
         assertEquals("Horaires d'hiver 2011 - Modifications du 14/11/2011.", info.getVersion());
     }
 }

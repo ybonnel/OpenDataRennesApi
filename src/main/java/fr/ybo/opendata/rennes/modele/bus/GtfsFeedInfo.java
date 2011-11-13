@@ -18,6 +18,9 @@ import fr.ybo.moteurcsv.annotation.BaliseCsv;
 import fr.ybo.moteurcsv.annotation.FichierCsv;
 
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @FichierCsv("feed_info.txt")
 public class GtfsFeedInfo implements Serializable {
@@ -35,6 +38,8 @@ public class GtfsFeedInfo implements Serializable {
     @BaliseCsv("feed_version")
     private String version;
 
+    private static final SimpleDateFormat SIMPLE_DATE_FORMAT = new SimpleDateFormat("yyyyMMdd");
+
     public String getPublisherName() {
         return publisherName;
     }
@@ -47,12 +52,20 @@ public class GtfsFeedInfo implements Serializable {
         return lang;
     }
 
-    public String getStartDate() {
-        return startDate;
+    public Date getStartDate() {
+        try {
+            return SIMPLE_DATE_FORMAT.parse(startDate);
+        } catch (ParseException ignore) {
+            return null;
+        }
     }
 
-    public String getEndDate() {
-        return endDate;
+    public Date getEndDate() {
+        try {
+            return SIMPLE_DATE_FORMAT.parse(endDate);
+        } catch (ParseException ignore) {
+            return null;
+        }
     }
 
     public String getVersion() {
