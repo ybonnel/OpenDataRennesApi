@@ -74,8 +74,9 @@ public class Gtfs {
      * Récupère la liste gtfs disponible.
      *
      * @return liste des fichiers GTFS fournis.
+     * @throws KeolisReseauException erreur réseau.
      */
-    public List<GtfsFile> getUpdates() {
+    public List<GtfsFile> getUpdates() throws KeolisReseauException {
         List<GtfsFile> files = new ArrayList<GtfsFile>();
         try {
             BufferedReader bufReader = new BufferedReader(new InputStreamReader(connecteur.openInputStream(URL_DONNEES_TELECHARGEABLES)));
@@ -88,7 +89,8 @@ public class Gtfs {
             } finally {
                 bufReader.close();
             }
-        } catch (Exception ignore) {
+        } catch (Exception exception) {
+            throw new KeolisReseauException(exception);
         }
         return files;
     }
@@ -107,6 +109,7 @@ public class Gtfs {
 
     /**
      * Permet de récupérer les infos sur un fichier GTFS.
+     *
      * @param file fichier GTFS.
      * @return listes des infos (généralement une seule).
      * @throws KeolisReseauException erreur réseau.

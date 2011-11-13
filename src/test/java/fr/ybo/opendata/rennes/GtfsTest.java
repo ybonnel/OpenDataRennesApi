@@ -16,18 +16,18 @@ public class GtfsTest {
 
     @Before
     public void setup() {
-         gtfs = new Gtfs();
+        gtfs = new Gtfs();
     }
 
     @Test
-    public void testGetUpdates() {
+    public void testGetUpdates() throws KeolisReseauException {
         gtfs.setConnecteur(new FileConnecteur("/gtfs.html"));
         List<GtfsFile> files = gtfs.getUpdates();
 
-        assertEquals( 2, files.size());
-        assertEquals( "05092011", new SimpleDateFormat("ddMMyyyy").format(files.get(0).getDate()));
+        assertEquals(2, files.size());
+        assertEquals("05092011", new SimpleDateFormat("ddMMyyyy").format(files.get(0).getDate()));
         assertEquals("http://data.keolis-rennes.com/fileadmin/OpenDataFiles/GTFS/GTFS-20110905.zip", files.get(0).getUrl());
-        assertEquals( "14112011", new SimpleDateFormat("ddMMyyyy").format(files.get(1).getDate()));
+        assertEquals("14112011", new SimpleDateFormat("ddMMyyyy").format(files.get(1).getDate()));
         assertEquals("http://data.keolis-rennes.com/fileadmin/OpenDataFiles/GTFS/GTFS-20111114.zip", files.get(1).getUrl());
     }
 
