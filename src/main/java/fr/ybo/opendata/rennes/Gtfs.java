@@ -139,6 +139,7 @@ public class Gtfs {
             while (entry != null) {
                 if (moteurCsv.getClassByFileName(entry.getName()) != null) {
                     infos.addAll(moteurCsv.parseInputStream(zipInputStream, GtfsFeedInfo.class));
+                    break;
                 }
                 entry = zipInputStream.getNextEntry();
             }
