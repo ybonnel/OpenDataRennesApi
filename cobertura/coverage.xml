@@ -1,15 +1,15 @@
 <?xml version="1.0"?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
 
-<coverage line-rate="0.843585237258348" branch-rate="0.6101694915254238" lines-covered="480" lines-valid="569" branches-covered="72" branches-valid="118" complexity="1.4673913043478262" version="1.9.4.1" timestamp="1321211927751">
+<coverage line-rate="0.843859649122807" branch-rate="0.6016949152542372" lines-covered="481" lines-valid="570" branches-covered="71" branches-valid="118" complexity="1.4673913043478262" version="1.9.4.1" timestamp="1321212863567">
 	<sources>
 		<source>/scratch/hudson/workspace/OpenDataRennesApi/src/main/java</source>
 		<source>--source</source>
 	</sources>
 	<packages>
-		<package name="fr.ybo.opendata.rennes" line-rate="0.6476190476190476" branch-rate="0.6153846153846154" complexity="2.4">
+		<package name="fr.ybo.opendata.rennes" line-rate="0.6509433962264151" branch-rate="0.5769230769230769" complexity="2.4">
 			<classes>
-				<class name="fr.ybo.opendata.rennes.Gtfs" filename="fr/ybo/opendata/rennes/Gtfs.java" line-rate="0.8372093023255814" branch-rate="1.0" complexity="2.8">
+				<class name="fr.ybo.opendata.rennes.Gtfs" filename="fr/ybo/opendata/rennes/Gtfs.java" line-rate="0.8409090909090909" branch-rate="0.875" complexity="2.8">
 					<methods>
 						<method name="&lt;clinit&gt;" signature="()V" line-rate="1.0" branch-rate="1.0">
 							<lines>
@@ -23,7 +23,7 @@
 								<line number="81" hits="2" branch="false"/>
 							</lines>
 						</method>
-						<method name="getFeedInfo" signature="(Lfr/ybo/opendata/rennes/modele/bus/GtfsFile;)Ljava/util/List;" line-rate="0.7222222222222222" branch-rate="1.0">
+						<method name="getFeedInfo" signature="(Lfr/ybo/opendata/rennes/modele/bus/GtfsFile;)Ljava/util/List;" line-rate="0.7368421052631579" branch-rate="0.75">
 							<lines>
 								<line number="132" hits="1" branch="false"/>
 								<line number="133" hits="1" branch="false"/>
@@ -31,26 +31,27 @@
 								<line number="135" hits="1" branch="false"/>
 								<line number="136" hits="1" branch="false"/>
 								<line number="138" hits="1" branch="false"/>
-								<line number="139" hits="11" branch="true" condition-coverage="100 % (2/2)">
+								<line number="139" hits="4" branch="true" condition-coverage="50 % (1/2)">
 									<conditions>
-										<condition number="0" type="jump" coverage="100 %"/>
+										<condition number="0" type="jump" coverage="50 %"/>
 									</conditions>
 								</line>
-								<line number="140" hits="10" branch="true" condition-coverage="100 % (2/2)">
+								<line number="140" hits="4" branch="true" condition-coverage="100 % (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100 %"/>
 									</conditions>
 								</line>
 								<line number="141" hits="1" branch="false"/>
-								<line number="143" hits="10" branch="false"/>
-								<line number="145" hits="0" branch="false"/>
+								<line number="142" hits="1" branch="false"/>
+								<line number="144" hits="3" branch="false"/>
 								<line number="146" hits="0" branch="false"/>
-								<line number="148" hits="0" branch="false"/>
-								<line number="149" hits="1" branch="false"/>
-								<line number="150" hits="0" branch="false"/>
-								<line number="151" hits="1" branch="false"/>
-								<line number="152" hits="0" branch="false"/>
-								<line number="153" hits="1" branch="false"/>
+								<line number="147" hits="0" branch="false"/>
+								<line number="149" hits="0" branch="false"/>
+								<line number="150" hits="1" branch="false"/>
+								<line number="151" hits="0" branch="false"/>
+								<line number="152" hits="1" branch="false"/>
+								<line number="153" hits="0" branch="false"/>
+								<line number="154" hits="1" branch="false"/>
 							</lines>
 						</method>
 						<method name="getUpdates" signature="()Ljava/util/List;" line-rate="0.8333333333333334" branch-rate="1.0">
@@ -135,26 +136,27 @@
 						<line number="135" hits="1" branch="false"/>
 						<line number="136" hits="1" branch="false"/>
 						<line number="138" hits="1" branch="false"/>
-						<line number="139" hits="11" branch="true" condition-coverage="100 % (2/2)">
+						<line number="139" hits="4" branch="true" condition-coverage="50 % (1/2)">
 							<conditions>
-								<condition number="0" type="jump" coverage="100 %"/>
+								<condition number="0" type="jump" coverage="50 %"/>
 							</conditions>
 						</line>
-						<line number="140" hits="10" branch="true" condition-coverage="100 % (2/2)">
+						<line number="140" hits="4" branch="true" condition-coverage="100 % (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100 %"/>
 							</conditions>
 						</line>
 						<line number="141" hits="1" branch="false"/>
-						<line number="143" hits="10" branch="false"/>
-						<line number="145" hits="0" branch="false"/>
+						<line number="142" hits="1" branch="false"/>
+						<line number="144" hits="3" branch="false"/>
 						<line number="146" hits="0" branch="false"/>
-						<line number="148" hits="0" branch="false"/>
-						<line number="149" hits="1" branch="false"/>
-						<line number="150" hits="0" branch="false"/>
-						<line number="151" hits="1" branch="false"/>
-						<line number="152" hits="0" branch="false"/>
-						<line number="153" hits="1" branch="false"/>
+						<line number="147" hits="0" branch="false"/>
+						<line number="149" hits="0" branch="false"/>
+						<line number="150" hits="1" branch="false"/>
+						<line number="151" hits="0" branch="false"/>
+						<line number="152" hits="1" branch="false"/>
+						<line number="153" hits="0" branch="false"/>
+						<line number="154" hits="1" branch="false"/>
 					</lines>
 				</class>
 				<class name="fr.ybo.opendata.rennes.Keolis" filename="fr/ybo/opendata/rennes/Keolis.java" line-rate="0.5714285714285714" branch-rate="0.4444444444444444" complexity="2.5833333333333335">
