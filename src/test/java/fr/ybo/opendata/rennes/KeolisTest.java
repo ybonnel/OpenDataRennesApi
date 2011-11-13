@@ -1,3 +1,17 @@
+/*
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 package fr.ybo.opendata.rennes;
 
 
@@ -94,15 +108,15 @@ public class KeolisTest {
         assertEquals(4, parkRelais.size());
         ParkRelai parkRelai = parkRelais.get(0);
         assertEquals("Henri Fréville", parkRelai.getName());
-		assertEquals(48.0875369773, parkRelai.getLatitude());
-		assertEquals(-1.6745548715, parkRelai.getLongitude());
-		assertEquals(317, parkRelai.getCarParkAvailable().intValue());
-		assertEquals(406, parkRelai.getCarParkCapacity().intValue());
-		assertEquals("2011-11-09T20:06:07+01:00", parkRelai.getLastupdate());
-		assertEquals(StateParkRelai.OUVERT, parkRelai.getState());
-		assertEquals(StateParkRelai.FERME, parkRelais.get(1).getState());
-		assertEquals(StateParkRelai.COMPLET, parkRelais.get(2).getState());
-		assertEquals(StateParkRelai.INDISPONIBLE, parkRelais.get(3).getState());
+        assertEquals(48.0875369773, parkRelai.getLatitude());
+        assertEquals(-1.6745548715, parkRelai.getLongitude());
+        assertEquals(317, parkRelai.getCarParkAvailable().intValue());
+        assertEquals(406, parkRelai.getCarParkCapacity().intValue());
+        assertEquals("2011-11-09T20:06:07+01:00", parkRelai.getLastupdate());
+        assertEquals(StateParkRelai.OUVERT, parkRelai.getState());
+        assertEquals(StateParkRelai.FERME, parkRelais.get(1).getState());
+        assertEquals(StateParkRelai.COMPLET, parkRelais.get(2).getState());
+        assertEquals(StateParkRelai.INDISPONIBLE, parkRelais.get(3).getState());
     }
 
     @Test

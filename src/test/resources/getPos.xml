@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <opendata>
-	<request>http://data.keolis-rennes.com/xml/?version=2.0&amp;key=G7JE45LI1RK3W1P&amp;cmd=getpos</request>
-	<answer>
-		<status code="0" message="OK"/>
-		<data>
-			<pos>
-				<name>Relais H / Gare SNCF</name>
-				<type>Tabac Presse</type>
-				<address>Place de la gare</address>
-				<zipcode>35000</zipcode>
-				<city>RENNES</city>
-				<district>Gares</district>
-				<phone> 02 99 41 91 44</phone>
-				<schedule></schedule>
-				<latitude>48.1041574</latitude>
-				<longitude>-1.6726879</longitude>
-			</pos>
-			<pos>
-				<name>Relais H / Gare SNCF</name>
-				<type>Tabac Presse</type>
-				<address>Place de la gare</address>
-				<zipcode>35000</zipcode>
-				<city>RENNES</city>
-				<district>Gares</district>
-				<phone>02 99 30 39 42 </phone>
-				<schedule></schedule>
-				<latitude>48.1041574</latitude>
-				<longitude>-1.6726879</longitude>
-			</pos>
+    <request>http://data.keolis-rennes.com/xml/?version=2.0&amp;key=G7JE45LI1RK3W1P&amp;cmd=getpos</request>
+    <answer>
+        <status code="0" message="OK"/>
+        <data>
+            <pos>
+                <name>Relais H / Gare SNCF</name>
+                <type>Tabac Presse</type>
+                <address>Place de la gare</address>
+                <zipcode>35000</zipcode>
+                <city>RENNES</city>
+                <district>Gares</district>
+                <phone>02 99 41 91 44</phone>
+                <schedule/>
+                <latitude>48.1041574</latitude>
+                <longitude>-1.6726879</longitude>
+            </pos>
+            <pos>
+                <name>Relais H / Gare SNCF</name>
+                <type>Tabac Presse</type>
+                <address>Place de la gare</address>
+                <zipcode>35000</zipcode>
+                <city>RENNES</city>
+                <district>Gares</district>
+                <phone>02 99 30 39 42</phone>
+                <schedule/>
+                <latitude>48.1041574</latitude>
+                <longitude>-1.6726879</longitude>
+            </pos>
         </data>
     </answer>
 </opendata>

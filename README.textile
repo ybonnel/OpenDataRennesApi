@@ -4,6 +4,6 @@ Il s'agit d'un librairie Java pour permettre l'accès aux API temps réelles du 
 
 h1. License
 
-L'ensemble du code source est sous "GPL v3":http://www.gnu.org/licenses/gpl-3.0.html.
+L'ensemble du code source est sous "LGPL v3":http://www.gnu.org/licenses/lgpl-3.0.html.
 
 
