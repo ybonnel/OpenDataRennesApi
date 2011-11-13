@@ -133,7 +133,7 @@ public class KeolisTest {
         assertEquals("35000", pointDeVente.getCodePostal());
         assertEquals("RENNES", pointDeVente.getVille());
         assertEquals("Gares", pointDeVente.getDistrict());
-        assertEquals(" 02 99 41 91 44", pointDeVente.getTelephone());
+        assertEquals("02 99 41 91 44", pointDeVente.getTelephone());
         assertEquals("", pointDeVente.getSchedule());
         assertEquals(48.1041574, pointDeVente.getLatitude());
         assertEquals(-1.6726879, pointDeVente.getLongitude());
