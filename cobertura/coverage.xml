@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
 
-<coverage line-rate="0.849290780141844" branch-rate="0.6101694915254238" lines-covered="479" lines-valid="564" branches-covered="72" branches-valid="118" complexity="1.4456521739130435" version="1.9.4.1" timestamp="1321208598294">
+<coverage line-rate="0.849290780141844" branch-rate="0.6101694915254238" lines-covered="479" lines-valid="564" branches-covered="72" branches-valid="118" complexity="1.4456521739130435" version="1.9.4.1" timestamp="1321208731319">
 	<sources>
 		<source>/scratch/hudson/workspace/OpenDataRennesApi/src/main/java</source>
 		<source>--source</source>
@@ -861,88 +861,88 @@
 					<methods>
 						<method name="&lt;init&gt;" signature="()V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="21" hits="1" branch="false"/>
+								<line number="23" hits="1" branch="false"/>
 							</lines>
 						</method>
 						<method name="getEndDate" signature="()Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="52" hits="1" branch="false"/>
+								<line number="55" hits="1" branch="false"/>
 							</lines>
 						</method>
 						<method name="getLang" signature="()Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="44" hits="1" branch="false"/>
+								<line number="47" hits="1" branch="false"/>
 							</lines>
 						</method>
 						<method name="getPublisherName" signature="()Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="36" hits="1" branch="false"/>
+								<line number="39" hits="1" branch="false"/>
 							</lines>
 						</method>
 						<method name="getPublisherUrl" signature="()Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="40" hits="1" branch="false"/>
+								<line number="43" hits="1" branch="false"/>
 							</lines>
 						</method>
 						<method name="getStartDate" signature="()Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="48" hits="1" branch="false"/>
+								<line number="51" hits="1" branch="false"/>
 							</lines>
 						</method>
 						<method name="getVersion" signature="()Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="56" hits="1" branch="false"/>
+								<line number="59" hits="1" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="21" hits="1" branch="false"/>
-						<line number="36" hits="1" branch="false"/>
-						<line number="40" hits="1" branch="false"/>
-						<line number="44" hits="1" branch="false"/>
-						<line number="48" hits="1" branch="false"/>
-						<line number="52" hits="1" branch="false"/>
-						<line number="56" hits="1" branch="false"/>
+						<line number="23" hits="1" branch="false"/>
+						<line number="39" hits="1" branch="false"/>
+						<line number="43" hits="1" branch="false"/>
+						<line number="47" hits="1" branch="false"/>
+						<line number="51" hits="1" branch="false"/>
+						<line number="55" hits="1" branch="false"/>
+						<line number="59" hits="1" branch="false"/>
 					</lines>
 				</class>
 				<class name="fr.ybo.opendata.rennes.modele.bus.GtfsFile" filename="fr/ybo/opendata/rennes/modele/bus/GtfsFile.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
 					<methods>
 						<method name="&lt;init&gt;" signature="()V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="19" hits="3" branch="false"/>
+								<line number="20" hits="3" branch="false"/>
 							</lines>
 						</method>
 						<method name="getDate" signature="()Ljava/util/Date;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="25" hits="2" branch="false"/>
+								<line number="27" hits="2" branch="false"/>
 							</lines>
 						</method>
 						<method name="getUrl" signature="()Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="33" hits="3" branch="false"/>
+								<line number="35" hits="3" branch="false"/>
 							</lines>
 						</method>
 						<method name="setDate" signature="(Ljava/util/Date;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="29" hits="2" branch="false"/>
-								<line number="30" hits="2" branch="false"/>
+								<line number="31" hits="2" branch="false"/>
+								<line number="32" hits="2" branch="false"/>
 							</lines>
 						</method>
 						<method name="setUrl" signature="(Ljava/lang/String;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="37" hits="3" branch="false"/>
-								<line number="38" hits="3" branch="false"/>
+								<line number="39" hits="3" branch="false"/>
+								<line number="40" hits="3" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="19" hits="3" branch="false"/>
-						<line number="25" hits="2" branch="false"/>
-						<line number="29" hits="2" branch="false"/>
-						<line number="30" hits="2" branch="false"/>
-						<line number="33" hits="3" branch="false"/>
-						<line number="37" hits="3" branch="false"/>
-						<line number="38" hits="3" branch="false"/>
+						<line number="20" hits="3" branch="false"/>
+						<line number="27" hits="2" branch="false"/>
+						<line number="31" hits="2" branch="false"/>
+						<line number="32" hits="2" branch="false"/>
+						<line number="35" hits="3" branch="false"/>
+						<line number="39" hits="3" branch="false"/>
+						<line number="40" hits="3" branch="false"/>
 					</lines>
 				</class>
 				<class name="fr.ybo.opendata.rennes.modele.bus.ParkRelai" filename="fr/ybo/opendata/rennes/modele/bus/ParkRelai.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
