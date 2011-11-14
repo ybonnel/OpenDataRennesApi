@@ -28,6 +28,8 @@ public class HttpConnecteur implements Connecteur {
         try {
             URL myUrl = new URL(url);
             URLConnection connection = myUrl.openConnection();
+            connection.setConnectTimeout(10000);
+            connection.setReadTimeout(20000);
             return connection.getInputStream();
         } catch (IOException socketException) {
             throw new KeolisReseauException(socketException);
