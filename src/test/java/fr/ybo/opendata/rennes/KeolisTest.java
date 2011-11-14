@@ -16,10 +16,13 @@ package fr.ybo.opendata.rennes;
 
 
 import fr.ybo.opendata.rennes.modele.bus.Alert;
+import fr.ybo.opendata.rennes.modele.bus.LignePicto;
 import fr.ybo.opendata.rennes.modele.bus.ParkRelai;
+import fr.ybo.opendata.rennes.modele.bus.PictoSize;
 import fr.ybo.opendata.rennes.modele.bus.PointDeVente;
 import fr.ybo.opendata.rennes.modele.bus.StateParkRelai;
 import fr.ybo.opendata.rennes.modele.velos.Station;
+import fr.ybo.opendata.rennes.modele.velos.StationDistrict;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -137,7 +140,32 @@ public class KeolisTest {
         assertEquals("", pointDeVente.getSchedule());
         assertEquals(48.1041574, pointDeVente.getLatitude());
         assertEquals(-1.6726879, pointDeVente.getLongitude());
+    }
 
+    @Test
+    public void testGetStationsDistrict() throws KeolisReseauException {
+        keolis.setConnecteur(new FileConnecteur("/getBikesDistrict.xml"));
+        List<StationDistrict> districts = keolis.getStationsDistrict();
+        assertEquals(2, districts.size());
+        assertEquals("34", districts.get(0).getId());
+        assertEquals("Sud-Gare", districts.get(0).getName());
+        assertEquals("35", districts.get(1).getId());
+        assertEquals("Francisco Ferrer-Vern-Poterie", districts.get(1).getName());
+    }
+
+    @Test
+    public void testGetLignes() throws KeolisReseauException {
+        keolis.setConnecteur(new FileConnecteur("/getLines.xml"));
+        List<LignePicto> pictos = keolis.getLigne(PictoSize.TAILLE_100);
+        assertEquals(2, pictos.size());
+        assertEquals("1", pictos.get(0).getName());
+        assertEquals("L1.png", pictos.get(0).getPicto());
+        assertEquals("http://data.keolis-rennes.com/" +
+                "fileadmin/documents/Picto_lignes/Pictos_lignes_100x100/L1.png", pictos.get(0).getPictoUrl());
+        assertEquals("11", pictos.get(1).getName());
+        assertEquals("L11.png", pictos.get(1).getPicto());
+        assertEquals("http://data.keolis-rennes.com/" +
+                "fileadmin/documents/Picto_lignes/Pictos_lignes_100x100/L11.png", pictos.get(1).getPictoUrl());
     }
 
 }

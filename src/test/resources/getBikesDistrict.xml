@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<opendata>
+    <request>http://data.keolis-rennes.com/xml/?version=2.0&amp;key=G7JE45LI1RK3W1P&amp;cmd=getbikedistricts</request>
+    <answer>
+        <status code="0" message="OK"/>
+        <data>
+            <district>
+                <id>34</id>
+                <name>Sud-Gare</name>
+            </district>
+            <district>
+                <id>35</id>
+                <name>Francisco Ferrer-Vern-Poterie</name>
+            </district>
+        </data>
+    </answer>
+</opendata>

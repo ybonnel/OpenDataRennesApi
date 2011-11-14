@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<opendata>
+    <request>
+        http://data.keolis-rennes.com/xml/?version=2.0&amp;key=G7JE45LI1RK3W1P&amp;cmd=getlines&amp;param[size]=100
+    </request>
+    <answer>
+        <status code="0" message="OK"/>
+        <data>
+            <baseurl>http://data.keolis-rennes.com/fileadmin/documents/Picto_lignes/Pictos_lignes_100x100/</baseurl>
+            <line>
+                <name>1</name>
+                <picto>L1.png</picto>
+            </line>
+            <line>
+                <name>11</name>
+                <picto>L11.png</picto>
+            </line>
+        </data>
+    </answer>
+</opendata>

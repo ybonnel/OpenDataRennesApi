@@ -16,12 +16,17 @@ package fr.ybo.opendata.rennes;
 import fr.ybo.opendata.rennes.modele.Answer;
 import fr.ybo.opendata.rennes.modele.ParametreUrl;
 import fr.ybo.opendata.rennes.modele.bus.Alert;
+import fr.ybo.opendata.rennes.modele.bus.LignePicto;
 import fr.ybo.opendata.rennes.modele.bus.ParkRelai;
+import fr.ybo.opendata.rennes.modele.bus.PictoSize;
 import fr.ybo.opendata.rennes.modele.bus.PointDeVente;
 import fr.ybo.opendata.rennes.modele.velos.Station;
+import fr.ybo.opendata.rennes.modele.velos.StationDistrict;
 import fr.ybo.opendata.rennes.sax.GetAlertsHandler;
+import fr.ybo.opendata.rennes.sax.GetLinesHandler;
 import fr.ybo.opendata.rennes.sax.GetParkRelaiHandler;
 import fr.ybo.opendata.rennes.sax.GetPointDeVenteHandler;
+import fr.ybo.opendata.rennes.sax.GetStationDistrictHandler;
 import fr.ybo.opendata.rennes.sax.GetStationHandler;
 import fr.ybo.opendata.rennes.sax.KeolisHandler;
 import fr.ybo.opendata.rennes.util.Connecteur;
@@ -60,6 +65,10 @@ public class Keolis {
      */
     private static final String COMMANDE_STATIONS = "getbikestations";
     /**
+     * Commande pour récupérer les stations.
+     */
+    private static final String COMMANDE_STATIONS_DISTRICT = "getbikedistricts";
+    /**
      * Commande pour récupérer les alerts.
      */
     private static final String COMMANDE_ALERTS = "getlinesalerts";
@@ -71,6 +80,10 @@ public class Keolis {
      * Commande pour récupérer les points de vente.
      */
     private static final String COMMANDE_POS = "getpos";
+    /**
+     * Commande pour récupérer les pictos.
+     */
+    private static final String COMMANDE_LINES = "getlines";
 
     private Connecteur connecteur;
 
@@ -199,6 +212,16 @@ public class Keolis {
     }
 
     /**
+     * Appel aux API Keolis pour récupérer les districts des stations..
+     *
+     * @return la listes des districts.
+     * @throws KeolisReseauException pour toutes erreurs réseaux.
+     */
+    public List<StationDistrict> getStationsDistrict() throws KeolisReseauException {
+        return appelKeolis(getUrl(COMMANDE_STATIONS_DISTRICT), new GetStationDistrictHandler());
+    }
+
+    /**
      * @return les parks relais.
      * @throws KeolisReseauException pour toutes erreurs réseaux.
      */
@@ -212,6 +235,15 @@ public class Keolis {
      */
     public List<PointDeVente> getPointDeVente() throws KeolisReseauException {
         return appelKeolis(getUrl(COMMANDE_POS), new GetPointDeVenteHandler());
+    }
+
+    /**
+     * @param size taille des pictos demandé.
+     * @return la liste des pictos.
+     * @throws KeolisReseauException pour toutes erreurs réseaux.
+     */
+    public List<LignePicto> getLigne(PictoSize size) throws KeolisReseauException {
+        return appelKeolis(getUrl(COMMANDE_LINES, new ParametreUrl("size", Integer.toString(size.getSize()))), new GetLinesHandler());
     }
 
     /**
