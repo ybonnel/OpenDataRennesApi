@@ -21,10 +21,12 @@ import fr.ybo.opendata.rennes.modele.bus.ParkRelai;
 import fr.ybo.opendata.rennes.modele.bus.PictoSize;
 import fr.ybo.opendata.rennes.modele.bus.PointDeVente;
 import fr.ybo.opendata.rennes.modele.equipements.Equipement;
+import fr.ybo.opendata.rennes.modele.equipements.EquipementStatus;
 import fr.ybo.opendata.rennes.modele.velos.Station;
 import fr.ybo.opendata.rennes.modele.velos.StationDistrict;
 import fr.ybo.opendata.rennes.sax.GetAlertsHandler;
 import fr.ybo.opendata.rennes.sax.GetEquipementsHandler;
+import fr.ybo.opendata.rennes.sax.GetEquipementsStatusHandler;
 import fr.ybo.opendata.rennes.sax.GetLinesHandler;
 import fr.ybo.opendata.rennes.sax.GetParkRelaiHandler;
 import fr.ybo.opendata.rennes.sax.GetPointDeVenteHandler;
@@ -90,6 +92,11 @@ public class Keolis {
      * Commande pour récupérer les equipements.
      */
     private static final String COMMANDE_EQUIPMENTS = "getequipments";
+    /**
+     * Commande pour récupérer les status des equipements.
+     */
+    private static final String COMMANDE_EQUIPMENTS_STATUS = "getequipmentsstatus";
+
 
     private Connecteur connecteur;
 
@@ -267,6 +274,40 @@ public class Keolis {
      */
     public List<Equipement> getEquipements(String station) throws KeolisReseauException {
         return appelKeolis(getUrl(COMMANDE_EQUIPMENTS, new ParametreUrl("mode", "station"), new ParametreUrl("station", station)), new GetEquipementsHandler());
+    }
+
+    /**
+     * @return la liste des status des equipements.
+     * @throws KeolisReseauException pour toutes erreurs réseaux.
+     */
+    public List<EquipementStatus> getEquipementsStatus() throws KeolisReseauException {
+        return appelKeolis(getUrl(COMMANDE_EQUIPMENTS_STATUS), new GetEquipementsStatusHandler());
+    }
+
+    /**
+     * @param id identifiant de l'équipements.
+     * @return le status des equipements.
+     * @throws KeolisReseauException pour toutes erreurs réseaux.
+     */
+    public EquipementStatus getEquipementsStatus(String id) throws KeolisReseauException {
+        List<EquipementStatus> equipementStatuses = appelKeolis(getUrl(COMMANDE_EQUIPMENTS_STATUS,
+                new ParametreUrl("mode", "id"),
+                new ParametreUrl("id", id)), new GetEquipementsStatusHandler());
+        if (equipementStatuses.isEmpty()) {
+            return null;
+        }
+        return equipementStatuses.get(0);
+    }
+
+    /**
+     * @param station la sation.
+     * @return la liste des status des equipements de la station.
+     * @throws KeolisReseauException pour toutes erreurs réseaux.
+     */
+    public List<EquipementStatus> getEquipementsStatusByStation(String station) throws KeolisReseauException {
+        return appelKeolis(getUrl(COMMANDE_EQUIPMENTS_STATUS,
+                new ParametreUrl("mode", "station"),
+                new ParametreUrl("station", station)), new GetEquipementsStatusHandler());
     }
 
     /**

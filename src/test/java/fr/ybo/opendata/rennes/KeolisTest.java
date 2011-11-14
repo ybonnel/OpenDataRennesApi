@@ -22,6 +22,7 @@ import fr.ybo.opendata.rennes.modele.bus.PictoSize;
 import fr.ybo.opendata.rennes.modele.bus.PointDeVente;
 import fr.ybo.opendata.rennes.modele.bus.StateParkRelai;
 import fr.ybo.opendata.rennes.modele.equipements.Equipement;
+import fr.ybo.opendata.rennes.modele.equipements.EquipementStatus;
 import fr.ybo.opendata.rennes.modele.equipements.TypeEquipement;
 import fr.ybo.opendata.rennes.modele.velos.Station;
 import fr.ybo.opendata.rennes.modele.velos.StationDistrict;
@@ -185,6 +186,19 @@ public class KeolisTest {
         assertEquals(TypeEquipement.ESCALATOR, equipements.get(1).getType());
 
         assertEquals(2, keolis.getEquipements("ANF").size());
+    }
+
+    @Test
+    public void testGetEquipmentsStatus() throws KeolisReseauException {
+        keolis.setConnecteur(new FileConnecteur("/getEquipmentsStatus.xml"));
+        List<EquipementStatus> status = keolis.getEquipementsStatus();
+        assertEquals(2, status.size());
+        assertEquals("ASC_ANF_1", status.get(0).getId());
+        assertTrue(status.get(0).isOn());
+        assertEquals("2011-11-14 05:00:51", status.get(0).getLastUpdate());
+        assertFalse(status.get(1).isOn());
+        assertEquals(2, keolis.getEquipementsStatusByStation("station").size());
+        assertNotNull(keolis.getEquipementsStatus("id"));
     }
 
 }

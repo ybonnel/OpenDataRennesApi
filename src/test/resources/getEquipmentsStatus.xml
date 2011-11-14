@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<opendata>
+    <request>http://data.keolis-rennes.com/xml/?version=2.0&amp;key=G7JE45LI1RK3W1P&amp;cmd=getequipmentsstatus
+    </request>
+    <answer>
+        <status code="0" message="OK"/>
+        <data>
+            <equipment>
+                <id>ASC_ANF_1</id>
+                <state>1</state>
+                <lastupdate>2011-11-14 05:00:51</lastupdate>
+            </equipment>
+            <equipment>
+                <id>ASC_ANF_2</id>
+                <state>0</state>
+                <lastupdate>2011-11-14 05:00:51</lastupdate>
+            </equipment>
+        </data>
+    </answer>
+</opendata>
