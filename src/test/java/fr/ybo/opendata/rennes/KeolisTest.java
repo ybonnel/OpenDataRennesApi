@@ -21,6 +21,8 @@ import fr.ybo.opendata.rennes.modele.bus.ParkRelai;
 import fr.ybo.opendata.rennes.modele.bus.PictoSize;
 import fr.ybo.opendata.rennes.modele.bus.PointDeVente;
 import fr.ybo.opendata.rennes.modele.bus.StateParkRelai;
+import fr.ybo.opendata.rennes.modele.equipements.Equipement;
+import fr.ybo.opendata.rennes.modele.equipements.TypeEquipement;
 import fr.ybo.opendata.rennes.modele.velos.Station;
 import fr.ybo.opendata.rennes.modele.velos.StationDistrict;
 import org.junit.Before;
@@ -166,6 +168,23 @@ public class KeolisTest {
         assertEquals("L11.png", pictos.get(1).getPicto());
         assertEquals("http://data.keolis-rennes.com/" +
                 "fileadmin/documents/Picto_lignes/Pictos_lignes_100x100/L11.png", pictos.get(1).getPictoUrl());
+    }
+
+    @Test
+    public void testGetEquipements() throws KeolisReseauException {
+        keolis.setConnecteur(new FileConnecteur("/getEquipments.xml"));
+        List<Equipement> equipements = keolis.getEquipements();
+        assertEquals(2, equipements.size());
+        assertEquals("ASC_ANF_1", equipements.get(0).getId());
+        assertEquals("ANF", equipements.get(0).getStation());
+        assertEquals(TypeEquipement.ASCENSEUR, equipements.get(0).getType());
+        assertEquals(-1, equipements.get(0).getEtageDepart());
+        assertEquals(0, equipements.get(0).getEtageArrivee());
+        assertEquals(1, equipements.get(0).getPlateform());
+        assertEquals("2011-11-14 05:00:51", equipements.get(0).getLastUpdate());
+        assertEquals(TypeEquipement.ESCALATOR, equipements.get(1).getType());
+
+        assertEquals(2, keolis.getEquipements("ANF").size());
     }
 
 }

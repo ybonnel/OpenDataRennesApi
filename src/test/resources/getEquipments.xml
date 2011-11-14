@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<opendata>
+    <request>http://data.keolis-rennes.com/xml/?version=2.0&amp;key=G7JE45LI1RK3W1P&amp;cmd=getequipments</request>
+    <answer>
+        <status code="0" message="OK"/>
+        <data>
+            <equipment>
+                <id>ASC_ANF_1</id>
+                <station>ANF</station>
+                <type>ASCENSEUR</type>
+                <fromfloor>-1</fromfloor>
+                <tofloor>0</tofloor>
+                <platform>1</platform>
+                <lastupdate>2011-11-14 05:00:51</lastupdate>
+            </equipment>
+            <equipment>
+                <id>ASC_ANF_2</id>
+                <station>ANF</station>
+                <type>ESCALATOR</type>
+                <fromfloor>-1</fromfloor>
+                <tofloor>0</tofloor>
+                <platform>1</platform>
+                <lastupdate>2011-11-14 05:00:51</lastupdate>
+            </equipment>
+        </data>
+    </answer>
+</opendata>

@@ -20,9 +20,11 @@ import fr.ybo.opendata.rennes.modele.bus.LignePicto;
 import fr.ybo.opendata.rennes.modele.bus.ParkRelai;
 import fr.ybo.opendata.rennes.modele.bus.PictoSize;
 import fr.ybo.opendata.rennes.modele.bus.PointDeVente;
+import fr.ybo.opendata.rennes.modele.equipements.Equipement;
 import fr.ybo.opendata.rennes.modele.velos.Station;
 import fr.ybo.opendata.rennes.modele.velos.StationDistrict;
 import fr.ybo.opendata.rennes.sax.GetAlertsHandler;
+import fr.ybo.opendata.rennes.sax.GetEquipementsHandler;
 import fr.ybo.opendata.rennes.sax.GetLinesHandler;
 import fr.ybo.opendata.rennes.sax.GetParkRelaiHandler;
 import fr.ybo.opendata.rennes.sax.GetPointDeVenteHandler;
@@ -84,6 +86,10 @@ public class Keolis {
      * Commande pour récupérer les pictos.
      */
     private static final String COMMANDE_LINES = "getlines";
+    /**
+     * Commande pour récupérer les equipements.
+     */
+    private static final String COMMANDE_EQUIPMENTS = "getequipments";
 
     private Connecteur connecteur;
 
@@ -244,6 +250,23 @@ public class Keolis {
      */
     public List<LignePicto> getLigne(PictoSize size) throws KeolisReseauException {
         return appelKeolis(getUrl(COMMANDE_LINES, new ParametreUrl("size", Integer.toString(size.getSize()))), new GetLinesHandler());
+    }
+
+    /**
+     * @return la liste des equipements.
+     * @throws KeolisReseauException pour toutes erreurs réseaux.
+     */
+    public List<Equipement> getEquipements() throws KeolisReseauException {
+        return appelKeolis(getUrl(COMMANDE_EQUIPMENTS), new GetEquipementsHandler());
+    }
+
+    /**
+     * @param station station pour laquelle on veux récupérer les équipements
+     * @return la liste des equipements de la station.
+     * @throws KeolisReseauException pour toutes erreurs réseaux.
+     */
+    public List<Equipement> getEquipements(String station) throws KeolisReseauException {
+        return appelKeolis(getUrl(COMMANDE_EQUIPMENTS, new ParametreUrl("mode", "station"), new ParametreUrl("station", station)), new GetEquipementsHandler());
     }
 
     /**
