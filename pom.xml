@@ -4,7 +4,7 @@
     <groupId>fr.ybo</groupId>
     <artifactId>open-data-rennes-api</artifactId>
     <packaging>jar</packaging>
-    <version>1.4-SNAPSHOT</version>
+    <version>1.4</version>
     <name>open-data-rennes-api</name>
     <url>https://github.com/ybonnel/OpenDataRennesApi</url>
     <description>Une librairie pour accéder aux API temps réel de data.keolis-rennes.com</description>
