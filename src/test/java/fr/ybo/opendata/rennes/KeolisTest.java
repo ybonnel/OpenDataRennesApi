@@ -28,6 +28,7 @@ import fr.ybo.opendata.rennes.modele.metros.MetroStation;
 import fr.ybo.opendata.rennes.modele.metros.MetroStationStatus;
 import fr.ybo.opendata.rennes.modele.velos.Station;
 import fr.ybo.opendata.rennes.modele.velos.StationDistrict;
+import fr.ybo.opendata.rennes.modele.villes.Ville;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -240,6 +241,17 @@ public class KeolisTest {
         assertEquals("ANF", status.getId());
         assertTrue(status.isOn());
         assertEquals("2011-11-15T21:59:36+01:00", status.getLastUpdate());
+    }
+
+    @Test
+    public void testGetVilles() throws KeolisReseauException {
+        keolis.setConnecteur(new FileConnecteur("/getCities.xml"));
+
+        List<Ville> villes = keolis.getVilles();
+        assertEquals(2, villes.size());
+        assertEquals("RENNES", villes.get(0).getName());
+        assertEquals(26, villes.get(0).getNombreDistricts());
+        assertEquals("1", villes.get(0).getId());
     }
 
 }

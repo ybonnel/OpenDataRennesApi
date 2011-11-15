@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<opendata>
+    <request>http://data.keolis-rennes.com/xml/?version=2.0&amp;key=G7JE45LI1RK3W1P&amp;cmd=getcities</request>
+    <answer>
+        <status code="0" message="OK"/>
+        <data>
+            <city>
+                <name>RENNES</name>
+                <district>26</district>
+                <id>1</id>
+            </city>
+            <city>
+                <name>LE RHEU</name>
+                <district>0</district>
+                <id>2</id>
+            </city>
+        </data>
+    </answer>
+</opendata>
