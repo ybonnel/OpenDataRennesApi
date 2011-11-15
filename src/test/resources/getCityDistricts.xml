@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<opendata>
+    <request>http://data.keolis-rennes.com/xml/?version=2.0&amp;key=G7JE45LI1RK3W1P&amp;cmd=getcitydistricts&amp;param[city]=1</request>
+    <answer>
+        <status code="0" message="OK"/>
+        <data>
+            <district>
+                <name>Beauregard</name>
+                <id>1</id>
+            </district>
+            <district>
+                <name>La Poterie - Haut Sancé</name>
+                <id>2</id>
+            </district>
+        </data>
+    </answer>
+</opendata>

@@ -26,6 +26,7 @@ import fr.ybo.opendata.rennes.modele.metros.MetroStation;
 import fr.ybo.opendata.rennes.modele.metros.MetroStationStatus;
 import fr.ybo.opendata.rennes.modele.velos.Station;
 import fr.ybo.opendata.rennes.modele.velos.StationDistrict;
+import fr.ybo.opendata.rennes.modele.villes.Quartier;
 import fr.ybo.opendata.rennes.modele.villes.Ville;
 import fr.ybo.opendata.rennes.sax.GetAlertsHandler;
 import fr.ybo.opendata.rennes.sax.GetEquipementsHandler;
@@ -35,6 +36,7 @@ import fr.ybo.opendata.rennes.sax.GetMetroStationHandler;
 import fr.ybo.opendata.rennes.sax.GetMetroStationsStatusHandler;
 import fr.ybo.opendata.rennes.sax.GetParkRelaiHandler;
 import fr.ybo.opendata.rennes.sax.GetPointDeVenteHandler;
+import fr.ybo.opendata.rennes.sax.GetQuartiersHandler;
 import fr.ybo.opendata.rennes.sax.GetStationDistrictHandler;
 import fr.ybo.opendata.rennes.sax.GetStationHandler;
 import fr.ybo.opendata.rennes.sax.GetVillesHandler;
@@ -114,6 +116,10 @@ public class Keolis {
      * Commande pour récupérer les villes.
      */
     private static final String COMMANDE_CITIES = "getcities";
+    /**
+     * Commande pour récupérer les quartiers.
+     */
+    private static final String COMMANDE_CITY_DISTRICT = "getcitydistricts";
 
 
     private Connecteur connecteur;
@@ -365,6 +371,16 @@ public class Keolis {
      */
     public List<Ville> getVilles() throws KeolisReseauException {
         return appelKeolis(getUrl(COMMANDE_CITIES), new GetVillesHandler());
+    }
+
+    /**
+     * @param villeId id de la ville.
+     * @return la liste des quartiers d'une ville
+     * @throws KeolisReseauException pour toutes erreurs réseaux.
+     */
+    public List<Quartier> getQuartier(String villeId) throws KeolisReseauException {
+        return appelKeolis(getUrl(COMMANDE_CITY_DISTRICT,
+                new ParametreUrl("city", villeId)), new GetQuartiersHandler());
     }
 
     /**

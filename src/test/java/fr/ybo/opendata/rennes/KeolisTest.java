@@ -28,6 +28,7 @@ import fr.ybo.opendata.rennes.modele.metros.MetroStation;
 import fr.ybo.opendata.rennes.modele.metros.MetroStationStatus;
 import fr.ybo.opendata.rennes.modele.velos.Station;
 import fr.ybo.opendata.rennes.modele.velos.StationDistrict;
+import fr.ybo.opendata.rennes.modele.villes.Quartier;
 import fr.ybo.opendata.rennes.modele.villes.Ville;
 import org.junit.Before;
 import org.junit.Test;
@@ -252,6 +253,16 @@ public class KeolisTest {
         assertEquals("RENNES", villes.get(0).getName());
         assertEquals(26, villes.get(0).getNombreDistricts());
         assertEquals("1", villes.get(0).getId());
+    }
+
+    @Test
+    public void testGetQuartiers() throws KeolisReseauException {
+        keolis.setConnecteur(new FileConnecteur("/getCityDistricts.xml"));
+
+        List<Quartier> quartiers = keolis.getQuartier("1");
+        assertEquals(2, quartiers.size());
+        assertEquals("Beauregard", quartiers.get(0).getName());
+        assertEquals("1", quartiers.get(0).getId());
     }
 
 }
