@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<opendata>
+    <request>http://data.keolis-rennes.com/xml/?version=2.0&amp;key=G7JE45LI1RK3W1P&amp;cmd=getmetrostationsstatus
+    </request>
+    <answer>
+        <status code="0" message="OK"/>
+        <data>
+            <station>
+                <id>ANF</id>
+                <status>1</status>
+                <lastUpdate>2011-11-15T21:59:36+01:00</lastUpdate>
+            </station>
+            <station>
+                <id>BLO</id>
+                <status>0</status>
+                <lastUpdate>2011-11-15T21:58:21+01:00</lastUpdate>
+            </station>
+        </data>
+    </answer>
+</opendata>

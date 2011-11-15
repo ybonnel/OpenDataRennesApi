@@ -23,6 +23,7 @@ import fr.ybo.opendata.rennes.modele.bus.PointDeVente;
 import fr.ybo.opendata.rennes.modele.equipements.Equipement;
 import fr.ybo.opendata.rennes.modele.equipements.EquipementStatus;
 import fr.ybo.opendata.rennes.modele.metros.MetroStation;
+import fr.ybo.opendata.rennes.modele.metros.MetroStationStatus;
 import fr.ybo.opendata.rennes.modele.velos.Station;
 import fr.ybo.opendata.rennes.modele.velos.StationDistrict;
 import fr.ybo.opendata.rennes.sax.GetAlertsHandler;
@@ -30,6 +31,7 @@ import fr.ybo.opendata.rennes.sax.GetEquipementsHandler;
 import fr.ybo.opendata.rennes.sax.GetEquipementsStatusHandler;
 import fr.ybo.opendata.rennes.sax.GetLinesHandler;
 import fr.ybo.opendata.rennes.sax.GetMetroStationHandler;
+import fr.ybo.opendata.rennes.sax.GetMetroStationsStatusHandler;
 import fr.ybo.opendata.rennes.sax.GetParkRelaiHandler;
 import fr.ybo.opendata.rennes.sax.GetPointDeVenteHandler;
 import fr.ybo.opendata.rennes.sax.GetStationDistrictHandler;
@@ -102,6 +104,10 @@ public class Keolis {
      * Commande pour récupérer les stations de métro.
      */
     private static final String COMMANDE_METRO_STATION = "getmetrostations";
+    /**
+     * Commande pour récupérer les status des stations de métro.
+     */
+    private static final String COMMANDE_METRO_STATION_STATUS = "getmetrostationsstatus";
 
 
     private Connecteur connecteur;
@@ -322,6 +328,29 @@ public class Keolis {
      */
     public List<MetroStation> getMetroStations() throws KeolisReseauException {
         return appelKeolis(getUrl(COMMANDE_METRO_STATION), new GetMetroStationHandler());
+    }
+
+    /**
+     * @return la liste des status des stations de métro.
+     * @throws KeolisReseauException pour toutes erreurs réseaux.
+     */
+    public List<MetroStationStatus> getMetroStationsStatus() throws KeolisReseauException {
+        return appelKeolis(getUrl(COMMANDE_METRO_STATION_STATUS), new GetMetroStationsStatusHandler());
+    }
+
+    /**
+     * @param id identifiant de la station de metro.
+     * @return le status de la station de métro.
+     * @throws KeolisReseauException pour toutes erreurs réseaux.
+     */
+    public MetroStationStatus getMetroStationsStatus(String id) throws KeolisReseauException {
+        List<MetroStationStatus> stationStatuses = appelKeolis(getUrl(COMMANDE_METRO_STATION_STATUS,
+                new ParametreUrl("mode", "station"),
+                new ParametreUrl("station", id)), new GetMetroStationsStatusHandler());
+        if (stationStatuses.isEmpty()) {
+            return null;
+        }
+        return stationStatuses.get(0);
     }
 
     /**

@@ -126,7 +126,7 @@ public abstract class KeolisHandler<T> extends DefaultHandler {
         super.startElement(uri, localName, qName, attributes);
         if (qName.equals(ANSWER)) {
             answer = new Answer<T>();
-        } else if (qName.equals(STATUS)) {
+        } else if (qName.equals(STATUS) && answer.getStatus() == null) {
             answer.setStatus(new StatusKeolis());
             answer.getStatus().setCode(attributes.getValue(attributes.getIndex(CODE)));
             answer.getStatus().setMessage(attributes.getValue(attributes.getIndex(MESSAGE)));
