@@ -11,42 +11,39 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package fr.ybo.opendata.rennes.sax;
+package fr.ybo.opendata.rennes.sax.villes;
 
-import fr.ybo.opendata.rennes.modele.bus.LignePicto;
+import fr.ybo.opendata.rennes.modele.villes.Ville;
+import fr.ybo.opendata.rennes.sax.KeolisHandler;
 
 /**
- * Handler SAX pour l'api getlines.
+ * Handler SAX pour la réponse du getcities.
  *
  * @author ybonnel
  */
-public class GetLinesHandler extends KeolisHandler<LignePicto> {
-
-    private static String baseUrl;
-
+public class GetVillesHandler extends KeolisHandler<Ville> {
 
     private enum Balise {
         NAME("name") {
             @Override
-            void remplirObjectKeolis(LignePicto currentObjectKeolis, String contenuOfBalise) {
+            void remplirObjectKeolis(Ville currentObjectKeolis, String contenuOfBalise) {
                 currentObjectKeolis.setName(contenuOfBalise);
             }
         },
-        PICTO("picto") {
+        DISTRICT("district") {
             @Override
-            void remplirObjectKeolis(LignePicto currentObjectKeolis, String contenuOfBalise) {
-                currentObjectKeolis.setPicto(contenuOfBalise);
-                currentObjectKeolis.setPictoUrl(baseUrl + contenuOfBalise);
+            void remplirObjectKeolis(Ville currentObjectKeolis, String contenuOfBalise) {
+                currentObjectKeolis.setNombreDistricts(Integer.parseInt(contenuOfBalise));
             }
         },
-        BASEURL("baseurl") {
+        ID("id") {
             @Override
-            void remplirObjectKeolis(LignePicto currentObjectKeolis, String contenuOfBalise) {
-                baseUrl = contenuOfBalise;
+            void remplirObjectKeolis(Ville currentObjectKeolis, String contenuOfBalise) {
+                currentObjectKeolis.setId(contenuOfBalise);
             }
         };
 
-        abstract void remplirObjectKeolis(LignePicto currentObjectKeolis, String contenuOfBalise);
+        abstract void remplirObjectKeolis(Ville currentObjectKeolis, String contenuOfBalise);
 
         private String value;
 
@@ -65,22 +62,22 @@ public class GetLinesHandler extends KeolisHandler<LignePicto> {
     }
 
     /**
-     * Nom de la balise line.
+     * Balise station.
      */
-    private static final String LINE = "line";
+    private static final String CITY = "city";
 
     @Override
     protected String getBaliseData() {
-        return LINE;
+        return CITY;
     }
 
     @Override
-    protected LignePicto getNewObjetKeolis() {
-        return new LignePicto();
+    protected Ville getNewObjetKeolis() {
+        return new Ville();
     }
 
     @Override
-    protected void remplirObjectKeolis(LignePicto currentObjectKeolis, String baliseName, String contenuOfBalise) {
+    protected void remplirObjectKeolis(Ville currentObjectKeolis, String baliseName, String contenuOfBalise) {
         Balise balise = Balise.fromValue(baliseName);
         if (balise != null) {
             balise.remplirObjectKeolis(currentObjectKeolis, contenuOfBalise);

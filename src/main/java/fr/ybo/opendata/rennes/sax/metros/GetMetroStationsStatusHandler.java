@@ -11,32 +11,41 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package fr.ybo.opendata.rennes.sax;
+package fr.ybo.opendata.rennes.sax.metros;
 
-import fr.ybo.opendata.rennes.modele.villes.Quartier;
+import fr.ybo.opendata.rennes.modele.metros.MetroStationStatus;
+import fr.ybo.opendata.rennes.sax.KeolisHandler;
 
 /**
- * Handler SAX pour la réponse du getcities.
+ * Handler SAX pour la réponse du getmetrostationsstatus.
  *
  * @author ybonnel
  */
-public class GetQuartiersHandler extends KeolisHandler<Quartier> {
+public class GetMetroStationsStatusHandler extends KeolisHandler<MetroStationStatus> {
 
     private enum Balise {
-        NAME("name") {
-            @Override
-            void remplirObjectKeolis(Quartier currentObjectKeolis, String contenuOfBalise) {
-                currentObjectKeolis.setName(contenuOfBalise);
-            }
-        },
         ID("id") {
             @Override
-            void remplirObjectKeolis(Quartier currentObjectKeolis, String contenuOfBalise) {
+            void remplirObjectKeolis(MetroStationStatus currentObjectKeolis, String contenuOfBalise) {
                 currentObjectKeolis.setId(contenuOfBalise);
+            }
+        },
+        STATUS("status") {
+            @Override
+            void remplirObjectKeolis(MetroStationStatus currentObjectKeolis, String contenuOfBalise) {
+                if (currentObjectKeolis != null) {
+                    currentObjectKeolis.setOn("1".equals(contenuOfBalise));
+                }
+            }
+        },
+        LAST_UPDATE("lastUpdate") {
+            @Override
+            void remplirObjectKeolis(MetroStationStatus currentObjectKeolis, String contenuOfBalise) {
+                currentObjectKeolis.setLastUpdate(contenuOfBalise);
             }
         };
 
-        abstract void remplirObjectKeolis(Quartier currentObjectKeolis, String contenuOfBalise);
+        abstract void remplirObjectKeolis(MetroStationStatus currentObjectKeolis, String contenuOfBalise);
 
         private String value;
 
@@ -57,20 +66,20 @@ public class GetQuartiersHandler extends KeolisHandler<Quartier> {
     /**
      * Balise station.
      */
-    private static final String DISTRICT = "district";
+    private static final String STATION = "station";
 
     @Override
     protected String getBaliseData() {
-        return DISTRICT;
+        return STATION;
     }
 
     @Override
-    protected Quartier getNewObjetKeolis() {
-        return new Quartier();
+    protected MetroStationStatus getNewObjetKeolis() {
+        return new MetroStationStatus();
     }
 
     @Override
-    protected void remplirObjectKeolis(Quartier currentObjectKeolis, String baliseName, String contenuOfBalise) {
+    protected void remplirObjectKeolis(MetroStationStatus currentObjectKeolis, String baliseName, String contenuOfBalise) {
         Balise balise = Balise.fromValue(baliseName);
         if (balise != null) {
             balise.remplirObjectKeolis(currentObjectKeolis, contenuOfBalise);

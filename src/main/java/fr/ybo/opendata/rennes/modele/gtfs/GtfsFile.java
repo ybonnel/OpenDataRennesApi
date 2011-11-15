@@ -11,24 +11,31 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package fr.ybo.opendata.rennes;
 
-/**
- * Exception sur les problèmes réseaux.
- *
- * @author ybonnel
- */
-public class KeolisReseauException extends Exception {
+package fr.ybo.opendata.rennes.modele.gtfs;
 
-    /**
-     * Serial.
-     */
-    private static final long serialVersionUID = 1L;
+import java.io.Serializable;
+import java.util.Date;
 
-    public KeolisReseauException() {
+public class GtfsFile implements Serializable {
+
+    private static final long serialVersionUID = -5452814256977509096L;
+    private Date date;
+    private String url;
+
+    public Date getDate() {
+        return date;
     }
 
-    public KeolisReseauException(Throwable throwable) {
-        super(throwable);
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }

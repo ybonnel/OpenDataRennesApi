@@ -11,33 +11,33 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package fr.ybo.opendata.rennes.sax;
+package fr.ybo.opendata.rennes.sax.villes;
 
-import fr.ybo.opendata.rennes.modele.velos.StationDistrict;
+import fr.ybo.opendata.rennes.modele.villes.Quartier;
+import fr.ybo.opendata.rennes.sax.KeolisHandler;
 
 /**
- * Handler SAX pour l'api getbikedistricts.
+ * Handler SAX pour la réponse du getcities.
  *
  * @author ybonnel
  */
-public class GetStationDistrictHandler extends KeolisHandler<StationDistrict> {
-
+public class GetQuartiersHandler extends KeolisHandler<Quartier> {
 
     private enum Balise {
         NAME("name") {
             @Override
-            void remplirObjectKeolis(StationDistrict currentObjectKeolis, String contenuOfBalise) {
+            void remplirObjectKeolis(Quartier currentObjectKeolis, String contenuOfBalise) {
                 currentObjectKeolis.setName(contenuOfBalise);
             }
         },
         ID("id") {
             @Override
-            void remplirObjectKeolis(StationDistrict currentObjectKeolis, String contenuOfBalise) {
+            void remplirObjectKeolis(Quartier currentObjectKeolis, String contenuOfBalise) {
                 currentObjectKeolis.setId(contenuOfBalise);
             }
         };
 
-        abstract void remplirObjectKeolis(StationDistrict currentObjectKeolis, String contenuOfBalise);
+        abstract void remplirObjectKeolis(Quartier currentObjectKeolis, String contenuOfBalise);
 
         private String value;
 
@@ -56,7 +56,7 @@ public class GetStationDistrictHandler extends KeolisHandler<StationDistrict> {
     }
 
     /**
-     * Nom de la balise district.
+     * Balise station.
      */
     private static final String DISTRICT = "district";
 
@@ -66,12 +66,12 @@ public class GetStationDistrictHandler extends KeolisHandler<StationDistrict> {
     }
 
     @Override
-    protected StationDistrict getNewObjetKeolis() {
-        return new StationDistrict();
+    protected Quartier getNewObjetKeolis() {
+        return new Quartier();
     }
 
     @Override
-    protected void remplirObjectKeolis(StationDistrict currentObjectKeolis, String baliseName, String contenuOfBalise) {
+    protected void remplirObjectKeolis(Quartier currentObjectKeolis, String baliseName, String contenuOfBalise) {
         Balise balise = Balise.fromValue(baliseName);
         if (balise != null) {
             balise.remplirObjectKeolis(currentObjectKeolis, contenuOfBalise);

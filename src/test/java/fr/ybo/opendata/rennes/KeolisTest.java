@@ -15,17 +15,18 @@
 package fr.ybo.opendata.rennes;
 
 
+import fr.ybo.opendata.rennes.exceptions.KeolisReseauException;
 import fr.ybo.opendata.rennes.modele.bus.Alert;
 import fr.ybo.opendata.rennes.modele.bus.LignePicto;
-import fr.ybo.opendata.rennes.modele.bus.ParkRelai;
 import fr.ybo.opendata.rennes.modele.bus.PictoSize;
-import fr.ybo.opendata.rennes.modele.bus.PointDeVente;
-import fr.ybo.opendata.rennes.modele.bus.StateParkRelai;
 import fr.ybo.opendata.rennes.modele.equipements.Equipement;
 import fr.ybo.opendata.rennes.modele.equipements.EquipementStatus;
 import fr.ybo.opendata.rennes.modele.equipements.TypeEquipement;
 import fr.ybo.opendata.rennes.modele.metros.MetroStation;
 import fr.ybo.opendata.rennes.modele.metros.MetroStationStatus;
+import fr.ybo.opendata.rennes.modele.parkrelais.ParkRelai;
+import fr.ybo.opendata.rennes.modele.parkrelais.StateParkRelai;
+import fr.ybo.opendata.rennes.modele.pointsdevente.PointDeVente;
 import fr.ybo.opendata.rennes.modele.velos.Station;
 import fr.ybo.opendata.rennes.modele.velos.StationDistrict;
 import fr.ybo.opendata.rennes.modele.villes.Quartier;

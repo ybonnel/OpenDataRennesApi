@@ -11,9 +11,10 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package fr.ybo.opendata.rennes.sax;
+package fr.ybo.opendata.rennes.sax.bus;
 
 import fr.ybo.opendata.rennes.modele.bus.Alert;
+import fr.ybo.opendata.rennes.sax.KeolisHandler;
 
 /**
  * Handler SAX pour la réponse du getdistrict.

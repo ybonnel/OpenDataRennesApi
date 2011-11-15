@@ -11,40 +11,39 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package fr.ybo.opendata.rennes.sax;
+package fr.ybo.opendata.rennes.sax.equipements;
 
-import fr.ybo.opendata.rennes.modele.metros.MetroStationStatus;
+import fr.ybo.opendata.rennes.modele.equipements.EquipementStatus;
+import fr.ybo.opendata.rennes.sax.KeolisHandler;
 
 /**
- * Handler SAX pour la réponse du getmetrostationsstatus.
+ * Handler SAX pour la réponse du getequipmentsstatus.
  *
  * @author ybonnel
  */
-public class GetMetroStationsStatusHandler extends KeolisHandler<MetroStationStatus> {
+public class GetEquipementsStatusHandler extends KeolisHandler<EquipementStatus> {
 
     private enum Balise {
         ID("id") {
             @Override
-            void remplirObjectKeolis(MetroStationStatus currentObjectKeolis, String contenuOfBalise) {
+            void remplirObjectKeolis(EquipementStatus currentObjectKeolis, String contenuOfBalise) {
                 currentObjectKeolis.setId(contenuOfBalise);
             }
         },
-        STATUS("status") {
+        STATE("state") {
             @Override
-            void remplirObjectKeolis(MetroStationStatus currentObjectKeolis, String contenuOfBalise) {
-                if (currentObjectKeolis != null) {
-                    currentObjectKeolis.setOn("1".equals(contenuOfBalise));
-                }
+            void remplirObjectKeolis(EquipementStatus currentObjectKeolis, String contenuOfBalise) {
+                currentObjectKeolis.setOn("1".equals(contenuOfBalise));
             }
         },
-        LAST_UPDATE("lastUpdate") {
+        LAST_UPDATE("lastupdate") {
             @Override
-            void remplirObjectKeolis(MetroStationStatus currentObjectKeolis, String contenuOfBalise) {
+            void remplirObjectKeolis(EquipementStatus currentObjectKeolis, String contenuOfBalise) {
                 currentObjectKeolis.setLastUpdate(contenuOfBalise);
             }
         };
 
-        abstract void remplirObjectKeolis(MetroStationStatus currentObjectKeolis, String contenuOfBalise);
+        abstract void remplirObjectKeolis(EquipementStatus currentObjectKeolis, String contenuOfBalise);
 
         private String value;
 
@@ -63,22 +62,22 @@ public class GetMetroStationsStatusHandler extends KeolisHandler<MetroStationSta
     }
 
     /**
-     * Balise station.
+     * Balise equipment.
      */
-    private static final String STATION = "station";
+    private static final String EQUIPMENT = "equipment";
 
     @Override
     protected String getBaliseData() {
-        return STATION;
+        return EQUIPMENT;
     }
 
     @Override
-    protected MetroStationStatus getNewObjetKeolis() {
-        return new MetroStationStatus();
+    protected EquipementStatus getNewObjetKeolis() {
+        return new EquipementStatus();
     }
 
     @Override
-    protected void remplirObjectKeolis(MetroStationStatus currentObjectKeolis, String baliseName, String contenuOfBalise) {
+    protected void remplirObjectKeolis(EquipementStatus currentObjectKeolis, String baliseName, String contenuOfBalise) {
         Balise balise = Balise.fromValue(baliseName);
         if (balise != null) {
             balise.remplirObjectKeolis(currentObjectKeolis, contenuOfBalise);

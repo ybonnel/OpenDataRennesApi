@@ -14,8 +14,9 @@
 
 package fr.ybo.opendata.rennes;
 
-import fr.ybo.opendata.rennes.modele.bus.GtfsFeedInfo;
-import fr.ybo.opendata.rennes.modele.bus.GtfsFile;
+import fr.ybo.opendata.rennes.exceptions.KeolisReseauException;
+import fr.ybo.opendata.rennes.modele.gtfs.GtfsFeedInfo;
+import fr.ybo.opendata.rennes.modele.gtfs.GtfsFile;
 import org.junit.Before;
 import org.junit.Test;
 

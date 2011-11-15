@@ -11,10 +11,11 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package fr.ybo.opendata.rennes.sax;
+package fr.ybo.opendata.rennes.sax.parkrelais;
 
-import fr.ybo.opendata.rennes.modele.bus.ParkRelai;
-import fr.ybo.opendata.rennes.modele.bus.StateParkRelai;
+import fr.ybo.opendata.rennes.modele.parkrelais.ParkRelai;
+import fr.ybo.opendata.rennes.modele.parkrelais.StateParkRelai;
+import fr.ybo.opendata.rennes.sax.KeolisHandler;
 
 /**
  * Handler pour rÃ©cupÃ©rer les parks relais.

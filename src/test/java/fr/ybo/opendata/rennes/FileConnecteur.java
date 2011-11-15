@@ -14,6 +14,7 @@
 
 package fr.ybo.opendata.rennes;
 
+import fr.ybo.opendata.rennes.exceptions.KeolisReseauException;
 import fr.ybo.opendata.rennes.util.Connecteur;
 
 import java.io.InputStream;

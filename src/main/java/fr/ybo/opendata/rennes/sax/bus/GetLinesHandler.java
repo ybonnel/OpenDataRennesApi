@@ -11,38 +11,43 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package fr.ybo.opendata.rennes.sax;
+package fr.ybo.opendata.rennes.sax.bus;
 
-import fr.ybo.opendata.rennes.modele.equipements.EquipementStatus;
+import fr.ybo.opendata.rennes.modele.bus.LignePicto;
+import fr.ybo.opendata.rennes.sax.KeolisHandler;
 
 /**
- * Handler SAX pour la réponse du getequipmentsstatus.
+ * Handler SAX pour l'api getlines.
  *
  * @author ybonnel
  */
-public class GetEquipementsStatusHandler extends KeolisHandler<EquipementStatus> {
+public class GetLinesHandler extends KeolisHandler<LignePicto> {
+
+    private static String baseUrl;
+
 
     private enum Balise {
-        ID("id") {
+        NAME("name") {
             @Override
-            void remplirObjectKeolis(EquipementStatus currentObjectKeolis, String contenuOfBalise) {
-                currentObjectKeolis.setId(contenuOfBalise);
+            void remplirObjectKeolis(LignePicto currentObjectKeolis, String contenuOfBalise) {
+                currentObjectKeolis.setName(contenuOfBalise);
             }
         },
-        STATE("state") {
+        PICTO("picto") {
             @Override
-            void remplirObjectKeolis(EquipementStatus currentObjectKeolis, String contenuOfBalise) {
-                currentObjectKeolis.setOn("1".equals(contenuOfBalise));
+            void remplirObjectKeolis(LignePicto currentObjectKeolis, String contenuOfBalise) {
+                currentObjectKeolis.setPicto(contenuOfBalise);
+                currentObjectKeolis.setPictoUrl(baseUrl + contenuOfBalise);
             }
         },
-        LAST_UPDATE("lastupdate") {
+        BASEURL("baseurl") {
             @Override
-            void remplirObjectKeolis(EquipementStatus currentObjectKeolis, String contenuOfBalise) {
-                currentObjectKeolis.setLastUpdate(contenuOfBalise);
+            void remplirObjectKeolis(LignePicto currentObjectKeolis, String contenuOfBalise) {
+                baseUrl = contenuOfBalise;
             }
         };
 
-        abstract void remplirObjectKeolis(EquipementStatus currentObjectKeolis, String contenuOfBalise);
+        abstract void remplirObjectKeolis(LignePicto currentObjectKeolis, String contenuOfBalise);
 
         private String value;
 
@@ -61,22 +66,22 @@ public class GetEquipementsStatusHandler extends KeolisHandler<EquipementStatus>
     }
 
     /**
-     * Balise equipment.
+     * Nom de la balise line.
      */
-    private static final String EQUIPMENT = "equipment";
+    private static final String LINE = "line";
 
     @Override
     protected String getBaliseData() {
-        return EQUIPMENT;
+        return LINE;
     }
 
     @Override
-    protected EquipementStatus getNewObjetKeolis() {
-        return new EquipementStatus();
+    protected LignePicto getNewObjetKeolis() {
+        return new LignePicto();
     }
 
     @Override
-    protected void remplirObjectKeolis(EquipementStatus currentObjectKeolis, String baliseName, String contenuOfBalise) {
+    protected void remplirObjectKeolis(LignePicto currentObjectKeolis, String baliseName, String contenuOfBalise) {
         Balise balise = Balise.fromValue(baliseName);
         if (balise != null) {
             balise.remplirObjectKeolis(currentObjectKeolis, contenuOfBalise);

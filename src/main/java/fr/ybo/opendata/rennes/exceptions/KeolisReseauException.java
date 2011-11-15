@@ -11,27 +11,24 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+package fr.ybo.opendata.rennes.exceptions;
 
-package fr.ybo.opendata.rennes.modele.bus;
+/**
+ * Exception sur les problèmes réseaux.
+ *
+ * @author ybonnel
+ */
+public class KeolisReseauException extends Exception {
 
-public enum StateParkRelai {
-    OUVERT(0),
-    FERME(1),
-    COMPLET(2),
-    INDISPONIBLE(3);
+    /**
+     * Serial.
+     */
+    private static final long serialVersionUID = 1L;
 
-    private int value;
-
-    StateParkRelai(int value) {
-        this.value = value;
+    public KeolisReseauException() {
     }
 
-    public static StateParkRelai fromValue(int value) {
-        for (StateParkRelai state : values()) {
-            if (state.value == value) {
-                return state;
-            }
-        }
-        return null;
+    public KeolisReseauException(Throwable throwable) {
+        super(throwable);
     }
 }

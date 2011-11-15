@@ -12,30 +12,26 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package fr.ybo.opendata.rennes.modele.bus;
+package fr.ybo.opendata.rennes.modele.parkrelais;
 
-import java.io.Serializable;
-import java.util.Date;
+public enum StateParkRelai {
+    OUVERT(0),
+    FERME(1),
+    COMPLET(2),
+    INDISPONIBLE(3);
 
-public class GtfsFile implements Serializable {
+    private int value;
 
-    private static final long serialVersionUID = -5452814256977509096L;
-    private Date date;
-    private String url;
-
-    public Date getDate() {
-        return date;
+    StateParkRelai(int value) {
+        this.value = value;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
+    public static StateParkRelai fromValue(int value) {
+        for (StateParkRelai state : values()) {
+            if (state.value == value) {
+                return state;
+            }
+        }
+        return null;
     }
 }
