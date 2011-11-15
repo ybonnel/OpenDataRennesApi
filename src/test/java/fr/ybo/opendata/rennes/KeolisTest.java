@@ -24,6 +24,7 @@ import fr.ybo.opendata.rennes.modele.bus.StateParkRelai;
 import fr.ybo.opendata.rennes.modele.equipements.Equipement;
 import fr.ybo.opendata.rennes.modele.equipements.EquipementStatus;
 import fr.ybo.opendata.rennes.modele.equipements.TypeEquipement;
+import fr.ybo.opendata.rennes.modele.metros.MetroStation;
 import fr.ybo.opendata.rennes.modele.velos.Station;
 import fr.ybo.opendata.rennes.modele.velos.StationDistrict;
 import org.junit.Before;
@@ -199,6 +200,27 @@ public class KeolisTest {
         assertFalse(status.get(1).isOn());
         assertEquals(2, keolis.getEquipementsStatusByStation("station").size());
         assertNotNull(keolis.getEquipementsStatus("id"));
+    }
+
+    @Test
+    public void testGetMetroStations() throws KeolisReseauException {
+        keolis.setConnecteur(new FileConnecteur("/getMetroStation.xml"));
+        List<MetroStation> stations = keolis.getMetroStations();
+        assertEquals(2, stations.size());
+        assertEquals("ANF", stations.get(0).getId());
+        assertEquals("Anatole France", stations.get(0).getName());
+        assertEquals(48.11812000, stations.get(0).getLatitude());
+        assertEquals(-1.687540000, stations.get(0).getLongitude());
+        assertTrue(stations.get(0).hasPlatformDirection1());
+        assertTrue(stations.get(0).hasPlatformDirection2());
+        assertEquals(12, stations.get(0).getRankingPlatformDirection1().intValue());
+        assertEquals(18, stations.get(0).getRankingPlatformDirection2().intValue());
+        assertEquals(-1, stations.get(0).getEtage());
+        assertEquals("2011-11-15T21:38:03+01:00", stations.get(0).getLastupdate());
+        assertFalse(stations.get(1).hasPlatformDirection1());
+        assertFalse(stations.get(1).hasPlatformDirection2());
+        assertNull(stations.get(1).getRankingPlatformDirection1());
+        assertNull(stations.get(1).getRankingPlatformDirection2());
     }
 
 }

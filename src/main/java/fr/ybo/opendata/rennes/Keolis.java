@@ -22,12 +22,14 @@ import fr.ybo.opendata.rennes.modele.bus.PictoSize;
 import fr.ybo.opendata.rennes.modele.bus.PointDeVente;
 import fr.ybo.opendata.rennes.modele.equipements.Equipement;
 import fr.ybo.opendata.rennes.modele.equipements.EquipementStatus;
+import fr.ybo.opendata.rennes.modele.metros.MetroStation;
 import fr.ybo.opendata.rennes.modele.velos.Station;
 import fr.ybo.opendata.rennes.modele.velos.StationDistrict;
 import fr.ybo.opendata.rennes.sax.GetAlertsHandler;
 import fr.ybo.opendata.rennes.sax.GetEquipementsHandler;
 import fr.ybo.opendata.rennes.sax.GetEquipementsStatusHandler;
 import fr.ybo.opendata.rennes.sax.GetLinesHandler;
+import fr.ybo.opendata.rennes.sax.GetMetroStationHandler;
 import fr.ybo.opendata.rennes.sax.GetParkRelaiHandler;
 import fr.ybo.opendata.rennes.sax.GetPointDeVenteHandler;
 import fr.ybo.opendata.rennes.sax.GetStationDistrictHandler;
@@ -96,6 +98,10 @@ public class Keolis {
      * Commande pour récupérer les status des equipements.
      */
     private static final String COMMANDE_EQUIPMENTS_STATUS = "getequipmentsstatus";
+    /**
+     * Commande pour récupérer les stations de métro.
+     */
+    private static final String COMMANDE_METRO_STATION = "getmetrostations";
 
 
     private Connecteur connecteur;
@@ -308,6 +314,14 @@ public class Keolis {
         return appelKeolis(getUrl(COMMANDE_EQUIPMENTS_STATUS,
                 new ParametreUrl("mode", "station"),
                 new ParametreUrl("station", station)), new GetEquipementsStatusHandler());
+    }
+
+    /**
+     * @return la liste des stations de métro.
+     * @throws KeolisReseauException pour toutes erreurs réseaux.
+     */
+    public List<MetroStation> getMetroStations() throws KeolisReseauException {
+        return appelKeolis(getUrl(COMMANDE_METRO_STATION), new GetMetroStationHandler());
     }
 
     /**

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<opendata>
+    <request>http://data.keolis-rennes.com/xml/?version=2.0&amp;key=G7JE45LI1RK3W1P&amp;cmd=getmetrostations</request>
+    <answer>
+        <status code="0" message="OK"/>
+        <data>
+            <station>
+                <id>ANF</id>
+                <name>Anatole France</name>
+                <latitude>48.11812000</latitude>
+                <longitude>-1.687540000</longitude>
+                <hasPlatformDirection1>1</hasPlatformDirection1>
+                <hasPlatformDirection2>1</hasPlatformDirection2>
+                <rankingPlatformDirection1>12</rankingPlatformDirection1>
+                <rankingPlatformDirection2>18</rankingPlatformDirection2>
+                <floors>-1</floors>
+                <lastupdate>2011-11-15T21:38:03+01:00</lastupdate>
+            </station>
+            <station>
+                <id>BLO</id>
+                <name>Le Blosne</name>
+                <latitude>48.08774000</latitude>
+                <longitude>-1.654270000</longitude>
+                <hasPlatformDirection1>0</hasPlatformDirection1>
+                <hasPlatformDirection2>0</hasPlatformDirection2>
+                <rankingPlatformDirection1/>
+                <rankingPlatformDirection2/>
+                <floors>-1</floors>
+                <lastupdate>2011-11-15T21:35:56+01:00</lastupdate>
+            </station>
+        </data>
+    </answer>
+</opendata>
