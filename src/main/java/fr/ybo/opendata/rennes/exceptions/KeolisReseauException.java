@@ -25,10 +25,17 @@ public class KeolisReseauException extends Exception {
      */
     private static final long serialVersionUID = 1L;
 
+    /**
+     * Constructeur.
+     */
     public KeolisReseauException() {
     }
 
-    public KeolisReseauException(Throwable throwable) {
-        super(throwable);
+    /**
+     * Constructeur.
+     * @param exception exception.
+     */
+    public KeolisReseauException(Exception exception) {
+        super(exception);
     }
 }
