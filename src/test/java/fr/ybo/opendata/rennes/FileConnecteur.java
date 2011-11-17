@@ -19,14 +19,28 @@ import fr.ybo.opendata.rennes.util.Connecteur;
 
 import java.io.InputStream;
 
+/**
+ * Connecteur de type fichier pour les test U.
+ * @see Connecteur
+ */
 public class FileConnecteur implements Connecteur {
 
+    /**
+     * Le fichier à renvoyer.
+     */
     private String file;
 
+    /**
+     * Constructeur.
+     * @param file {@link FileConnecteur#file}.
+     */
     public FileConnecteur(String file) {
         this.file = file;
     }
 
+    /**
+     * {@inheritDoc}.
+     */
     @Override
     public InputStream openInputStream(String url) throws KeolisReseauException {
         return FileConnecteur.class.getResourceAsStream(file);

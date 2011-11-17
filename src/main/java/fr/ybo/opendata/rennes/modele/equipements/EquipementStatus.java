@@ -14,31 +14,61 @@
 
 package fr.ybo.opendata.rennes.modele.equipements;
 
+/**
+ * Status d'un équipement.
+ */
 public class EquipementStatus {
+    /**
+     * Identifiant de l'équipement.
+     */
     private String id;
+    /**
+     * True si l'équipement est en marche.
+     */
     private boolean on;
+    /**
+     * Dernière mise à jour.
+     */
     private String lastUpdate;
 
+    /**
+     * @return {@link EquipementStatus#id}
+     */
     public String getId() {
         return id;
     }
 
+    /**
+     * @param id {@link EquipementStatus#id}
+     */
     public void setId(String id) {
         this.id = id;
     }
 
+    /**
+     * @return {@link EquipementStatus#on}
+     */
     public boolean isOn() {
         return on;
     }
 
+    /**
+     * @param on {@link EquipementStatus#on}
+     */
     public void setOn(boolean on) {
         this.on = on;
     }
 
+    /**
+     * @return {@link EquipementStatus#lastUpdate}
+     */
     public String getLastUpdate() {
         return lastUpdate;
     }
 
+    /**
+     * @param lastUpdate {@link EquipementStatus#lastUpdate}
+     */
     public void setLastUpdate(String lastUpdate) {
         this.lastUpdate = lastUpdate;
     }
