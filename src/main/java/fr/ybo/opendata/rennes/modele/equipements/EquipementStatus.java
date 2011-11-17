@@ -15,19 +15,19 @@
 package fr.ybo.opendata.rennes.modele.equipements;
 
 /**
- * Status d'un équipement.
+ * Status d'un Ã©quipement.
  */
 public class EquipementStatus {
     /**
-     * Identifiant de l'équipement.
+     * Identifiant de l'Ã©quipement.
      */
     private String id;
     /**
-     * True si l'équipement est en marche.
+     * True si l'Ã©quipement est en marche.
      */
     private boolean on;
     /**
-     * Dernière mise à jour.
+     * DerniÃ¨re mise Ã  jour.
      */
     private String lastUpdate;
 

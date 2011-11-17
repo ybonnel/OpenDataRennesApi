@@ -15,27 +15,27 @@
 package fr.ybo.opendata.rennes.modele.equipements;
 
 /**
- * Classe représentant un équipement.
+ * Classe reprÃ©sentant un Ã©quipement.
  */
 public class Equipement {
     /**
-     * Identifiant de l'équipement.
+     * Identifiant de l'Ã©quipement.
      */
     private String id;
     /**
-     * Station de métro associée à l'équipement.
+     * Station de mÃ©tro associÃ©e Ã  l'Ã©quipement.
      */
     private String station;
     /**
-     * Type de l'équipement.
+     * Type de l'Ã©quipement.
      */
     private TypeEquipement type;
     /**
-     * Etage de départ.
+     * Etage de dÃ©part.
      */
     private int etageDepart;
     /**
-     * Etage d'arrivée.
+     * Etage d'arrivÃ©e.
      */
     private int etageArrivee;
     /**
@@ -43,7 +43,7 @@ public class Equipement {
      */
     private int plateform;
     /**
-     * Dernière mise à jour.
+     * DerniÃ¨re mise Ã  jour.
      */
     private String lastUpdate;
 

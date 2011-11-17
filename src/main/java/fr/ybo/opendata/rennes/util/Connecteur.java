@@ -19,15 +19,16 @@ import fr.ybo.opendata.rennes.exceptions.KeolisReseauException;
 import java.io.InputStream;
 
 /**
- * Interface permettant des gérer les connexion extérieurs.
+ * Interface permettant des gÃ©rer les connexion extÃ©rieurs.
  */
 public interface Connecteur {
 
     /**
-     * Renvoi l'InputStream associé à une url.
+     * Renvoi l'InputStream associÃ© Ã  une url.
+     *
      * @param url l'url.
-     * @return l'inputStream associé.
-     * @throws KeolisReseauException si un problème réseaux est rencontré.
+     * @return l'inputStream associÃ©.
+     * @throws KeolisReseauException si un problÃ¨me rÃ©seaux est rencontrÃ©.
      */
     InputStream openInputStream(String url) throws KeolisReseauException;
 

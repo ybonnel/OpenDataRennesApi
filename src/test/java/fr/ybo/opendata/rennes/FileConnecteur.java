@@ -21,17 +21,19 @@ import java.io.InputStream;
 
 /**
  * Connecteur de type fichier pour les test U.
+ *
  * @see Connecteur
  */
 public class FileConnecteur implements Connecteur {
 
     /**
-     * Le fichier à renvoyer.
+     * Le fichier Ã  renvoyer.
      */
     private String file;
 
     /**
      * Constructeur.
+     *
      * @param file {@link FileConnecteur#file}.
      */
     public FileConnecteur(String file) {
