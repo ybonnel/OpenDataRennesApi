@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
 
-<coverage line-rate="0.9157245632065776" branch-rate="0.7359550561797753" lines-covered="891" lines-valid="973" branches-covered="131" branches-valid="178" complexity="1.3652173913043477" version="1.9.4.1" timestamp="1321484333178">
+<coverage line-rate="0.9157245632065776" branch-rate="0.7359550561797753" lines-covered="891" lines-valid="973" branches-covered="131" branches-valid="178" complexity="1.3652173913043477" version="1.9.4.1" timestamp="1321564351972">
 	<sources>
 		<source>/scratch/hudson/workspace/OpenDataRennesApi/src/main/java</source>
 		<source>--source</source>
@@ -1069,164 +1069,164 @@
 					<methods>
 						<method name="&lt;init&gt;" signature="()V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="18" hits="4" branch="false"/>
+								<line number="20" hits="4" branch="false"/>
 							</lines>
 						</method>
 						<method name="getEtageArrivee" signature="()I" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="60" hits="1" branch="false"/>
+								<line number="110" hits="1" branch="false"/>
 							</lines>
 						</method>
 						<method name="getEtageDepart" signature="()I" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="52" hits="1" branch="false"/>
+								<line number="96" hits="1" branch="false"/>
 							</lines>
 						</method>
 						<method name="getId" signature="()Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="28" hits="1" branch="false"/>
+								<line number="54" hits="1" branch="false"/>
 							</lines>
 						</method>
 						<method name="getLastUpdate" signature="()Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="76" hits="1" branch="false"/>
+								<line number="138" hits="1" branch="false"/>
 							</lines>
 						</method>
 						<method name="getPlateform" signature="()I" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="68" hits="1" branch="false"/>
+								<line number="124" hits="1" branch="false"/>
 							</lines>
 						</method>
 						<method name="getStation" signature="()Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="36" hits="1" branch="false"/>
+								<line number="68" hits="1" branch="false"/>
 							</lines>
 						</method>
 						<method name="getType" signature="()Lfr/ybo/opendata/rennes/modele/equipements/TypeEquipement;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="44" hits="2" branch="false"/>
+								<line number="82" hits="2" branch="false"/>
 							</lines>
 						</method>
 						<method name="setEtageArrivee" signature="(I)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="64" hits="4" branch="false"/>
-								<line number="65" hits="4" branch="false"/>
+								<line number="117" hits="4" branch="false"/>
+								<line number="118" hits="4" branch="false"/>
 							</lines>
 						</method>
 						<method name="setEtageDepart" signature="(I)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="56" hits="4" branch="false"/>
-								<line number="57" hits="4" branch="false"/>
+								<line number="103" hits="4" branch="false"/>
+								<line number="104" hits="4" branch="false"/>
 							</lines>
 						</method>
 						<method name="setId" signature="(Ljava/lang/String;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="32" hits="4" branch="false"/>
-								<line number="33" hits="4" branch="false"/>
+								<line number="61" hits="4" branch="false"/>
+								<line number="62" hits="4" branch="false"/>
 							</lines>
 						</method>
 						<method name="setLastUpdate" signature="(Ljava/lang/String;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="80" hits="4" branch="false"/>
-								<line number="81" hits="4" branch="false"/>
+								<line number="145" hits="4" branch="false"/>
+								<line number="146" hits="4" branch="false"/>
 							</lines>
 						</method>
 						<method name="setPlateform" signature="(I)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="72" hits="4" branch="false"/>
-								<line number="73" hits="4" branch="false"/>
+								<line number="131" hits="4" branch="false"/>
+								<line number="132" hits="4" branch="false"/>
 							</lines>
 						</method>
 						<method name="setStation" signature="(Ljava/lang/String;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="40" hits="4" branch="false"/>
-								<line number="41" hits="4" branch="false"/>
+								<line number="75" hits="4" branch="false"/>
+								<line number="76" hits="4" branch="false"/>
 							</lines>
 						</method>
 						<method name="setType" signature="(Lfr/ybo/opendata/rennes/modele/equipements/TypeEquipement;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="48" hits="4" branch="false"/>
-								<line number="49" hits="4" branch="false"/>
+								<line number="89" hits="4" branch="false"/>
+								<line number="90" hits="4" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="18" hits="4" branch="false"/>
-						<line number="28" hits="1" branch="false"/>
-						<line number="32" hits="4" branch="false"/>
-						<line number="33" hits="4" branch="false"/>
-						<line number="36" hits="1" branch="false"/>
-						<line number="40" hits="4" branch="false"/>
-						<line number="41" hits="4" branch="false"/>
-						<line number="44" hits="2" branch="false"/>
-						<line number="48" hits="4" branch="false"/>
-						<line number="49" hits="4" branch="false"/>
-						<line number="52" hits="1" branch="false"/>
-						<line number="56" hits="4" branch="false"/>
-						<line number="57" hits="4" branch="false"/>
-						<line number="60" hits="1" branch="false"/>
-						<line number="64" hits="4" branch="false"/>
-						<line number="65" hits="4" branch="false"/>
+						<line number="20" hits="4" branch="false"/>
+						<line number="54" hits="1" branch="false"/>
+						<line number="61" hits="4" branch="false"/>
+						<line number="62" hits="4" branch="false"/>
 						<line number="68" hits="1" branch="false"/>
-						<line number="72" hits="4" branch="false"/>
-						<line number="73" hits="4" branch="false"/>
-						<line number="76" hits="1" branch="false"/>
-						<line number="80" hits="4" branch="false"/>
-						<line number="81" hits="4" branch="false"/>
+						<line number="75" hits="4" branch="false"/>
+						<line number="76" hits="4" branch="false"/>
+						<line number="82" hits="2" branch="false"/>
+						<line number="89" hits="4" branch="false"/>
+						<line number="90" hits="4" branch="false"/>
+						<line number="96" hits="1" branch="false"/>
+						<line number="103" hits="4" branch="false"/>
+						<line number="104" hits="4" branch="false"/>
+						<line number="110" hits="1" branch="false"/>
+						<line number="117" hits="4" branch="false"/>
+						<line number="118" hits="4" branch="false"/>
+						<line number="124" hits="1" branch="false"/>
+						<line number="131" hits="4" branch="false"/>
+						<line number="132" hits="4" branch="false"/>
+						<line number="138" hits="1" branch="false"/>
+						<line number="145" hits="4" branch="false"/>
+						<line number="146" hits="4" branch="false"/>
 					</lines>
 				</class>
 				<class name="fr.ybo.opendata.rennes.modele.equipements.EquipementStatus" filename="fr/ybo/opendata/rennes/modele/equipements/EquipementStatus.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
 					<methods>
 						<method name="&lt;init&gt;" signature="()V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="17" hits="6" branch="false"/>
+								<line number="20" hits="6" branch="false"/>
 							</lines>
 						</method>
 						<method name="getId" signature="()Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="23" hits="1" branch="false"/>
+								<line number="38" hits="1" branch="false"/>
 							</lines>
 						</method>
 						<method name="getLastUpdate" signature="()Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="39" hits="1" branch="false"/>
+								<line number="66" hits="1" branch="false"/>
 							</lines>
 						</method>
 						<method name="isOn" signature="()Z" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="31" hits="2" branch="false"/>
+								<line number="52" hits="2" branch="false"/>
 							</lines>
 						</method>
 						<method name="setId" signature="(Ljava/lang/String;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="27" hits="6" branch="false"/>
-								<line number="28" hits="6" branch="false"/>
+								<line number="45" hits="6" branch="false"/>
+								<line number="46" hits="6" branch="false"/>
 							</lines>
 						</method>
 						<method name="setLastUpdate" signature="(Ljava/lang/String;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="43" hits="6" branch="false"/>
-								<line number="44" hits="6" branch="false"/>
+								<line number="73" hits="6" branch="false"/>
+								<line number="74" hits="6" branch="false"/>
 							</lines>
 						</method>
 						<method name="setOn" signature="(Z)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="35" hits="6" branch="false"/>
-								<line number="36" hits="6" branch="false"/>
+								<line number="59" hits="6" branch="false"/>
+								<line number="60" hits="6" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="17" hits="6" branch="false"/>
-						<line number="23" hits="1" branch="false"/>
-						<line number="27" hits="6" branch="false"/>
-						<line number="28" hits="6" branch="false"/>
-						<line number="31" hits="2" branch="false"/>
-						<line number="35" hits="6" branch="false"/>
-						<line number="36" hits="6" branch="false"/>
-						<line number="39" hits="1" branch="false"/>
-						<line number="43" hits="6" branch="false"/>
-						<line number="44" hits="6" branch="false"/>
+						<line number="20" hits="6" branch="false"/>
+						<line number="38" hits="1" branch="false"/>
+						<line number="45" hits="6" branch="false"/>
+						<line number="46" hits="6" branch="false"/>
+						<line number="52" hits="2" branch="false"/>
+						<line number="59" hits="6" branch="false"/>
+						<line number="60" hits="6" branch="false"/>
+						<line number="66" hits="1" branch="false"/>
+						<line number="73" hits="6" branch="false"/>
+						<line number="74" hits="6" branch="false"/>
 					</lines>
 				</class>
 				<class name="fr.ybo.opendata.rennes.modele.equipements.TypeEquipement" filename="fr/ybo/opendata/rennes/modele/equipements/TypeEquipement.java" line-rate="1.0" branch-rate="1.0" complexity="0.0">
