@@ -15,6 +15,7 @@ package fr.ybo.opendata.rennes.sax.bus;
 
 import fr.ybo.opendata.rennes.modele.bus.Alert;
 import fr.ybo.opendata.rennes.sax.KeolisHandler;
+import fr.ybo.opendata.rennes.sax.RemplirBalise;
 
 /**
  * Handler SAX pour la réponse du getdistrict.
@@ -23,58 +24,92 @@ import fr.ybo.opendata.rennes.sax.KeolisHandler;
  */
 public class GetAlertsHandler extends KeolisHandler<Alert> {
 
-    private enum Balise {
+    /**
+     * Type enuméré pour les balises xml.
+     */
+    private enum Balise implements RemplirBalise<Alert> {
+        /**
+         * {@link Alert#title}.
+         */
         TITLE("title") {
             @Override
-            void remplirObjectKeolis(Alert currentObjectKeolis, String contenuOfBalise) {
+            public void remplirObjectKeolis(Alert currentObjectKeolis, String contenuOfBalise) {
                 currentObjectKeolis.setTitle(contenuOfBalise);
             }
         },
+        /**
+         * {@link Alert#starttime}.
+         */
         STARTTIME("starttime") {
             @Override
-            void remplirObjectKeolis(Alert currentObjectKeolis, String contenuOfBalise) {
+            public void remplirObjectKeolis(Alert currentObjectKeolis, String contenuOfBalise) {
                 currentObjectKeolis.setStarttime(contenuOfBalise);
             }
         },
+        /**
+         * {@link Alert#endtime}.
+         */
         ENDTIME("endtime") {
             @Override
-            void remplirObjectKeolis(Alert currentObjectKeolis, String contenuOfBalise) {
+            public void remplirObjectKeolis(Alert currentObjectKeolis, String contenuOfBalise) {
                 currentObjectKeolis.setEndtime(contenuOfBalise);
             }
         },
+        /**
+         * {@link Alert#lines}.
+         */
         LINE("line") {
             @Override
-            void remplirObjectKeolis(Alert currentObjectKeolis, String contenuOfBalise) {
+            public void remplirObjectKeolis(Alert currentObjectKeolis, String contenuOfBalise) {
                 currentObjectKeolis.getLines().add(contenuOfBalise);
             }
         },
+        /**
+         * {@link Alert#majordisturbance}.
+         */
         MAJORDISTURBANCE("majordisturbance") {
             @Override
-            void remplirObjectKeolis(Alert currentObjectKeolis, String contenuOfBalise) {
+            public void remplirObjectKeolis(Alert currentObjectKeolis, String contenuOfBalise) {
                 currentObjectKeolis.setMajordisturbance("1".equals(contenuOfBalise));
             }
         },
+        /**
+         * {@link Alert#detail}.
+         */
         DETAIL("detail") {
             @Override
-            void remplirObjectKeolis(Alert currentObjectKeolis, String contenuOfBalise) {
+            public void remplirObjectKeolis(Alert currentObjectKeolis, String contenuOfBalise) {
                 currentObjectKeolis.setDetail(contenuOfBalise);
             }
         },
+        /**
+         * {@link Alert#link}.
+         */
         LINK("link") {
             @Override
-            void remplirObjectKeolis(Alert currentObjectKeolis, String contenuOfBalise) {
+            public void remplirObjectKeolis(Alert currentObjectKeolis, String contenuOfBalise) {
                 currentObjectKeolis.setLink(contenuOfBalise);
             }
         };
 
-        abstract void remplirObjectKeolis(Alert currentObjectKeolis, String contenuOfBalise);
-
+        /**
+         * Balise xml.
+         */
         private String value;
 
+        /**
+         * Constructeur.
+         * @param value balise xml.
+         */
         Balise(String value) {
             this.value = value;
         }
 
+        /**
+         * Renvoie l'enum en fonction de la balise xml.
+         * @param val balise xml.
+         * @return l'enum.
+         */
         public static Balise fromValue(String val) {
             for (Balise balise : values()) {
                 if (balise.value.equals(val)) {

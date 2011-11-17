@@ -16,6 +16,7 @@ package fr.ybo.opendata.rennes.sax.equipements;
 import fr.ybo.opendata.rennes.modele.equipements.Equipement;
 import fr.ybo.opendata.rennes.modele.equipements.TypeEquipement;
 import fr.ybo.opendata.rennes.sax.KeolisHandler;
+import fr.ybo.opendata.rennes.sax.RemplirBalise;
 
 /**
  * Handler SAX pour la réponse du getequipments.
@@ -24,58 +25,92 @@ import fr.ybo.opendata.rennes.sax.KeolisHandler;
  */
 public class GetEquipementsHandler extends KeolisHandler<Equipement> {
 
-    private enum Balise {
+    /**
+     * Type enuméré pour les balises xml.
+     */
+    private enum Balise implements RemplirBalise<Equipement> {
+        /**
+         * {@link Equipement#id}.
+         */
         ID("id") {
             @Override
-            void remplirObjectKeolis(Equipement currentObjectKeolis, String contenuOfBalise) {
+            public void remplirObjectKeolis(Equipement currentObjectKeolis, String contenuOfBalise) {
                 currentObjectKeolis.setId(contenuOfBalise);
             }
         },
+        /**
+         * {@link Equipement#station}.
+         */
         STATION("station") {
             @Override
-            void remplirObjectKeolis(Equipement currentObjectKeolis, String contenuOfBalise) {
+            public void remplirObjectKeolis(Equipement currentObjectKeolis, String contenuOfBalise) {
                 currentObjectKeolis.setStation(contenuOfBalise);
             }
         },
+        /**
+         * {@link Equipement#type}.
+         */
         TYPE("type") {
             @Override
-            void remplirObjectKeolis(Equipement currentObjectKeolis, String contenuOfBalise) {
+            public void remplirObjectKeolis(Equipement currentObjectKeolis, String contenuOfBalise) {
                 currentObjectKeolis.setType(TypeEquipement.valueOf(contenuOfBalise));
             }
         },
+        /**
+         * {@link Equipement#etageDepart}.
+         */
         FROM_FLOOR("fromfloor") {
             @Override
-            void remplirObjectKeolis(Equipement currentObjectKeolis, String contenuOfBalise) {
+            public void remplirObjectKeolis(Equipement currentObjectKeolis, String contenuOfBalise) {
                 currentObjectKeolis.setEtageDepart(Integer.parseInt(contenuOfBalise));
             }
         },
+        /**
+         * {@link Equipement#etageArrivee}.
+         */
         TO_FLOOR("tofloor") {
             @Override
-            void remplirObjectKeolis(Equipement currentObjectKeolis, String contenuOfBalise) {
+            public void remplirObjectKeolis(Equipement currentObjectKeolis, String contenuOfBalise) {
                 currentObjectKeolis.setEtageArrivee(Integer.parseInt(contenuOfBalise));
             }
         },
+        /**
+         * {@link Equipement#plateform}.
+         */
         PLATFORM("platform") {
             @Override
-            void remplirObjectKeolis(Equipement currentObjectKeolis, String contenuOfBalise) {
+            public void remplirObjectKeolis(Equipement currentObjectKeolis, String contenuOfBalise) {
                 currentObjectKeolis.setPlateform(Integer.parseInt(contenuOfBalise));
             }
         },
+        /**
+         * {@link Equipement#lastUpdate}.
+         */
         LAST_UPDATE("lastupdate") {
             @Override
-            void remplirObjectKeolis(Equipement currentObjectKeolis, String contenuOfBalise) {
+            public void remplirObjectKeolis(Equipement currentObjectKeolis, String contenuOfBalise) {
                 currentObjectKeolis.setLastUpdate(contenuOfBalise);
             }
         };
 
-        abstract void remplirObjectKeolis(Equipement currentObjectKeolis, String contenuOfBalise);
-
+        /**
+         * Balise xml.
+         */
         private String value;
 
+        /**
+         * Constructeur.
+         * @param value balise xml.
+         */
         Balise(String value) {
             this.value = value;
         }
 
+        /**
+         * Renvoie l'enum en fonction de la balise xml.
+         * @param val balise xml.
+         * @return l'enum.
+         */
         public static Balise fromValue(String val) {
             for (Balise balise : values()) {
                 if (balise.value.equals(val)) {

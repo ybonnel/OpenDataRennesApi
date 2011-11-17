@@ -15,6 +15,7 @@ package fr.ybo.opendata.rennes.sax.bus;
 
 import fr.ybo.opendata.rennes.modele.bus.LignePicto;
 import fr.ybo.opendata.rennes.sax.KeolisHandler;
+import fr.ybo.opendata.rennes.sax.RemplirBalise;
 
 /**
  * Handler SAX pour l'api getlines.
@@ -23,38 +24,64 @@ import fr.ybo.opendata.rennes.sax.KeolisHandler;
  */
 public class GetLinesHandler extends KeolisHandler<LignePicto> {
 
+    /**
+     * Url de base pour les icônes.
+     */
     private static String baseUrl;
 
-
-    private enum Balise {
+    /**
+     * Type enuméré pour les balises xml.
+     */
+    private enum Balise implements RemplirBalise<LignePicto> {
+        /**
+         * {@link LignePicto#name}.
+         */
         NAME("name") {
             @Override
-            void remplirObjectKeolis(LignePicto currentObjectKeolis, String contenuOfBalise) {
+            public void remplirObjectKeolis(LignePicto currentObjectKeolis, String contenuOfBalise) {
                 currentObjectKeolis.setName(contenuOfBalise);
             }
         },
+        /**
+         * {@link LignePicto#picto}.
+         */
         PICTO("picto") {
             @Override
-            void remplirObjectKeolis(LignePicto currentObjectKeolis, String contenuOfBalise) {
+            public void remplirObjectKeolis(LignePicto currentObjectKeolis, String contenuOfBalise) {
                 currentObjectKeolis.setPicto(contenuOfBalise);
                 currentObjectKeolis.setPictoUrl(baseUrl + contenuOfBalise);
             }
         },
+        /**
+         * {@link LignePicto#pictoUrl}.
+         */
         BASEURL("baseurl") {
             @Override
-            void remplirObjectKeolis(LignePicto currentObjectKeolis, String contenuOfBalise) {
+            public void remplirObjectKeolis(LignePicto currentObjectKeolis, String contenuOfBalise) {
                 baseUrl = contenuOfBalise;
             }
         };
 
-        abstract void remplirObjectKeolis(LignePicto currentObjectKeolis, String contenuOfBalise);
-
+        /**
+         * Balise xml.
+         */
         private String value;
 
+        /**
+         * Constructeur.
+         *
+         * @param value balise xml.
+         */
         Balise(String value) {
             this.value = value;
         }
 
+        /**
+         * Renvoie l'enum en fonction de la balise xml.
+         *
+         * @param val balise xml.
+         * @return l'enum.
+         */
         public static Balise fromValue(String val) {
             for (Balise balise : values()) {
                 if (balise.value.equals(val)) {

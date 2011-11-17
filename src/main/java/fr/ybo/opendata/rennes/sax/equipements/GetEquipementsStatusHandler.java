@@ -15,6 +15,7 @@ package fr.ybo.opendata.rennes.sax.equipements;
 
 import fr.ybo.opendata.rennes.modele.equipements.EquipementStatus;
 import fr.ybo.opendata.rennes.sax.KeolisHandler;
+import fr.ybo.opendata.rennes.sax.RemplirBalise;
 
 /**
  * Handler SAX pour la réponse du getequipmentsstatus.
@@ -23,34 +24,58 @@ import fr.ybo.opendata.rennes.sax.KeolisHandler;
  */
 public class GetEquipementsStatusHandler extends KeolisHandler<EquipementStatus> {
 
-    private enum Balise {
+    /**
+     * Type enuméré pour les balises xml.
+     */
+    private enum Balise implements RemplirBalise<EquipementStatus> {
+        /**
+         * {@link EquipementStatus#id}.
+         */
         ID("id") {
             @Override
-            void remplirObjectKeolis(EquipementStatus currentObjectKeolis, String contenuOfBalise) {
+            public void remplirObjectKeolis(EquipementStatus currentObjectKeolis, String contenuOfBalise) {
                 currentObjectKeolis.setId(contenuOfBalise);
             }
         },
+        /**
+         * {@link EquipementStatus#on}.
+         */
         STATE("state") {
             @Override
-            void remplirObjectKeolis(EquipementStatus currentObjectKeolis, String contenuOfBalise) {
+            public void remplirObjectKeolis(EquipementStatus currentObjectKeolis, String contenuOfBalise) {
                 currentObjectKeolis.setOn("1".equals(contenuOfBalise));
             }
         },
+        /**
+         * {@link EquipementStatus#lastUpdate}.
+         */
         LAST_UPDATE("lastupdate") {
             @Override
-            void remplirObjectKeolis(EquipementStatus currentObjectKeolis, String contenuOfBalise) {
+            public void remplirObjectKeolis(EquipementStatus currentObjectKeolis, String contenuOfBalise) {
                 currentObjectKeolis.setLastUpdate(contenuOfBalise);
             }
         };
 
-        abstract void remplirObjectKeolis(EquipementStatus currentObjectKeolis, String contenuOfBalise);
-
+        /**
+         * Balise xml.
+         */
         private String value;
 
+        /**
+         * Constructeur.
+         *
+         * @param value balise xml.
+         */
         Balise(String value) {
             this.value = value;
         }
 
+        /**
+         * Renvoie l'enum en fonction de la balise xml.
+         *
+         * @param val balise xml.
+         * @return l'enum.
+         */
         public static Balise fromValue(String val) {
             for (Balise balise : values()) {
                 if (balise.value.equals(val)) {
@@ -77,7 +102,8 @@ public class GetEquipementsStatusHandler extends KeolisHandler<EquipementStatus>
     }
 
     @Override
-    protected void remplirObjectKeolis(EquipementStatus currentObjectKeolis, String baliseName, String contenuOfBalise) {
+    protected void remplirObjectKeolis(EquipementStatus currentObjectKeolis, String baliseName,
+                                       String contenuOfBalise) {
         Balise balise = Balise.fromValue(baliseName);
         if (balise != null) {
             balise.remplirObjectKeolis(currentObjectKeolis, contenuOfBalise);

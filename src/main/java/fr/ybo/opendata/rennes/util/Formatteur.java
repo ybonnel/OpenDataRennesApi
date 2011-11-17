@@ -13,11 +13,27 @@
  */
 package fr.ybo.opendata.rennes.util;
 
+/**
+ * Classe utilitaire pour les formatage d'une chaine.
+ */
 public final class Formatteur {
 
+    /**
+     * Constructeur privé.
+     */
     private Formatteur() {
     }
 
+    /**
+     * Permet de formatter une chaîne de caractère :
+     * <ul>
+     *     <li>Pour chaque mot : une majuscule au début et le reste un minuscule.</li>
+     *     <li>Tout les double espaces sont remplacer par un seul espace.</li>
+     *     <li>S'il y a des espaces au début de la chaîne, ils sont supprimés.</li>
+     * </ul>
+     * @param chaine chaîne à formatter.
+     * @return la chaîne formattée.
+     */
     public static String formatterChaine(String chaine) {
         StringBuilder nomLongFormateBuilder = new StringBuilder();
         for (String champ : chaine.replaceAll("/", "-").split(" ")) {
