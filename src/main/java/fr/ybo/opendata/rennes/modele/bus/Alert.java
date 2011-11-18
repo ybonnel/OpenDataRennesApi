@@ -180,9 +180,7 @@ public class Alert implements Serializable {
         StringBuilder resultat = new StringBuilder();
         char carOld = '\0';
         for (char car : detailFormatte.toCharArray()) {
-            //noinspection OverlyComplexBooleanExpression
-            if ((carOld >= '0' && carOld <= '9' || carOld >= 'a' && carOld <= 'z' || carOld == 'é') && car >= 'A'
-                    && car <= 'Z') {
+            if ((isChiffre(carOld) || isMinucule(carOld)) && isMajuscule(car)) {
                 // Minuscule suivie d'une majuscule, ça doit être un retour à la ligne qui manque.
                 resultat.append(".\n");
             }
@@ -209,6 +207,30 @@ public class Alert implements Serializable {
             stringBuilder.append("<br/>");
         }
         return stringBuilder.toString();
+    }
+
+    /**
+     * @param car un caractère.
+     * @return true si le caractère est un chiffre.
+     */
+    private boolean isChiffre(char car) {
+        return car >= '0' && car <= '9';
+    }
+
+    /**
+     * @param car un caractère.
+     * @return true si le caractère est une minuscule.
+     */
+    private boolean isMinucule(char car) {
+        return car >= 'a';
+    }
+
+    /**
+     * @param car un caractère.
+     * @return true si le caractère est une majuscule.
+     */
+    private boolean isMajuscule(char car) {
+        return car >= 'A' && car <= 'Z';
     }
 
     /**

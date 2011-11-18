@@ -15,6 +15,7 @@ package fr.ybo.opendata.rennes.sax.metros;
 
 import fr.ybo.opendata.rennes.modele.metros.MetroStation;
 import fr.ybo.opendata.rennes.sax.KeolisHandler;
+import fr.ybo.opendata.rennes.sax.RemplirBalise;
 
 /**
  * Handler SAX pour la réponse du getmetrostations.
@@ -23,80 +24,125 @@ import fr.ybo.opendata.rennes.sax.KeolisHandler;
  */
 public class GetMetroStationHandler extends KeolisHandler<MetroStation> {
 
-    private enum Balise {
+    /**
+     * Type enuméré pour les balises xml.
+     */
+    private enum Balise implements RemplirBalise<MetroStation> {
+        /**
+         * {@link MetroStation#id}.
+         */
         ID("id") {
             @Override
-            void remplirObjectKeolis(MetroStation currentObjectKeolis, String contenuOfBalise) {
+            public void remplirObjectKeolis(MetroStation currentObjectKeolis, String contenuOfBalise) {
                 currentObjectKeolis.setId(contenuOfBalise);
             }
         },
+        /**
+         * {@link MetroStation#name}.
+         */
         NAME("name") {
             @Override
-            void remplirObjectKeolis(MetroStation currentObjectKeolis, String contenuOfBalise) {
+            public void remplirObjectKeolis(MetroStation currentObjectKeolis, String contenuOfBalise) {
                 currentObjectKeolis.setName(contenuOfBalise);
             }
         },
+        /**
+         * {@link MetroStation#latitude}.
+         */
         LATITUDE("latitude") {
             @Override
-            void remplirObjectKeolis(MetroStation currentObjectKeolis, String contenuOfBalise) {
+            public void remplirObjectKeolis(MetroStation currentObjectKeolis, String contenuOfBalise) {
                 currentObjectKeolis.setLatitude(Double.parseDouble(contenuOfBalise));
             }
         },
+        /**
+         * {@link MetroStation#longitude}.
+         */
         LONGITUDE("longitude") {
             @Override
-            void remplirObjectKeolis(MetroStation currentObjectKeolis, String contenuOfBalise) {
+            public void remplirObjectKeolis(MetroStation currentObjectKeolis, String contenuOfBalise) {
                 currentObjectKeolis.setLongitude(Double.parseDouble(contenuOfBalise));
             }
         },
+        /**
+         * {@link MetroStation#platformDirection1}.
+         */
         HAS_PLATFORM_DIRECTION_1("hasPlatformDirection1") {
             @Override
-            void remplirObjectKeolis(MetroStation currentObjectKeolis, String contenuOfBalise) {
+            public void remplirObjectKeolis(MetroStation currentObjectKeolis, String contenuOfBalise) {
                 currentObjectKeolis.setPlatformDirection1("1".equals(contenuOfBalise));
             }
         },
+        /**
+         * {@link MetroStation#platformDirection2}.
+         */
         HAS_PLATFORM_DIRECTION_2("hasPlatformDirection2") {
             @Override
-            void remplirObjectKeolis(MetroStation currentObjectKeolis, String contenuOfBalise) {
+            public void remplirObjectKeolis(MetroStation currentObjectKeolis, String contenuOfBalise) {
                 currentObjectKeolis.setPlatformDirection2("1".equals(contenuOfBalise));
             }
         },
+        /**
+         * {@link MetroStation#rankingPlatformDirection1}.
+         */
         RANKING_PLATFORM_DIRECTION_1("rankingPlatformDirection1") {
             @Override
-            void remplirObjectKeolis(MetroStation currentObjectKeolis, String contenuOfBalise) {
+            public void remplirObjectKeolis(MetroStation currentObjectKeolis, String contenuOfBalise) {
                 if (contenuOfBalise.length() > 0) {
                     currentObjectKeolis.setRankingPlatformDirection1(Integer.parseInt(contenuOfBalise));
                 }
             }
         },
+        /**
+         * {@link MetroStation#rankingPlatformDirection2}.
+         */
         RANKING_PLATFORM_DIRECTION_2("rankingPlatformDirection2") {
             @Override
-            void remplirObjectKeolis(MetroStation currentObjectKeolis, String contenuOfBalise) {
+            public void remplirObjectKeolis(MetroStation currentObjectKeolis, String contenuOfBalise) {
                 if (contenuOfBalise.length() > 0) {
                     currentObjectKeolis.setRankingPlatformDirection2(Integer.parseInt(contenuOfBalise));
                 }
             }
         },
+        /**
+         * {@link MetroStation#nombreEtages}.
+         */
         FLOORS("floors") {
             @Override
-            void remplirObjectKeolis(MetroStation currentObjectKeolis, String contenuOfBalise) {
-                currentObjectKeolis.setEtage(Integer.parseInt(contenuOfBalise));
+            public void remplirObjectKeolis(MetroStation currentObjectKeolis, String contenuOfBalise) {
+                currentObjectKeolis.setNombreEtages(Integer.parseInt(contenuOfBalise));
             }
         },
+        /**
+         * {@link MetroStation#lastupdate}.
+         */
         LAST_UPDATE("lastupdate") {
             @Override
-            void remplirObjectKeolis(MetroStation currentObjectKeolis, String contenuOfBalise) {
+            public void remplirObjectKeolis(MetroStation currentObjectKeolis, String contenuOfBalise) {
                 currentObjectKeolis.setLastupdate(contenuOfBalise);
             }
         };
 
-        abstract void remplirObjectKeolis(MetroStation currentObjectKeolis, String contenuOfBalise);
-
+        /**
+         * Balise xml.
+         */
         private String value;
 
+        /**
+         * Constructeur.
+         *
+         * @param value balise xml.
+         */
         Balise(String value) {
             this.value = value;
         }
 
+        /**
+         * Renvoie l'enum en fonction de la balise xml.
+         *
+         * @param val balise xml.
+         * @return l'enum.
+         */
         public static Balise fromValue(String val) {
             for (Balise balise : values()) {
                 if (balise.value.equals(val)) {
@@ -108,7 +154,7 @@ public class GetMetroStationHandler extends KeolisHandler<MetroStation> {
     }
 
     /**
-     * STATION.
+     * Balise station.
      */
     private static final String STATION = "station";
 

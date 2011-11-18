@@ -23,7 +23,7 @@ public class MetroStation {
     private boolean platformDirection2;
     private Integer rankingPlatformDirection1;
     private Integer rankingPlatformDirection2;
-    private int etage;
+    private int nombreEtages;
     private String lastupdate;
 
     public String getId() {
@@ -90,12 +90,12 @@ public class MetroStation {
         this.rankingPlatformDirection2 = rankingPlatformDirection2;
     }
 
-    public int getEtage() {
-        return etage;
+    public int getNombreEtages() {
+        return nombreEtages;
     }
 
-    public void setEtage(int etage) {
-        this.etage = etage;
+    public void setNombreEtages(int nombreEtages) {
+        this.nombreEtages = nombreEtages;
     }
 
     public String getLastupdate() {

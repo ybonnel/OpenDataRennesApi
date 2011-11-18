@@ -18,7 +18,7 @@ import fr.ybo.opendata.rennes.modele.parkrelais.StateParkRelai;
 import fr.ybo.opendata.rennes.sax.KeolisHandler;
 
 /**
- * Handler pour rÃ©cupÃ©rer les parks relais.
+ * Handler pour récupérer les parks relais.
  *
  * @author ybonnel
  */

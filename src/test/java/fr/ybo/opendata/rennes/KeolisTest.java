@@ -219,7 +219,7 @@ public class KeolisTest {
         assertTrue(stations.get(0).hasPlatformDirection2());
         assertEquals(12, stations.get(0).getRankingPlatformDirection1().intValue());
         assertEquals(18, stations.get(0).getRankingPlatformDirection2().intValue());
-        assertEquals(-1, stations.get(0).getEtage());
+        assertEquals(-1, stations.get(0).getNombreEtages());
         assertEquals("2011-11-15T21:38:03+01:00", stations.get(0).getLastupdate());
         assertFalse(stations.get(1).hasPlatformDirection1());
         assertFalse(stations.get(1).hasPlatformDirection2());

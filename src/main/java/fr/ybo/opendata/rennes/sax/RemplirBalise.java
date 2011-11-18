@@ -26,7 +26,7 @@ public interface RemplirBalise<T> {
      *
      * @param currentObjectKeolis objet à remplir.
      * @param contenuOfBalise     contenu de la balise xml.
-     * @see {@link KeolisHandler#remplirObjectKeolis(Object, String, String)}
+     * @see KeolisHandler#remplirObjectKeolis(Object, String, String).
      */
     void remplirObjectKeolis(T currentObjectKeolis, String contenuOfBalise);
 }

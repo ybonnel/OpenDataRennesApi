@@ -15,6 +15,7 @@ package fr.ybo.opendata.rennes.sax.metros;
 
 import fr.ybo.opendata.rennes.modele.metros.MetroStationStatus;
 import fr.ybo.opendata.rennes.sax.KeolisHandler;
+import fr.ybo.opendata.rennes.sax.RemplirBalise;
 
 /**
  * Handler SAX pour la réponse du getmetrostationsstatus.
@@ -23,36 +24,60 @@ import fr.ybo.opendata.rennes.sax.KeolisHandler;
  */
 public class GetMetroStationsStatusHandler extends KeolisHandler<MetroStationStatus> {
 
-    private enum Balise {
+    /**
+     * Type enuméré pour les balises xml.
+     */
+    private enum Balise implements RemplirBalise<MetroStationStatus> {
+        /**
+         * {@link MetroStationStatus#id}.
+         */
         ID("id") {
             @Override
-            void remplirObjectKeolis(MetroStationStatus currentObjectKeolis, String contenuOfBalise) {
+            public void remplirObjectKeolis(MetroStationStatus currentObjectKeolis, String contenuOfBalise) {
                 currentObjectKeolis.setId(contenuOfBalise);
             }
         },
+        /**
+         * {@link MetroStationStatus#on}.
+         */
         STATUS("status") {
             @Override
-            void remplirObjectKeolis(MetroStationStatus currentObjectKeolis, String contenuOfBalise) {
+            public void remplirObjectKeolis(MetroStationStatus currentObjectKeolis, String contenuOfBalise) {
                 if (currentObjectKeolis != null) {
                     currentObjectKeolis.setOn("1".equals(contenuOfBalise));
                 }
             }
         },
+        /**
+         * {@link MetroStationStatus#lastUpdate}.
+         */
         LAST_UPDATE("lastUpdate") {
             @Override
-            void remplirObjectKeolis(MetroStationStatus currentObjectKeolis, String contenuOfBalise) {
+            public void remplirObjectKeolis(MetroStationStatus currentObjectKeolis, String contenuOfBalise) {
                 currentObjectKeolis.setLastUpdate(contenuOfBalise);
             }
         };
 
-        abstract void remplirObjectKeolis(MetroStationStatus currentObjectKeolis, String contenuOfBalise);
-
+        /**
+         * Balise xml.
+         */
         private String value;
 
+        /**
+         * Constructeur.
+         *
+         * @param value balise xml.
+         */
         Balise(String value) {
             this.value = value;
         }
 
+        /**
+         * Renvoie l'enum en fonction de la balise xml.
+         *
+         * @param val balise xml.
+         * @return l'enum.
+         */
         public static Balise fromValue(String val) {
             for (Balise balise : values()) {
                 if (balise.value.equals(val)) {
@@ -79,7 +104,8 @@ public class GetMetroStationsStatusHandler extends KeolisHandler<MetroStationSta
     }
 
     @Override
-    protected void remplirObjectKeolis(MetroStationStatus currentObjectKeolis, String baliseName, String contenuOfBalise) {
+    protected void remplirObjectKeolis(MetroStationStatus currentObjectKeolis, String baliseName,
+                                       String contenuOfBalise) {
         Balise balise = Balise.fromValue(baliseName);
         if (balise != null) {
             balise.remplirObjectKeolis(currentObjectKeolis, contenuOfBalise);
