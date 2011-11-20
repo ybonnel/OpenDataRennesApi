@@ -13,6 +13,9 @@
  */
 package fr.ybo.opendata.rennes.modele.bus;
 
+import fr.ybo.opendata.rennes.sax.BaliseData;
+import fr.ybo.opendata.rennes.sax.BaliseType;
+import fr.ybo.opendata.rennes.sax.BaliseXml;
 import fr.ybo.opendata.rennes.util.Formatteur;
 
 import java.io.Serializable;
@@ -27,6 +30,7 @@ import java.util.List;
  * @author ybonnel
  */
 @SuppressWarnings("serial")
+@BaliseData("alert")
 public class Alert implements Serializable {
 
     /**
@@ -71,6 +75,7 @@ public class Alert implements Serializable {
     /**
      * @param title {@link Alert#title}.
      */
+    @BaliseXml(name = "title")
     public void setTitle(String title) {
         this.title = title;
     }
@@ -85,6 +90,7 @@ public class Alert implements Serializable {
     /**
      * @param starttime {@link Alert#starttime}.
      */
+    @BaliseXml(name = "starttime")
     public void setStarttime(String starttime) {
         this.starttime = starttime;
     }
@@ -99,6 +105,7 @@ public class Alert implements Serializable {
     /**
      * @param endtime {@link Alert#endtime}.
      */
+    @BaliseXml(name = "endtime")
     public void setEndtime(String endtime) {
         this.endtime = endtime;
     }
@@ -114,6 +121,16 @@ public class Alert implements Serializable {
     }
 
     /**
+     * Ajout d'une ligne.
+     *
+     * @param line la ligne.
+     */
+    @BaliseXml(name = "line")
+    public void addLine(String line) {
+        getLines().add(line);
+    }
+
+    /**
      * @return {@link Alert#majordisturbance}.
      */
     public boolean isMajordisturbance() {
@@ -123,6 +140,7 @@ public class Alert implements Serializable {
     /**
      * @param majordisturbance {@link Alert#majordisturbance}.
      */
+    @BaliseXml(name = "majordisturbance", type = BaliseType.BOOLEAN)
     public void setMajordisturbance(boolean majordisturbance) {
         this.majordisturbance = majordisturbance;
     }
@@ -137,6 +155,7 @@ public class Alert implements Serializable {
     /**
      * @param detail {@link Alert#detail}.
      */
+    @BaliseXml(name = "detail")
     public void setDetail(String detail) {
         this.detail = detail;
     }
@@ -151,6 +170,7 @@ public class Alert implements Serializable {
     /**
      * @param link {@link Alert#link}.
      */
+    @BaliseXml(name = "link")
     public void setLink(String link) {
         this.link = link;
     }

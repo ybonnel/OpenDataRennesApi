@@ -14,9 +14,13 @@
 
 package fr.ybo.opendata.rennes.modele.bus;
 
+import fr.ybo.opendata.rennes.sax.BaliseData;
+import fr.ybo.opendata.rennes.sax.BaliseXml;
+
 /**
  * Picto pour une ligne de bus.
  */
+@BaliseData("line")
 public class LignePicto {
 
     /**
@@ -42,6 +46,7 @@ public class LignePicto {
     /**
      * @param name {@link LignePicto#name}.
      */
+    @BaliseXml(name = "name")
     public void setName(String name) {
         this.name = name;
     }
@@ -56,8 +61,10 @@ public class LignePicto {
     /**
      * @param picto {@link LignePicto#picto}.
      */
+    @BaliseXml(name = "picto")
     public void setPicto(String picto) {
         this.picto = picto;
+        pictoUrl = baseUrl + picto;
     }
 
     /**
@@ -72,5 +79,18 @@ public class LignePicto {
      */
     public void setPictoUrl(String pictoUrl) {
         this.pictoUrl = pictoUrl;
+    }
+
+    /**
+     * Base de l'url.
+     */
+    private static String baseUrl;
+
+    /**
+     * @param baseUrl {@link LignePicto#baseUrl}.
+     */
+    @BaliseXml(name = "baseurl")
+    public static void setBaseUrl(String baseUrl) {
+        LignePicto.baseUrl = baseUrl;
     }
 }

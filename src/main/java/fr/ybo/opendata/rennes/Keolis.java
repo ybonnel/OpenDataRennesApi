@@ -30,9 +30,8 @@ import fr.ybo.opendata.rennes.modele.velos.Station;
 import fr.ybo.opendata.rennes.modele.velos.StationDistrict;
 import fr.ybo.opendata.rennes.modele.villes.Quartier;
 import fr.ybo.opendata.rennes.modele.villes.Ville;
+import fr.ybo.opendata.rennes.sax.GenericHandler;
 import fr.ybo.opendata.rennes.sax.KeolisHandler;
-import fr.ybo.opendata.rennes.sax.bus.GetAlertsHandler;
-import fr.ybo.opendata.rennes.sax.bus.GetLinesHandler;
 import fr.ybo.opendata.rennes.sax.equipements.GetEquipementsHandler;
 import fr.ybo.opendata.rennes.sax.equipements.GetEquipementsStatusHandler;
 import fr.ybo.opendata.rennes.sax.metros.GetMetroStationHandler;
@@ -123,9 +122,14 @@ public class Keolis {
      */
     private static final String COMMANDE_CITY_DISTRICT = "getcitydistricts";
 
-
+    /**
+     * Connecteur.
+     */
     private Connecteur connecteur;
 
+    /**
+     * @param connecteur {@link Keolis#connecteur}.
+     */
     protected void setConnecteur(Connecteur connecteur) {
         this.connecteur = connecteur;
     }
@@ -140,6 +144,9 @@ public class Keolis {
         connecteur = new HttpConnecteur();
     }
 
+    /**
+     * Clé de l'api.
+     */
     private final String key;
 
     /**
@@ -148,7 +155,6 @@ public class Keolis {
      * @param handler handler.
      * @return liste d'objets Keolis.
      * @throws KeolisReseauException en cas d'erreur réseau.
-     * @throws KeolisException       en cas d'erreur lors de l'appel aux API Keolis.
      */
     private <T> List<T> appelKeolis(String url, KeolisHandler<T> handler) throws KeolisReseauException {
         Answer<T> answer;
@@ -186,7 +192,7 @@ public class Keolis {
      * @throws KeolisReseauException pour toutes erreurs réseaux.
      */
     public List<Alert> getAlerts() throws KeolisReseauException {
-        return appelKeolis(getUrl(COMMANDE_ALERTS), new GetAlertsHandler());
+        return appelKeolis(getUrl(COMMANDE_ALERTS), new GenericHandler<Alert>(Alert.class));
     }
 
     /**
@@ -208,7 +214,8 @@ public class Keolis {
      * @throws KeolisReseauException pour toutes erreurs réseaux.
      */
     private Station getStationByNumber(String number) throws KeolisReseauException {
-        List<Station> stations = getStation(getUrl(COMMANDE_STATIONS, new ParametreUrl("station", "number"), new ParametreUrl("value", number)));
+        List<Station> stations = getStation(
+                getUrl(COMMANDE_STATIONS, new ParametreUrl("station", "number"), new ParametreUrl("value", number)));
         Station station = null;
         if (!stations.isEmpty()) {
             station = stations.get(0);
@@ -282,7 +289,8 @@ public class Keolis {
      * @throws KeolisReseauException pour toutes erreurs réseaux.
      */
     public List<LignePicto> getLigne(PictoSize size) throws KeolisReseauException {
-        return appelKeolis(getUrl(COMMANDE_LINES, new ParametreUrl("size", Integer.toString(size.getSize()))), new GetLinesHandler());
+        return appelKeolis(getUrl(COMMANDE_LINES, new ParametreUrl("size", Integer.toString(size.getSize()))),
+                new GenericHandler<LignePicto>(LignePicto.class));
     }
 
     /**
@@ -299,7 +307,9 @@ public class Keolis {
      * @throws KeolisReseauException pour toutes erreurs réseaux.
      */
     public List<Equipement> getEquipements(String station) throws KeolisReseauException {
-        return appelKeolis(getUrl(COMMANDE_EQUIPMENTS, new ParametreUrl("mode", "station"), new ParametreUrl("station", station)), new GetEquipementsHandler());
+        return appelKeolis(
+                getUrl(COMMANDE_EQUIPMENTS, new ParametreUrl("mode", "station"), new ParametreUrl("station", station)),
+                new GetEquipementsHandler());
     }
 
     /**
@@ -316,9 +326,9 @@ public class Keolis {
      * @throws KeolisReseauException pour toutes erreurs réseaux.
      */
     public EquipementStatus getEquipementsStatus(String id) throws KeolisReseauException {
-        List<EquipementStatus> equipementStatuses = appelKeolis(getUrl(COMMANDE_EQUIPMENTS_STATUS,
-                new ParametreUrl("mode", "id"),
-                new ParametreUrl("id", id)), new GetEquipementsStatusHandler());
+        List<EquipementStatus> equipementStatuses = appelKeolis(
+                getUrl(COMMANDE_EQUIPMENTS_STATUS, new ParametreUrl("mode", "id"), new ParametreUrl("id", id)),
+                new GetEquipementsStatusHandler());
         if (equipementStatuses.isEmpty()) {
             return null;
         }
@@ -331,8 +341,7 @@ public class Keolis {
      * @throws KeolisReseauException pour toutes erreurs réseaux.
      */
     public List<EquipementStatus> getEquipementsStatusByStation(String station) throws KeolisReseauException {
-        return appelKeolis(getUrl(COMMANDE_EQUIPMENTS_STATUS,
-                new ParametreUrl("mode", "station"),
+        return appelKeolis(getUrl(COMMANDE_EQUIPMENTS_STATUS, new ParametreUrl("mode", "station"),
                 new ParametreUrl("station", station)), new GetEquipementsStatusHandler());
     }
 
@@ -358,9 +367,9 @@ public class Keolis {
      * @throws KeolisReseauException pour toutes erreurs réseaux.
      */
     public MetroStationStatus getMetroStationsStatus(String id) throws KeolisReseauException {
-        List<MetroStationStatus> stationStatuses = appelKeolis(getUrl(COMMANDE_METRO_STATION_STATUS,
-                new ParametreUrl("mode", "station"),
-                new ParametreUrl("station", id)), new GetMetroStationsStatusHandler());
+        List<MetroStationStatus> stationStatuses = appelKeolis(
+                getUrl(COMMANDE_METRO_STATION_STATUS, new ParametreUrl("mode", "station"),
+                        new ParametreUrl("station", id)), new GetMetroStationsStatusHandler());
         if (stationStatuses.isEmpty()) {
             return null;
         }
@@ -381,8 +390,8 @@ public class Keolis {
      * @throws KeolisReseauException pour toutes erreurs réseaux.
      */
     public List<Quartier> getQuartier(String villeId) throws KeolisReseauException {
-        return appelKeolis(getUrl(COMMANDE_CITY_DISTRICT,
-                new ParametreUrl("city", villeId)), new GetQuartiersHandler());
+        return appelKeolis(getUrl(COMMANDE_CITY_DISTRICT, new ParametreUrl("city", villeId)),
+                new GetQuartiersHandler());
     }
 
     /**
@@ -413,7 +422,8 @@ public class Keolis {
         for (ParametreUrl param : params) {
 
             try {
-                stringBuilder.append("&param[").append(param.getName()).append("]=").append(URLEncoder.encode(param.getValue(), "utf-8"));
+                stringBuilder.append("&param[").append(param.getName()).append("]=")
+                        .append(URLEncoder.encode(param.getValue(), "utf-8"));
             } catch (UnsupportedEncodingException e) {
                 throw new KeolisException("Erreur lors de la construction de l'URL", e);
             }

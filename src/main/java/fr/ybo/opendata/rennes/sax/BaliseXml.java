@@ -11,36 +11,27 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package fr.ybo.opendata.rennes.exceptions;
+
+package fr.ybo.opendata.rennes.sax;
+
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 /**
- * Exception sur les traitements associés aux API Keolis.
- *
- * @author ybonnel
+ * Annotation pour les méthodes à appeler pour une balise xml donnée.
  */
-public class KeolisException extends RuntimeException {
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.METHOD)
+public @interface BaliseXml {
+    /**
+     * Nom de la balise.
+     */
+    String name();
 
     /**
-     * Serial.
+     * Type de la balise.
      */
-    private static final long serialVersionUID = 1L;
-
-    /**
-     * Constructeur avec message et exception.
-     *
-     * @param message message.
-     * @param cause   exception.
-     */
-    public KeolisException(String message, Throwable cause) {
-        super(message, cause);
-    }
-
-    /**
-     * Constructeur avec message.
-     *
-     * @param message message.
-     */
-    public KeolisException(String message) {
-        super(message);
-    }
+    BaliseType type() default BaliseType.STRING;
 }

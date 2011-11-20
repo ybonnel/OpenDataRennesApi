@@ -11,36 +11,37 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package fr.ybo.opendata.rennes.exceptions;
+
+package fr.ybo.opendata.rennes.sax;
 
 /**
- * Exception sur les traitements associés aux API Keolis.
- *
- * @author ybonnel
+ * Type de balise.
  */
-public class KeolisException extends RuntimeException {
-
+public enum BaliseType {
     /**
-     * Serial.
+     * Type chaine (converti un String en String).
      */
-    private static final long serialVersionUID = 1L;
+    STRING {
+        @Override
+        Object convertir(String data) {
+            return data;
+        }
+    },
+    /**
+     * Type Boolean (converti un String en boolean).
+     */
+    BOOLEAN {
+        @Override
+        Object convertir(String data) {
+            return "1".equals(data);
+        }
+    };
 
     /**
-     * Constructeur avec message et exception.
+     * Converti data dans le type approprié.
      *
-     * @param message message.
-     * @param cause   exception.
+     * @param data donnée à convertir.
+     * @return l'objet approprié.
      */
-    public KeolisException(String message, Throwable cause) {
-        super(message, cause);
-    }
-
-    /**
-     * Constructeur avec message.
-     *
-     * @param message message.
-     */
-    public KeolisException(String message) {
-        super(message);
-    }
+    abstract Object convertir(String data);
 }
