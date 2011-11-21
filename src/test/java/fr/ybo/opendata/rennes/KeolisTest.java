@@ -37,17 +37,35 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.List;
 
-import static junit.framework.Assert.*;
+import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertFalse;
+import static junit.framework.Assert.assertNotNull;
+import static junit.framework.Assert.assertNull;
+import static junit.framework.Assert.assertTrue;
 
+/**
+ * Test de la classe {@link Keolis}.
+ */
 public class KeolisTest {
 
+    /**
+     * {@link Keolis}.
+     */
     private Keolis keolis;
 
+    /**
+     * Constructeur de keolis.
+     */
     @Before
     public void setup() {
         keolis = new Keolis("key");
     }
 
+    /**
+     * Test de {@link Keolis#getAlerts()}.
+     *
+     * @throws KeolisReseauException problème réseaux.
+     */
     @Test
     public void testGetAlerts() throws KeolisReseauException {
         keolis.setConnecteur(new FileConnecteur("/getAlert.xml"));
@@ -67,6 +85,12 @@ public class KeolisTest {
         assertTrue(alert2.isMajordisturbance());
     }
 
+
+    /**
+     * Test de {@link Keolis#getStationByNumber(String)}.
+     *
+     * @throws KeolisReseauException problème réseaux.
+     */
     @Test
     public void testGetStationByNumbers() throws KeolisReseauException {
         keolis.setConnecteur(new FileConnecteur("/getStations.xml"));
@@ -79,15 +103,21 @@ public class KeolisTest {
         assertEquals("ZAC SAINT SULPICE", station1.getName());
         assertEquals("RUE DE FOUGÈRES", station1.getAdresse());
         assertTrue(station1.isState());
-        assertEquals(48.1321, station1.getLatitude());
-        assertEquals(-1.63528, station1.getLongitude());
-        assertEquals(14, station1.getSlotsavailable());
-        assertEquals(16, station1.getBikesavailable());
+        assertEquals(LATITUDE_STATION, station1.getLatitude());
+        assertEquals(LONGITUDE_STATION, station1.getLongitude());
+        assertEquals(SLOTS, station1.getSlotsavailable());
+        assertEquals(BIKES, station1.getBikesavailable());
         assertFalse(station1.isPos());
         assertEquals("Maurepas - Patton", station1.getDistrict());
         assertEquals("2011-11-09T19:59:06+01:00", station1.getLastupdate());
     }
 
+
+    /**
+     * Test de {@link Keolis#getStations()}.
+     *
+     * @throws KeolisReseauException problème réseaux.
+     */
     @Test
     public void testGetStations() throws KeolisReseauException {
         keolis.setConnecteur(new FileConnecteur("/getStations.xml"));
@@ -100,36 +130,87 @@ public class KeolisTest {
         assertEquals("ZAC SAINT SULPICE", station1.getName());
         assertEquals("RUE DE FOUGÈRES", station1.getAdresse());
         assertTrue(station1.isState());
-        assertEquals(48.1321, station1.getLatitude());
-        assertEquals(-1.63528, station1.getLongitude());
-        assertEquals(14, station1.getSlotsavailable());
-        assertEquals(16, station1.getBikesavailable());
+        assertEquals(LATITUDE_STATION, station1.getLatitude());
+        assertEquals(LONGITUDE_STATION, station1.getLongitude());
+        assertEquals(SLOTS, station1.getSlotsavailable());
+        assertEquals(BIKES, station1.getBikesavailable());
         assertFalse(station1.isPos());
         assertEquals("Maurepas - Patton", station1.getDistrict());
         assertEquals("2011-11-09T19:59:06+01:00", station1.getLastupdate());
 
     }
 
+    /**
+     * Latitude.
+     */
+    private static final double LATITUDE_STATION = 48.1321;
+    /**
+     * Longitude.
+     */
+    private static final double LONGITUDE_STATION = -1.63528;
+    /**
+     * Places libres.
+     */
+    private static final int SLOTS = 14;
+    /**
+     * Velos disponibles.
+     */
+    private static final int BIKES = 16;
+
+
+    /**
+     * Test de {@link Keolis#getParkRelais()}.
+     *
+     * @throws KeolisReseauException problème réseaux.
+     */
     @Test
     public void testGetParkRelais() throws KeolisReseauException {
         keolis.setConnecteur(new FileConnecteur("/getParkRelais.xml"));
 
         List<ParkRelai> parkRelais = keolis.getParkRelais();
 
-        assertEquals(4, parkRelais.size());
+        assertEquals(NB_PARKS, parkRelais.size());
         ParkRelai parkRelai = parkRelais.get(0);
         assertEquals("Henri Fréville", parkRelai.getName());
-        assertEquals(48.0875369773, parkRelai.getLatitude());
-        assertEquals(-1.6745548715, parkRelai.getLongitude());
-        assertEquals(317, parkRelai.getCarParkAvailable().intValue());
-        assertEquals(406, parkRelai.getCarParkCapacity().intValue());
+        assertEquals(LATITUDE_PARK, parkRelai.getLatitude());
+        assertEquals(LONGITUDE_PARK, parkRelai.getLongitude());
+        assertEquals(CARS_AVAILABLE, parkRelai.getCarParkAvailable().intValue());
+        assertEquals(CARS_CAPACITY, parkRelai.getCarParkCapacity().intValue());
         assertEquals("2011-11-09T20:06:07+01:00", parkRelai.getLastupdate());
         assertEquals(StateParkRelai.OUVERT, parkRelai.getState());
-        assertEquals(StateParkRelai.FERME, parkRelais.get(1).getState());
-        assertEquals(StateParkRelai.COMPLET, parkRelais.get(2).getState());
-        assertEquals(StateParkRelai.INDISPONIBLE, parkRelais.get(3).getState());
+        int count = 1;
+        assertEquals(StateParkRelai.FERME, parkRelais.get(count++).getState());
+        assertEquals(StateParkRelai.COMPLET, parkRelais.get(count++).getState());
+        assertEquals(StateParkRelai.INDISPONIBLE, parkRelais.get(count).getState());
     }
 
+    /**
+     * Nombre de park relais.
+     */
+    private static final int NB_PARKS = 4;
+    /**
+     * Latitude.
+     */
+    private static final double LATITUDE_PARK = 48.0875369773;
+    /**
+     * Longitude.
+     */
+    private static final double LONGITUDE_PARK = -1.6745548715;
+    /**
+     * Places disponibles.
+     */
+    private static final int CARS_AVAILABLE = 317;
+    /**
+     * Places totales.
+     */
+    private static final int CARS_CAPACITY = 406;
+
+
+    /**
+     * Test de {@link Keolis#getPointDeVente()}.
+     *
+     * @throws KeolisReseauException problème réseaux.
+     */
     @Test
     public void testGetPointDeVente() throws KeolisReseauException {
         keolis.setConnecteur(new FileConnecteur("/getPos.xml"));
@@ -145,11 +226,26 @@ public class KeolisTest {
         assertEquals("RENNES", pointDeVente.getVille());
         assertEquals("Gares", pointDeVente.getDistrict());
         assertEquals("02 99 41 91 44", pointDeVente.getTelephone());
-        assertEquals("", pointDeVente.getSchedule());
-        assertEquals(48.1041574, pointDeVente.getLatitude());
-        assertEquals(-1.6726879, pointDeVente.getLongitude());
+        assertNull(pointDeVente.getSchedule());
+        assertEquals(LATITUDE_PDV, pointDeVente.getLatitude());
+        assertEquals(LONGITUDE_PDV, pointDeVente.getLongitude());
     }
 
+    /**
+     * Latitude du point de vente.
+     */
+    private static final double LATITUDE_PDV = 48.1041574;
+    /**
+     * Longitude du point de vente.
+     */
+    private static final double LONGITUDE_PDV = -1.6726879;
+
+
+    /**
+     * Test de {@link Keolis#getStationsDistrict()}.
+     *
+     * @throws KeolisReseauException problème réseaux.
+     */
     @Test
     public void testGetStationsDistrict() throws KeolisReseauException {
         keolis.setConnecteur(new FileConnecteur("/getBikesDistrict.xml"));
@@ -161,6 +257,12 @@ public class KeolisTest {
         assertEquals("Francisco Ferrer-Vern-Poterie", districts.get(1).getName());
     }
 
+
+    /**
+     * Test de {@link Keolis#getLigne(PictoSize)}.
+     *
+     * @throws KeolisReseauException problème réseaux.
+     */
     @Test
     public void testGetLignes() throws KeolisReseauException {
         keolis.setConnecteur(new FileConnecteur("/getLines.xml"));
@@ -168,14 +270,21 @@ public class KeolisTest {
         assertEquals(2, pictos.size());
         assertEquals("1", pictos.get(0).getName());
         assertEquals("L1.png", pictos.get(0).getPicto());
-        assertEquals("http://data.keolis-rennes.com/" +
-                "fileadmin/documents/Picto_lignes/Pictos_lignes_100x100/L1.png", pictos.get(0).getPictoUrl());
+        assertEquals("http://data.keolis-rennes.com/fileadmin/documents/Picto_lignes/Pictos_lignes_100x100/L1.png",
+                pictos.get(0).getPictoUrl());
         assertEquals("11", pictos.get(1).getName());
         assertEquals("L11.png", pictos.get(1).getPicto());
-        assertEquals("http://data.keolis-rennes.com/" +
-                "fileadmin/documents/Picto_lignes/Pictos_lignes_100x100/L11.png", pictos.get(1).getPictoUrl());
+        assertEquals(
+                "http://data.keolis-rennes.com/" + "fileadmin/documents/Picto_lignes/Pictos_lignes_100x100/L11.png",
+                pictos.get(1).getPictoUrl());
     }
 
+
+    /**
+     * Test de {@link Keolis#getEquipements()}.
+     *
+     * @throws KeolisReseauException problème réseaux.
+     */
     @Test
     public void testGetEquipements() throws KeolisReseauException {
         keolis.setConnecteur(new FileConnecteur("/getEquipments.xml"));
@@ -193,6 +302,12 @@ public class KeolisTest {
         assertEquals(2, keolis.getEquipements("ANF").size());
     }
 
+
+    /**
+     * Test de {@link Keolis#getEquipementsStatus()}.
+     *
+     * @throws KeolisReseauException problème réseaux.
+     */
     @Test
     public void testGetEquipmentsStatus() throws KeolisReseauException {
         keolis.setConnecteur(new FileConnecteur("/getEquipmentsStatus.xml"));
@@ -206,6 +321,12 @@ public class KeolisTest {
         assertNotNull(keolis.getEquipementsStatus("id"));
     }
 
+
+    /**
+     * Test de {@link Keolis#getMetroStations()}.
+     *
+     * @throws KeolisReseauException problème réseaux.
+     */
     @Test
     public void testGetMetroStations() throws KeolisReseauException {
         keolis.setConnecteur(new FileConnecteur("/getMetroStation.xml"));
@@ -213,12 +334,12 @@ public class KeolisTest {
         assertEquals(2, stations.size());
         assertEquals("ANF", stations.get(0).getId());
         assertEquals("Anatole France", stations.get(0).getName());
-        assertEquals(48.11812000, stations.get(0).getLatitude());
-        assertEquals(-1.687540000, stations.get(0).getLongitude());
+        assertEquals(LATITUDE_METRO_STATION, stations.get(0).getLatitude());
+        assertEquals(LONGITUDE_METRO_STATION, stations.get(0).getLongitude());
         assertTrue(stations.get(0).hasPlatformDirection1());
         assertTrue(stations.get(0).hasPlatformDirection2());
-        assertEquals(12, stations.get(0).getRankingPlatformDirection1().intValue());
-        assertEquals(18, stations.get(0).getRankingPlatformDirection2().intValue());
+        assertEquals(RANKING_1, stations.get(0).getRankingPlatformDirection1().intValue());
+        assertEquals(RANKING_2, stations.get(0).getRankingPlatformDirection2().intValue());
         assertEquals(-1, stations.get(0).getNombreEtages());
         assertEquals("2011-11-15T21:38:03+01:00", stations.get(0).getLastupdate());
         assertFalse(stations.get(1).hasPlatformDirection1());
@@ -227,6 +348,29 @@ public class KeolisTest {
         assertNull(stations.get(1).getRankingPlatformDirection2());
     }
 
+    /**
+     * Latitude pour la station de métro.
+     */
+    private static final double LATITUDE_METRO_STATION = 48.11812000;
+    /**
+     * Longitude pour la station de métro.
+     */
+    private static final double LONGITUDE_METRO_STATION = -1.687540000;
+    /**
+     * Ranking 1.
+     */
+    private static final int RANKING_1 = 12;
+    /**
+     * Ranking2.
+     */
+    private static final int RANKING_2 = 18;
+
+
+    /**
+     * Test de {@link Keolis#getMetroStationsStatus()}.
+     *
+     * @throws KeolisReseauException problème réseaux.
+     */
     @Test
     public void testGetMetroStationsStatus() throws KeolisReseauException {
         keolis.setConnecteur(new FileConnecteur("/getMetroStatus.xml"));
@@ -245,6 +389,12 @@ public class KeolisTest {
         assertEquals("2011-11-15T21:59:36+01:00", status.getLastUpdate());
     }
 
+
+    /**
+     * Test de {@link Keolis#getVilles()}.
+     *
+     * @throws KeolisReseauException problème réseaux.
+     */
     @Test
     public void testGetVilles() throws KeolisReseauException {
         keolis.setConnecteur(new FileConnecteur("/getCities.xml"));
@@ -252,10 +402,21 @@ public class KeolisTest {
         List<Ville> villes = keolis.getVilles();
         assertEquals(2, villes.size());
         assertEquals("RENNES", villes.get(0).getName());
-        assertEquals(26, villes.get(0).getNombreDistricts());
+        assertEquals(NB_QUARTIERS_RENNES, villes.get(0).getNombreQuartiers());
         assertEquals("1", villes.get(0).getId());
     }
 
+    /**
+     * Nombre de quartiers à rennes.
+     */
+    private static final int NB_QUARTIERS_RENNES = 26;
+
+
+    /**
+     * Test de {@link Keolis#getQuartier(String)}.
+     *
+     * @throws KeolisReseauException problème réseaux.
+     */
     @Test
     public void testGetQuartiers() throws KeolisReseauException {
         keolis.setConnecteur(new FileConnecteur("/getCityDistricts.xml"));

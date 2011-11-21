@@ -13,6 +13,10 @@
  */
 package fr.ybo.opendata.rennes.modele.pointsdevente;
 
+import fr.ybo.opendata.rennes.sax.BaliseData;
+import fr.ybo.opendata.rennes.sax.BaliseType;
+import fr.ybo.opendata.rennes.sax.BaliseXml;
+
 import java.io.Serializable;
 
 /**
@@ -21,6 +25,7 @@ import java.io.Serializable;
  * @author ybonnel
  */
 @SuppressWarnings("serial")
+@BaliseData("pos")
 public class PointDeVente implements Serializable {
     /**
      * Nom du point de vente.
@@ -63,82 +68,152 @@ public class PointDeVente implements Serializable {
      */
     private double longitude;
 
+    /**
+     * @return {@link PointDeVente#name}.
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * @param name {@link PointDeVente#name}.
+     */
+    @BaliseXml(name = "name")
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * @return {@link PointDeVente#type}.
+     */
     public String getType() {
         return type;
     }
 
+    /**
+     * @param type {@link PointDeVente#type}.
+     */
+    @BaliseXml(name = "type")
     public void setType(String type) {
         this.type = type;
     }
 
+    /**
+     * @return {@link PointDeVente#adresse}.
+     */
     public String getAdresse() {
         return adresse;
     }
 
+    /**
+     * @param adresse {@link PointDeVente#adresse}.
+     */
+    @BaliseXml(name = "address")
     public void setAdresse(String adresse) {
         this.adresse = adresse;
     }
 
+    /**
+     * @return {@link PointDeVente#codePostal}.
+     */
     public String getCodePostal() {
         return codePostal;
     }
 
+    /**
+     * @param codePostal {@link PointDeVente#codePostal}.
+     */
+    @BaliseXml(name = "zipcode")
     public void setCodePostal(String codePostal) {
         this.codePostal = codePostal;
     }
 
+    /**
+     * @return {@link PointDeVente#ville}.
+     */
     public String getVille() {
         return ville;
     }
 
+    /**
+     * @param ville {@link PointDeVente#ville}.
+     */
+    @BaliseXml(name = "city")
     public void setVille(String ville) {
         this.ville = ville;
     }
 
+    /**
+     * @return {@link PointDeVente#district}.
+     */
     public String getDistrict() {
         return district;
     }
 
+    /**
+     * @param district {@link PointDeVente#district}.
+     */
+    @BaliseXml(name = "district")
     public void setDistrict(String district) {
         this.district = district;
     }
 
+    /**
+     * @return {@link PointDeVente#telephone}.
+     */
     public String getTelephone() {
         return telephone;
     }
 
+    /**
+     * @param telephone {@link PointDeVente#telephone}.
+     */
+    @BaliseXml(name = "phone")
     public void setTelephone(String telephone) {
         this.telephone = telephone;
     }
 
+    /**
+     * @return {@link PointDeVente#schedule}.
+     */
     public String getSchedule() {
         return schedule;
     }
 
+    /**
+     * @param schedule {@link PointDeVente#schedule}.
+     */
+    @BaliseXml(name = "schedule")
     public void setSchedule(String schedule) {
         this.schedule = schedule;
     }
 
+    /**
+     * @return {@link PointDeVente#latitude}.
+     */
     public double getLatitude() {
         return latitude;
     }
 
+    /**
+     * @param latitude {@link PointDeVente#latitude}.
+     */
+    @BaliseXml(name = "latitude", type = BaliseType.DOUBLE)
     public void setLatitude(double latitude) {
         this.latitude = latitude;
     }
 
+    /**
+     * @return {@link PointDeVente#longitude}.
+     */
     public double getLongitude() {
         return longitude;
     }
 
+    /**
+     * @param longitude {@link PointDeVente#longitude}.
+     */
+    @BaliseXml(name = "longitude", type = BaliseType.DOUBLE)
     public void setLongitude(double longitude) {
         this.longitude = longitude;
     }

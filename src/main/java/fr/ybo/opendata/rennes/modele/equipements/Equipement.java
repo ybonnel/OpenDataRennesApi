@@ -14,9 +14,14 @@
 
 package fr.ybo.opendata.rennes.modele.equipements;
 
+import fr.ybo.opendata.rennes.sax.BaliseData;
+import fr.ybo.opendata.rennes.sax.BaliseType;
+import fr.ybo.opendata.rennes.sax.BaliseXml;
+
 /**
  * Classe représentant un équipement.
  */
+@BaliseData("equipment")
 public class Equipement {
     /**
      * Identifiant de l'équipement.
@@ -57,6 +62,7 @@ public class Equipement {
     /**
      * @param id {@link Equipement#id}
      */
+    @BaliseXml(name = "id")
     public void setId(String id) {
         this.id = id;
     }
@@ -71,6 +77,7 @@ public class Equipement {
     /**
      * @param station {@link Equipement#station}
      */
+    @BaliseXml(name = "station")
     public void setStation(String station) {
         this.station = station;
     }
@@ -85,8 +92,9 @@ public class Equipement {
     /**
      * @param type {@link Equipement#type}
      */
-    public void setType(TypeEquipement type) {
-        this.type = type;
+    @BaliseXml(name = "type")
+    public void setType(String type) {
+        this.type = TypeEquipement.valueOf(type);
     }
 
     /**
@@ -99,6 +107,7 @@ public class Equipement {
     /**
      * @param etageDepart {@link Equipement#etageDepart}
      */
+    @BaliseXml(name = "fromfloor", type = BaliseType.INTEGER)
     public void setEtageDepart(int etageDepart) {
         this.etageDepart = etageDepart;
     }
@@ -113,6 +122,7 @@ public class Equipement {
     /**
      * @param etageArrivee {@link Equipement#etageArrivee}
      */
+    @BaliseXml(name = "tofloor", type = BaliseType.INTEGER)
     public void setEtageArrivee(int etageArrivee) {
         this.etageArrivee = etageArrivee;
     }
@@ -127,6 +137,7 @@ public class Equipement {
     /**
      * @param plateform {@link Equipement#plateform}
      */
+    @BaliseXml(name = "platform", type = BaliseType.INTEGER)
     public void setPlateform(int plateform) {
         this.plateform = plateform;
     }
@@ -141,6 +152,7 @@ public class Equipement {
     /**
      * @param lastUpdate {@link Equipement#lastUpdate}
      */
+    @BaliseXml(name = "lastupdate")
     public void setLastUpdate(String lastUpdate) {
         this.lastUpdate = lastUpdate;
     }

@@ -35,6 +35,24 @@ public enum BaliseType {
         Object convertir(String data) {
             return "1".equals(data);
         }
+    },
+    /**
+     * Type Integer (converti un String en int).
+     */
+    INTEGER {
+        @Override
+        Object convertir(String data) {
+            return Integer.parseInt(data);
+        }
+    },
+    /**
+     * Type Double (converti un String en double).
+     */
+    DOUBLE {
+        @Override
+        Object convertir(String data) {
+            return Double.parseDouble(data);
+        }
     };
 
     /**

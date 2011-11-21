@@ -18,6 +18,7 @@ import fr.ybo.opendata.rennes.exceptions.KeolisException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -95,10 +96,12 @@ public class GenericHandler<T> extends KeolisHandler<T> {
 
     @Override
     protected void remplirObjectKeolis(T currentObjectKeolis, String baliseName, String contenuOfBalise) {
-        if (mapBaliseMethod.containsKey(baliseName)) {
+        if (contenuOfBalise.length() > 0 && mapBaliseMethod.containsKey(baliseName)) {
             try {
-                mapBaliseMethod.get(baliseName)
-                        .invoke(currentObjectKeolis, mapBaliseType.get(baliseName).convertir(contenuOfBalise));
+                if (Modifier.isStatic(mapBaliseMethod.get(baliseName).getModifiers()) || currentObjectKeolis != null) {
+                    mapBaliseMethod.get(baliseName)
+                            .invoke(currentObjectKeolis, mapBaliseType.get(baliseName).convertir(contenuOfBalise));
+                }
             } catch (IllegalAccessException e) {
                 throw new KeolisException(
                         "Problème lors de l'appel à la méthode " + mapBaliseMethod.get(baliseName).getName(), e);

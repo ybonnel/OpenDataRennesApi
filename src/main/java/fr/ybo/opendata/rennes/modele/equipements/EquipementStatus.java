@@ -14,9 +14,14 @@
 
 package fr.ybo.opendata.rennes.modele.equipements;
 
+import fr.ybo.opendata.rennes.sax.BaliseData;
+import fr.ybo.opendata.rennes.sax.BaliseType;
+import fr.ybo.opendata.rennes.sax.BaliseXml;
+
 /**
  * Status d'un équipement.
  */
+@BaliseData("equipment")
 public class EquipementStatus {
     /**
      * Identifiant de l'équipement.
@@ -41,6 +46,7 @@ public class EquipementStatus {
     /**
      * @param id {@link EquipementStatus#id}
      */
+    @BaliseXml(name = "id")
     public void setId(String id) {
         this.id = id;
     }
@@ -55,6 +61,7 @@ public class EquipementStatus {
     /**
      * @param on {@link EquipementStatus#on}
      */
+    @BaliseXml(name = "state", type = BaliseType.BOOLEAN)
     public void setOn(boolean on) {
         this.on = on;
     }
@@ -69,6 +76,7 @@ public class EquipementStatus {
     /**
      * @param lastUpdate {@link EquipementStatus#lastUpdate}
      */
+    @BaliseXml(name = "lastupdate")
     public void setLastUpdate(String lastUpdate) {
         this.lastUpdate = lastUpdate;
     }

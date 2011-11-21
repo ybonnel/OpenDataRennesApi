@@ -14,22 +14,49 @@
 
 package fr.ybo.opendata.rennes.modele.velos;
 
+import fr.ybo.opendata.rennes.sax.BaliseData;
+import fr.ybo.opendata.rennes.sax.BaliseXml;
+
+/**
+ * District des stations de velos.
+ */
+@BaliseData("district")
 public class StationDistrict {
+    /**
+     * Identifiant.
+     */
     private String id;
+    /**
+     * Nom.
+     */
     private String name;
 
+    /**
+     * @return {@link StationDistrict#id}.
+     */
     public String getId() {
         return id;
     }
 
+    /**
+     * @param id {@link StationDistrict#id}.
+     */
+    @BaliseXml(name = "id")
     public void setId(String id) {
         this.id = id;
     }
 
+    /**
+     * @return {@link StationDistrict#name}.
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * @param name {@link StationDistrict#name}.
+     */
+    @BaliseXml(name = "name")
     public void setName(String name) {
         this.name = name;
     }

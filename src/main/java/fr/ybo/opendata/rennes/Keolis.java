@@ -32,16 +32,6 @@ import fr.ybo.opendata.rennes.modele.villes.Quartier;
 import fr.ybo.opendata.rennes.modele.villes.Ville;
 import fr.ybo.opendata.rennes.sax.GenericHandler;
 import fr.ybo.opendata.rennes.sax.KeolisHandler;
-import fr.ybo.opendata.rennes.sax.equipements.GetEquipementsHandler;
-import fr.ybo.opendata.rennes.sax.equipements.GetEquipementsStatusHandler;
-import fr.ybo.opendata.rennes.sax.metros.GetMetroStationHandler;
-import fr.ybo.opendata.rennes.sax.metros.GetMetroStationsStatusHandler;
-import fr.ybo.opendata.rennes.sax.parkrelais.GetParkRelaiHandler;
-import fr.ybo.opendata.rennes.sax.pointsdevente.GetPointDeVenteHandler;
-import fr.ybo.opendata.rennes.sax.velos.GetStationDistrictHandler;
-import fr.ybo.opendata.rennes.sax.velos.GetStationHandler;
-import fr.ybo.opendata.rennes.sax.villes.GetQuartiersHandler;
-import fr.ybo.opendata.rennes.sax.villes.GetVillesHandler;
 import fr.ybo.opendata.rennes.util.Connecteur;
 import fr.ybo.opendata.rennes.util.HttpConnecteur;
 import org.xml.sax.SAXException;
@@ -203,7 +193,7 @@ public class Keolis {
      * @throws KeolisReseauException pour toutes erreurs réseaux.
      */
     private List<Station> getStation(String url) throws KeolisReseauException {
-        return appelKeolis(url, new GetStationHandler());
+        return appelKeolis(url, new GenericHandler<Station>(Station.class));
     }
 
     /**
@@ -264,7 +254,8 @@ public class Keolis {
      * @throws KeolisReseauException pour toutes erreurs réseaux.
      */
     public List<StationDistrict> getStationsDistrict() throws KeolisReseauException {
-        return appelKeolis(getUrl(COMMANDE_STATIONS_DISTRICT), new GetStationDistrictHandler());
+        return appelKeolis(getUrl(COMMANDE_STATIONS_DISTRICT),
+                new GenericHandler<StationDistrict>(StationDistrict.class));
     }
 
     /**
@@ -272,7 +263,7 @@ public class Keolis {
      * @throws KeolisReseauException pour toutes erreurs réseaux.
      */
     public List<ParkRelai> getParkRelais() throws KeolisReseauException {
-        return appelKeolis(getUrl(COMMANDE_PARK_RELAI), new GetParkRelaiHandler());
+        return appelKeolis(getUrl(COMMANDE_PARK_RELAI), new GenericHandler<ParkRelai>(ParkRelai.class));
     }
 
     /**
@@ -280,7 +271,7 @@ public class Keolis {
      * @throws KeolisReseauException pour toutes erreurs réseaux.
      */
     public List<PointDeVente> getPointDeVente() throws KeolisReseauException {
-        return appelKeolis(getUrl(COMMANDE_POS), new GetPointDeVenteHandler());
+        return appelKeolis(getUrl(COMMANDE_POS), new GenericHandler<PointDeVente>(PointDeVente.class));
     }
 
     /**
@@ -298,7 +289,7 @@ public class Keolis {
      * @throws KeolisReseauException pour toutes erreurs réseaux.
      */
     public List<Equipement> getEquipements() throws KeolisReseauException {
-        return appelKeolis(getUrl(COMMANDE_EQUIPMENTS), new GetEquipementsHandler());
+        return appelKeolis(getUrl(COMMANDE_EQUIPMENTS), new GenericHandler<Equipement>(Equipement.class));
     }
 
     /**
@@ -309,7 +300,7 @@ public class Keolis {
     public List<Equipement> getEquipements(String station) throws KeolisReseauException {
         return appelKeolis(
                 getUrl(COMMANDE_EQUIPMENTS, new ParametreUrl("mode", "station"), new ParametreUrl("station", station)),
-                new GetEquipementsHandler());
+                new GenericHandler<Equipement>(Equipement.class));
     }
 
     /**
@@ -317,7 +308,8 @@ public class Keolis {
      * @throws KeolisReseauException pour toutes erreurs réseaux.
      */
     public List<EquipementStatus> getEquipementsStatus() throws KeolisReseauException {
-        return appelKeolis(getUrl(COMMANDE_EQUIPMENTS_STATUS), new GetEquipementsStatusHandler());
+        return appelKeolis(getUrl(COMMANDE_EQUIPMENTS_STATUS),
+                new GenericHandler<EquipementStatus>(EquipementStatus.class));
     }
 
     /**
@@ -328,7 +320,7 @@ public class Keolis {
     public EquipementStatus getEquipementsStatus(String id) throws KeolisReseauException {
         List<EquipementStatus> equipementStatuses = appelKeolis(
                 getUrl(COMMANDE_EQUIPMENTS_STATUS, new ParametreUrl("mode", "id"), new ParametreUrl("id", id)),
-                new GetEquipementsStatusHandler());
+                new GenericHandler<EquipementStatus>(EquipementStatus.class));
         if (equipementStatuses.isEmpty()) {
             return null;
         }
@@ -342,7 +334,7 @@ public class Keolis {
      */
     public List<EquipementStatus> getEquipementsStatusByStation(String station) throws KeolisReseauException {
         return appelKeolis(getUrl(COMMANDE_EQUIPMENTS_STATUS, new ParametreUrl("mode", "station"),
-                new ParametreUrl("station", station)), new GetEquipementsStatusHandler());
+                new ParametreUrl("station", station)), new GenericHandler<EquipementStatus>(EquipementStatus.class));
     }
 
     /**
@@ -350,7 +342,7 @@ public class Keolis {
      * @throws KeolisReseauException pour toutes erreurs réseaux.
      */
     public List<MetroStation> getMetroStations() throws KeolisReseauException {
-        return appelKeolis(getUrl(COMMANDE_METRO_STATION), new GetMetroStationHandler());
+        return appelKeolis(getUrl(COMMANDE_METRO_STATION), new GenericHandler<MetroStation>(MetroStation.class));
     }
 
     /**
@@ -358,7 +350,8 @@ public class Keolis {
      * @throws KeolisReseauException pour toutes erreurs réseaux.
      */
     public List<MetroStationStatus> getMetroStationsStatus() throws KeolisReseauException {
-        return appelKeolis(getUrl(COMMANDE_METRO_STATION_STATUS), new GetMetroStationsStatusHandler());
+        return appelKeolis(getUrl(COMMANDE_METRO_STATION_STATUS),
+                new GenericHandler<MetroStationStatus>(MetroStationStatus.class));
     }
 
     /**
@@ -369,7 +362,8 @@ public class Keolis {
     public MetroStationStatus getMetroStationsStatus(String id) throws KeolisReseauException {
         List<MetroStationStatus> stationStatuses = appelKeolis(
                 getUrl(COMMANDE_METRO_STATION_STATUS, new ParametreUrl("mode", "station"),
-                        new ParametreUrl("station", id)), new GetMetroStationsStatusHandler());
+                        new ParametreUrl("station", id)),
+                new GenericHandler<MetroStationStatus>(MetroStationStatus.class));
         if (stationStatuses.isEmpty()) {
             return null;
         }
@@ -381,7 +375,7 @@ public class Keolis {
      * @throws KeolisReseauException pour toutes erreurs réseaux.
      */
     public List<Ville> getVilles() throws KeolisReseauException {
-        return appelKeolis(getUrl(COMMANDE_CITIES), new GetVillesHandler());
+        return appelKeolis(getUrl(COMMANDE_CITIES), new GenericHandler<Ville>(Ville.class));
     }
 
     /**
@@ -391,7 +385,7 @@ public class Keolis {
      */
     public List<Quartier> getQuartier(String villeId) throws KeolisReseauException {
         return appelKeolis(getUrl(COMMANDE_CITY_DISTRICT, new ParametreUrl("city", villeId)),
-                new GetQuartiersHandler());
+                new GenericHandler<Quartier>(Quartier.class));
     }
 
     /**

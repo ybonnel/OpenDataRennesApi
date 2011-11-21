@@ -14,22 +14,49 @@
 
 package fr.ybo.opendata.rennes.modele.villes;
 
+import fr.ybo.opendata.rennes.sax.BaliseData;
+import fr.ybo.opendata.rennes.sax.BaliseXml;
+
+/**
+ * Représente un quartier.
+ */
+@BaliseData("district")
 public class Quartier {
+    /**
+     * Nom du quartier.
+     */
     private String name;
+    /**
+     * Identifiant.
+     */
     private String id;
 
+    /**
+     * @return {@link Quartier#name}.
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * @param name {@link Quartier#name}.
+     */
+    @BaliseXml(name = "name")
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * @return {@link Quartier#id}.
+     */
     public String getId() {
         return id;
     }
 
+    /**
+     * @param id {@link Quartier#id}.
+     */
+    @BaliseXml(name = "id")
     public void setId(String id) {
         this.id = id;
     }
