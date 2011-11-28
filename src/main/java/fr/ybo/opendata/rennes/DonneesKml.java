@@ -32,7 +32,7 @@ import java.util.zip.ZipInputStream;
 /**
  * Permet de récupérer les infos sur les arceaux vélos (position).
  */
-public class ArceauxVelo {
+public class DonneesKml {
 
     /**
      * Url du Kml.
@@ -52,7 +52,7 @@ public class ArceauxVelo {
     private Connecteur connecteur;
 
     /**
-     * @param connecteur {@link ArceauxVelo#connecteur}.
+     * @param connecteur {@link DonneesKml#connecteur}.
      */
     protected void setConnecteur(Connecteur connecteur) {
         this.connecteur = connecteur;

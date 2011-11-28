@@ -26,21 +26,21 @@ import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
 
 /**
- * Test de la classe {@link ArceauxVelo}.
+ * Test de la classe {@link DonneesKml}.
  */
-public class ArceauxVeloTest {
+public class DonneesKmlTest {
 
     /**
      * Class à tester.
      */
-    private ArceauxVelo arceauxVelo;
+    private DonneesKml donneesKml;
 
     /**
      * Construction d'une instance de la class à tester.
      */
     @Before
     public void setup() {
-        arceauxVelo = new ArceauxVelo();
+        donneesKml = new DonneesKml();
     }
 
     /**
@@ -58,15 +58,15 @@ public class ArceauxVeloTest {
     private static final double LONGITUDE = -1.67099959723433;
 
     /**
-     * Test de la méthode {@link ArceauxVelo#getArceaux()}.
+     * Test de la méthode {@link DonneesKml#getArceaux()}.
      *
      * @throws KeolisReseauException problème réseau.
      */
     @Test
     public void testGetArceaux() throws KeolisReseauException {
-        arceauxVelo.setConnecteur(new FileConnecteur("/velo_arceaux_kml_wgs84.zip"));
+        donneesKml.setConnecteur(new FileConnecteur("/velo_arceaux_kml_wgs84.zip"));
 
-        List<Arceau> arceaux = arceauxVelo.getArceaux();
+        List<Arceau> arceaux = donneesKml.getArceaux();
         assertEquals(NB_ARCEAUX, arceaux.size());
         Arceau arceau = arceaux.get(0);
         assertEquals("kml_1", arceau.getId());
@@ -75,14 +75,14 @@ public class ArceauxVeloTest {
     }
 
     /**
-     * Test de la méthode {@link ArceauxVelo#getArceaux()}.
+     * Test de la méthode {@link DonneesKml#getArceaux()}.
      *
      * @throws KeolisReseauException problème réseau.
      */
     @Test
     public void testGetArceauxHttp() throws KeolisReseauException {
-        arceauxVelo.setConnecteur(new HttpConnecteur());
-        List<Arceau> arceaux = arceauxVelo.getArceaux();
+        donneesKml.setConnecteur(new HttpConnecteur());
+        List<Arceau> arceaux = donneesKml.getArceaux();
         assertFalse(arceaux.isEmpty());
     }
 }
