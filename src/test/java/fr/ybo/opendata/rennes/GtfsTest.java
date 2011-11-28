@@ -31,12 +31,12 @@ import static junit.framework.Assert.assertEquals;
 public class GtfsTest {
 
     /**
-     * Instance à tester.
+     * Instance Ã  tester.
      */
     private Gtfs gtfs;
 
     /**
-     * Création de l'instance à tester.
+     * CrÃ©ation de l'instance Ã  tester.
      */
     @Before
     public void setup() {
@@ -44,9 +44,9 @@ public class GtfsTest {
     }
 
     /**
-     * Test de la méthode {@link Gtfs#getUpdates()}.
+     * Test de la mÃ©thode {@link Gtfs#getUpdates()}.
      *
-     * @throws KeolisReseauException problème réseaux.
+     * @throws KeolisReseauException problÃ¨me rÃ©seaux.
      */
     @Test
     public void testGetUpdates() throws KeolisReseauException {
@@ -63,9 +63,9 @@ public class GtfsTest {
     }
 
     /**
-     * Test de la méthode {@link Gtfs#getFeedInfo(GtfsFile)}.
+     * Test de la mÃ©thode {@link Gtfs#getFeedInfo(GtfsFile)}.
      *
-     * @throws KeolisReseauException problème réseaux.
+     * @throws KeolisReseauException problÃ¨me rÃ©seaux.
      */
     @Test
     public void testGetFeedInfos() throws KeolisReseauException {
