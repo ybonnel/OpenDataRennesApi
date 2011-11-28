@@ -27,6 +27,7 @@ import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import java.io.IOException;
 import java.util.List;
+import java.util.logging.Logger;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
@@ -34,6 +35,11 @@ import java.util.zip.ZipInputStream;
  * Permet de récupérer les infos sur les arceaux vélos (position).
  */
 public class DonneesKml {
+
+    /**
+     * Logger.
+     */
+    private static final Logger LOGGER = Logger.getLogger(DonneesKml.class.getSimpleName());
 
     /**
      * Url du Kml.
@@ -107,8 +113,8 @@ public class DonneesKml {
         } finally {
             try {
                 kmlZip.close();
-            } catch (IOException ignore) {
-                // On ignore l'exception.
+            } catch (IOException exception) {
+                LOGGER.warning(exception.getMessage());
             }
         }
         throw new KeolisReseauException("Pas de kml " + kmlName + " trouvé dans le zip");

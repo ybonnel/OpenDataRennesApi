@@ -14,7 +14,16 @@
 
 package fr.ybo.opendata.rennes.modele.equipements;
 
+/**
+ * Type d'équipement.
+ */
 public enum TypeEquipement {
+    /**
+     * Ascenseur.
+     */
     ASCENSEUR,
+    /**
+     * Escalator.
+     */
     ESCALATOR
 }

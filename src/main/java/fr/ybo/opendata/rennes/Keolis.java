@@ -46,6 +46,7 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * Classe d'accés aux API Keolis. Cette classe est une singletton.
@@ -53,6 +54,11 @@ import java.util.List;
  * @author ybonnel
  */
 public class Keolis {
+
+    /**
+     * Logger.
+     */
+    private static final Logger LOGGER = Logger.getLogger(Keolis.class.getSimpleName());
 
     /**
      * URL d'accés au API Keolis.
@@ -159,7 +165,8 @@ public class Keolis {
             } finally {
                 try {
                     inputStream.close();
-                } catch (Exception ignore) {
+                } catch (Exception exception) {
+                    LOGGER.warning(exception.getMessage());
                 }
             }
         } catch (IOException ioException) {

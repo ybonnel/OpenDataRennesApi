@@ -25,15 +25,29 @@ import java.util.List;
 
 import static junit.framework.Assert.assertEquals;
 
+/**
+ * Test de la classe {@link Gtfs}.
+ */
 public class GtfsTest {
 
+    /**
+     * Instance à tester.
+     */
     private Gtfs gtfs;
 
+    /**
+     * Création de l'instance à tester.
+     */
     @Before
     public void setup() {
         gtfs = new Gtfs();
     }
 
+    /**
+     * Test de la méthode {@link Gtfs#getUpdates()}.
+     *
+     * @throws KeolisReseauException problème réseaux.
+     */
     @Test
     public void testGetUpdates() throws KeolisReseauException {
         gtfs.setConnecteur(new FileConnecteur("/gtfs.html"));
@@ -41,11 +55,18 @@ public class GtfsTest {
 
         assertEquals(2, files.size());
         assertEquals("05092011", new SimpleDateFormat("ddMMyyyy").format(files.get(0).getDate()));
-        assertEquals("http://data.keolis-rennes.com/fileadmin/OpenDataFiles/GTFS/GTFS-20110905.zip", files.get(0).getUrl());
+        assertEquals("http://data.keolis-rennes.com/fileadmin/OpenDataFiles/GTFS/GTFS-20110905.zip",
+                files.get(0).getUrl());
         assertEquals("14112011", new SimpleDateFormat("ddMMyyyy").format(files.get(1).getDate()));
-        assertEquals("http://data.keolis-rennes.com/fileadmin/OpenDataFiles/GTFS/GTFS-20111114.zip", files.get(1).getUrl());
+        assertEquals("http://data.keolis-rennes.com/fileadmin/OpenDataFiles/GTFS/GTFS-20111114.zip",
+                files.get(1).getUrl());
     }
 
+    /**
+     * Test de la méthode {@link Gtfs#getFeedInfo(GtfsFile)}.
+     *
+     * @throws KeolisReseauException problème réseaux.
+     */
     @Test
     public void testGetFeedInfos() throws KeolisReseauException {
         gtfs.setConnecteur(new FileConnecteur("/GTFS.zip"));
@@ -55,7 +76,8 @@ public class GtfsTest {
         assertEquals(1, infos.size());
         GtfsFeedInfo info = infos.get(0);
         assertEquals("Keolis Rennes", info.getPublisherName());
-        assertEquals("http://data.keolis-rennes.com/fr/les-donnees/donnees-telechargeables.html", info.getPublisherUrl());
+        assertEquals("http://data.keolis-rennes.com/fr/les-donnees/donnees-telechargeables.html",
+                info.getPublisherUrl());
         assertEquals("FR", info.getLang());
         assertEquals("20111114", new SimpleDateFormat("yyyyMMdd").format(info.getStartDate()));
         assertEquals("20111218", new SimpleDateFormat("yyyyMMdd").format(info.getEndDate()));

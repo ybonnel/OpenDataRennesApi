@@ -22,36 +22,75 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * Classe représentant le feed_info d'un fichier GTFS.
+ */
 @FichierCsv("feed_info.txt")
 public class GtfsFeedInfo implements Serializable {
+    /**
+     * Serial.
+     */
     private static final long serialVersionUID = 8815113618441661239L;
+    /**
+     * Publisher name.
+     */
     @BaliseCsv("feed_publisher_name")
     private String publisherName;
+    /**
+     * Url.
+     */
     @BaliseCsv("feed_publisher_url")
     private String publisherUrl;
+    /**
+     * Langue.
+     */
     @BaliseCsv("feed_lang")
     private String lang;
+    /**
+     * Date de début.
+     */
     @BaliseCsv("feed_start_date")
     private String startDate;
+    /**
+     * Date de fin.
+     */
     @BaliseCsv("feed_end_date")
     private String endDate;
+    /**
+     * Version.
+     */
     @BaliseCsv("feed_version")
     private String version;
 
+    /**
+     * Format des dates.
+     */
     private static final SimpleDateFormat SIMPLE_DATE_FORMAT = new SimpleDateFormat("yyyyMMdd");
 
+    /**
+     * @return {@link GtfsFeedInfo#publisherName}.
+     */
     public String getPublisherName() {
         return publisherName;
     }
 
+    /**
+     * @return {@link GtfsFeedInfo#publisherUrl}.
+     */
     public String getPublisherUrl() {
         return publisherUrl;
     }
 
+    /**
+     * @return {@link GtfsFeedInfo#lang}.
+     */
     public String getLang() {
         return lang;
     }
 
+    /**
+     * @return {@link GtfsFeedInfo#startDate}.
+     */
     public Date getStartDate() {
         try {
             return SIMPLE_DATE_FORMAT.parse(startDate);
@@ -60,6 +99,9 @@ public class GtfsFeedInfo implements Serializable {
         }
     }
 
+    /**
+     * @return {@link GtfsFeedInfo#endDate}.
+     */
     public Date getEndDate() {
         try {
             return SIMPLE_DATE_FORMAT.parse(endDate);
@@ -68,6 +110,9 @@ public class GtfsFeedInfo implements Serializable {
         }
     }
 
+    /**
+     * @return {@link GtfsFeedInfo#version}.
+     */
     public String getVersion() {
         return version;
     }

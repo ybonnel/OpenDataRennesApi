@@ -22,14 +22,27 @@ import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
 
+/**
+ * Connecteur Http.
+ */
 public class HttpConnecteur implements Connecteur {
+
+    /**
+     * Timeout de connexion.
+     */
+    private static final int CONNECT_TIMEOUT = 10000;
+    /**
+     * Timeout de lecture.
+     */
+    private static final int READ_TIMEOUT = 20000;
+
     @Override
     public InputStream openInputStream(String url) throws KeolisReseauException {
         try {
             URL myUrl = new URL(url);
             URLConnection connection = myUrl.openConnection();
-            connection.setConnectTimeout(10000);
-            connection.setReadTimeout(20000);
+            connection.setConnectTimeout(CONNECT_TIMEOUT);
+            connection.setReadTimeout(READ_TIMEOUT);
             return connection.getInputStream();
         } catch (IOException socketException) {
             throw new KeolisReseauException(socketException);

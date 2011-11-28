@@ -29,6 +29,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
@@ -36,6 +37,11 @@ import java.util.zip.ZipInputStream;
  * Point d'entrée pour la gestion des fichiers GTFS.
  */
 public class Gtfs {
+
+    /**
+     * Logger.
+     */
+    private static final Logger LOGGER = Logger.getLogger(Gtfs.class.getSimpleName());
 
     /**
      * Format de la date dans le nom du fichier.
@@ -81,6 +87,9 @@ public class Gtfs {
         connecteur = new HttpConnecteur();
     }
 
+    /**
+     * @param connecteur {@link Gtfs#connecteur}.
+     */
     protected void setConnecteur(Connecteur connecteur) {
         this.connecteur = connecteur;
     }
@@ -94,7 +103,8 @@ public class Gtfs {
     public List<GtfsFile> getUpdates() throws KeolisReseauException {
         List<GtfsFile> files = new ArrayList<GtfsFile>();
         try {
-            BufferedReader bufReader = new BufferedReader(new InputStreamReader(connecteur.openInputStream(URL_DONNEES_TELECHARGEABLES)));
+            BufferedReader bufReader =
+                    new BufferedReader(new InputStreamReader(connecteur.openInputStream(URL_DONNEES_TELECHARGEABLES)));
             try {
                 String ligne = bufReader.readLine();
                 while (ligne != null) {
@@ -110,6 +120,12 @@ public class Gtfs {
         return files;
     }
 
+    /**
+     * Traite une ligne du fichier html.
+     * @param ligne une ligne.
+     * @param files fichiers gtfs.
+     * @throws ParseException problème dans le parsing de la date.
+     */
     private void traiterLigne(String ligne, List<GtfsFile> files) throws ParseException {
         if (ligne.contains(URL_RELATIVE)) {
             String chaineDate = ligne.substring(
@@ -149,7 +165,8 @@ public class Gtfs {
         } finally {
             try {
                 zipInputStream.close();
-            } catch (Exception ignore) {
+            } catch (Exception exception) {
+                LOGGER.warning(exception.getMessage());
             }
         }
         return infos;
