@@ -19,6 +19,7 @@ import fr.ybo.opendata.rennes.modele.velos.Arceau;
 import fr.ybo.opendata.rennes.sax.GenericKmlHandler;
 import fr.ybo.opendata.rennes.sax.KmlHandler;
 import fr.ybo.opendata.rennes.util.Connecteur;
+import fr.ybo.opendata.rennes.util.HttpConnecteur;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -45,6 +46,12 @@ public class DonneesKml {
      */
     private static final String KML_NAME = "velo_arceaux.kml";
 
+    /**
+     * Constructeur.
+     */
+    public DonneesKml() {
+        connecteur = new HttpConnecteur();
+    }
 
     /**
      * Connecteur.
