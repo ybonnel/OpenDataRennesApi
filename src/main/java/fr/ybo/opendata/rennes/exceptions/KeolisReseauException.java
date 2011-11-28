@@ -38,4 +38,12 @@ public class KeolisReseauException extends Exception {
     public KeolisReseauException(Exception exception) {
         super(exception);
     }
+
+    /**
+     * Constructeur.
+     * @param message message.
+     */
+    public KeolisReseauException(String message) {
+        super(message);
+    }
 }
