@@ -16,6 +16,7 @@ package fr.ybo.opendata.rennes;
 
 import fr.ybo.opendata.rennes.exceptions.KeolisReseauException;
 import fr.ybo.opendata.rennes.modele.velos.Arceau;
+import fr.ybo.opendata.rennes.modele.votes.CentreVote;
 import fr.ybo.opendata.rennes.sax.GenericKmlHandler;
 import fr.ybo.opendata.rennes.sax.KmlHandler;
 import fr.ybo.opendata.rennes.util.Connecteur;
@@ -42,15 +43,26 @@ public class DonneesKml {
     private static final Logger LOGGER = Logger.getLogger(DonneesKml.class.getSimpleName());
 
     /**
-     * Url du Kml.
+     * Url du Kml pour les arceaux.
      */
-    private static final String URL_KML = "http://www.data.rennes-metropole.fr/fileadmin/user_upload/data/"
+    private static final String URL_KML_ARCEAUX = "http://www.data.rennes-metropole.fr/fileadmin/user_upload/data/"
             + "data_sig/deplacement/velo_arceaux/velo_arceaux_kml_wgs84.zip";
 
     /**
-     * Nom du fichier kml.
+     * Nom du fichier kml pour les arceaux.
      */
-    private static final String KML_NAME = "velo_arceaux.kml";
+    private static final String KML_NAME_ARCEAUX = "velo_arceaux.kml";
+
+    /**
+     * Url du Kml pour les centres de votes.
+     */
+    private static final String URL_KML_VOTES = "http://www.data.rennes-metropole.fr/fileadmin/user_upload/data/"
+            + "data_sig/citoyennete/centres_vote/centres_vote_kml_wgs84.zip";
+
+    /**
+     * Nom du fichier kml pour les centres de votes.
+     */
+    private static final String KML_NAME_VOTES = "centres_vote.kml";
 
     /**
      * Constructeur.
@@ -72,17 +84,26 @@ public class DonneesKml {
     }
 
     /**
-     * M�thode permettant de récupérer les arceaux de vélos.
+     * Méthode permettant de récupérer les arceaux de vélos.
      *
      * @return la liste des arceaux.
      * @throws KeolisReseauException problème réseaux.
      */
     public List<Arceau> getArceaux() throws KeolisReseauException {
-        return appelKml(URL_KML, KML_NAME, new GenericKmlHandler<Arceau>(Arceau.class));
+        return appelKml(URL_KML_ARCEAUX, KML_NAME_ARCEAUX, new GenericKmlHandler<Arceau>(Arceau.class));
     }
 
     /**
-     * M�thode r�alisant la transformation d'un kml en objets.
+     * Méthode permettant de récupérer les centres de votes.
+     * @return la liste des centres de votes.
+     * @throws KeolisReseauException problème réseaux.
+     */
+    public List<CentreVote> getCentres() throws KeolisReseauException {
+        return appelKml(URL_KML_VOTES, KML_NAME_VOTES, new GenericKmlHandler<CentreVote>(CentreVote.class));
+    }
+
+    /**
+     * Méthode réalisant la transformation d'un kml en objets.
      * @param url url.
      * @param kmlName nom du fichier kml.
      * @param handler handler.

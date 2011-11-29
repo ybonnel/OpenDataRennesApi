@@ -14,6 +14,8 @@
 package fr.ybo.opendata.rennes.sax;
 
 import fr.ybo.opendata.rennes.exceptions.KeolisException;
+import org.xml.sax.Attributes;
+import org.xml.sax.SAXException;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -45,6 +47,24 @@ public class GenericKmlHandler<T> extends KmlHandler<T> {
     private Map<String, BaliseType> mapBaliseType = new HashMap<String, BaliseType>();
 
     /**
+     * Map contenant la méthode à appelée pour chaque balise xml SimpleData.
+     */
+    private Map<String, Method> mapBaliseSimpleDataMethod = new HashMap<String, Method>();
+    /**
+     * Map contenant le type associé à chaque balise xml SimpleData.
+     */
+    private Map<String, BaliseType> mapBaliseSimpleDataType = new HashMap<String, BaliseType>();
+
+    /**
+     * Balise SimpleData.
+     */
+    private static final String BALISE_SIMPLE_DATA = "SimpleData";
+    /**
+     * Attribut de la balise SimpleData à regarder.
+     */
+    private static final String ATT_SIMPLE_DATA = "name";
+
+    /**
      * Constructeur de l'objet représentant le xml.
      */
     private Constructor<T> constructor;
@@ -73,6 +93,14 @@ public class GenericKmlHandler<T> extends KmlHandler<T> {
                 mapBaliseMethod.put(baliseXml.name(), method);
                 mapBaliseType.put(baliseXml.name(), baliseXml.type());
             }
+            BaliseSimpleData baliseSimpleData = method.getAnnotation(BaliseSimpleData.class);
+            if (baliseSimpleData != null) {
+                if (mapBaliseSimpleDataMethod.containsKey(baliseSimpleData.name())) {
+                    throw new KeolisException("Deux méthodes trouvées avec la même BaliseSimpleData");
+                }
+                mapBaliseSimpleDataMethod.put(baliseSimpleData.name(), method);
+                mapBaliseSimpleDataType.put(baliseSimpleData.name(), baliseSimpleData.type());
+            }
         }
     }
 
@@ -94,20 +122,52 @@ public class GenericKmlHandler<T> extends KmlHandler<T> {
         }
     }
 
+    /**
+     * Attributs de SimpleData courant.
+     */
+    private String simpleDataCurrentName;
+
+    @Override
+    public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
+        super.startElement(uri, localName, qName, attributes);
+        if (BALISE_SIMPLE_DATA.equals(qName)) {
+            if (attributes != null) {
+                simpleDataCurrentName = attributes.getValue(ATT_SIMPLE_DATA);
+            }
+        }
+    }
+
     @Override
     protected void remplirObject(T currentObject, String baliseName, String contenuOfBalise) {
-        if (contenuOfBalise.length() > 0 && mapBaliseMethod.containsKey(baliseName)) {
-            try {
-                if (Modifier.isStatic(mapBaliseMethod.get(baliseName).getModifiers()) || currentObject != null) {
-                    mapBaliseMethod.get(baliseName)
-                            .invoke(currentObject, mapBaliseType.get(baliseName).convertir(contenuOfBalise));
+        if (contenuOfBalise.length() > 0) {
+            if (mapBaliseMethod.containsKey(baliseName)) {
+                try {
+                    if (Modifier.isStatic(mapBaliseMethod.get(baliseName).getModifiers()) || currentObject != null) {
+                        mapBaliseMethod.get(baliseName)
+                                .invoke(currentObject, mapBaliseType.get(baliseName).convertir(contenuOfBalise));
+                    }
+                } catch (IllegalAccessException e) {
+                    throw new KeolisException(
+                            "Problème lors de l'appel à la méthode " + mapBaliseMethod.get(baliseName).getName(), e);
+                } catch (InvocationTargetException e) {
+                    throw new KeolisException(
+                            "Problème lors de l'appel à la méthode " + mapBaliseMethod.get(baliseName).getName(), e);
                 }
-            } catch (IllegalAccessException e) {
-                throw new KeolisException(
-                        "Problème lors de l'appel à la méthode " + mapBaliseMethod.get(baliseName).getName(), e);
-            } catch (InvocationTargetException e) {
-                throw new KeolisException(
-                        "Problème lors de l'appel à la méthode " + mapBaliseMethod.get(baliseName).getName(), e);
+            } else if (BALISE_SIMPLE_DATA.equals(baliseName) && simpleDataCurrentName != null
+                    && mapBaliseSimpleDataMethod.containsKey(simpleDataCurrentName)) {
+                try {
+                    if (Modifier.isStatic(mapBaliseSimpleDataMethod.get(simpleDataCurrentName).getModifiers())
+                            || currentObject != null) {
+                        mapBaliseSimpleDataMethod.get(simpleDataCurrentName).invoke(currentObject,
+                                mapBaliseSimpleDataType.get(simpleDataCurrentName).convertir(contenuOfBalise));
+                    }
+                } catch (IllegalAccessException e) {
+                    throw new KeolisException("Problème lors de l'appel à la méthode " + mapBaliseSimpleDataMethod
+                            .get(simpleDataCurrentName).getName(), e);
+                } catch (InvocationTargetException e) {
+                    throw new KeolisException("Problème lors de l'appel à la méthode " + mapBaliseSimpleDataMethod
+                            .get(simpleDataCurrentName).getName(), e);
+                }
             }
         }
     }

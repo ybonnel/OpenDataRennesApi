@@ -16,6 +16,8 @@ package fr.ybo.opendata.rennes;
 
 import fr.ybo.opendata.rennes.exceptions.KeolisReseauException;
 import fr.ybo.opendata.rennes.modele.velos.Arceau;
+import fr.ybo.opendata.rennes.modele.votes.CentreVote;
+import fr.ybo.opendata.rennes.modele.votes.Nature;
 import fr.ybo.opendata.rennes.util.HttpConnecteur;
 import org.junit.Before;
 import org.junit.Test;
@@ -84,5 +86,75 @@ public class DonneesKmlTest {
         donneesKml.setConnecteur(new HttpConnecteur());
         List<Arceau> arceaux = donneesKml.getArceaux();
         assertFalse(arceaux.isEmpty());
+    }
+
+    /**
+     * Nombre d'arceaux.
+     */
+    private static final int NB_CENTRES = 29;
+    /**
+     * Numéro du centre de vote.
+     */
+    private static final int NUM_CENTRE = 31;
+    /**
+     * Nombre de cantons.
+     */
+    private static final int NB_CANTONS = 9;
+    /**
+     * Nombre de bureaux.
+     */
+    private static final int NB_BUREAUX = 4;
+    /**
+     * Numéro de premier bureau.
+     */
+    private static final int BUREAU_1 = 311;
+    /**
+     * Numéro de second bureau.
+     */
+    private static final int BUREAU_2 = 312;
+    /**
+     * Numéro de troisième bureau.
+     */
+    private static final int BUREAU_3 = 313;
+    /**
+     * Numéro de premier bureau.
+     */
+    private static final int BUREAU_4 = 314;
+
+    /**
+     * Test de la méthode {@link DonneesKml#getCentres()}.
+     *
+     * @throws KeolisReseauException problème réseau.
+     */
+    @Test
+    public void testGetCentres() throws KeolisReseauException {
+        donneesKml.setConnecteur(new FileConnecteur("/centres_vote_kml_wgs84.zip"));
+
+        List<CentreVote> centres = donneesKml.getCentres();
+        assertEquals(NB_CENTRES, centres.size());
+        CentreVote centre = centres.get(0);
+        assertEquals("kml_1", centre.getId());
+        assertEquals(NUM_CENTRE, centre.getNumero());
+        assertEquals("Ecole Elémentaire Albert de Mun", centre.getNom());
+        assertEquals(Nature.ELEMENTAIRE, centre.getNature());
+        assertEquals(NB_CANTONS, centre.getNbCantons());
+        assertEquals(NB_BUREAUX, centre.getBureaux().size());
+        int count = 0;
+        assertEquals(BUREAU_1, centre.getBureaux().get(count++).intValue());
+        assertEquals(BUREAU_2, centre.getBureaux().get(count++).intValue());
+        assertEquals(BUREAU_3, centre.getBureaux().get(count++).intValue());
+        assertEquals(BUREAU_4, centre.getBureaux().get(count).intValue());
+    }
+
+    /**
+     * Test de la méthode {@link DonneesKml#getCentres()}.
+     *
+     * @throws KeolisReseauException problème réseau.
+     */
+    @Test
+    public void testGetCentresHttp() throws KeolisReseauException {
+        donneesKml.setConnecteur(new HttpConnecteur());
+        List<CentreVote> centres = donneesKml.getCentres();
+        assertFalse(centres.isEmpty());
     }
 }
