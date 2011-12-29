@@ -15,13 +15,6 @@
 package fr.ybo.opendata.rennes;
 
 
-import fr.ybo.moteurcsv.MoteurCsv;
-import fr.ybo.opendata.rennes.exceptions.KeolisReseauException;
-import fr.ybo.opendata.rennes.modele.gtfs.GtfsFeedInfo;
-import fr.ybo.opendata.rennes.modele.gtfs.GtfsFile;
-import fr.ybo.opendata.rennes.util.Connecteur;
-import fr.ybo.opendata.rennes.util.HttpConnecteur;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -32,6 +25,13 @@ import java.util.List;
 import java.util.logging.Logger;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
+
+import fr.ybo.moteurcsv.MoteurCsv;
+import fr.ybo.opendata.rennes.exceptions.KeolisReseauException;
+import fr.ybo.opendata.rennes.modele.gtfs.GtfsFeedInfo;
+import fr.ybo.opendata.rennes.modele.gtfs.GtfsFile;
+import fr.ybo.opendata.rennes.util.Connecteur;
+import fr.ybo.opendata.rennes.util.HttpConnecteur;
 
 /**
  * Point d'entrée pour la gestion des fichiers GTFS.
@@ -108,7 +108,9 @@ public class Gtfs {
             try {
                 String ligne = bufReader.readLine();
                 while (ligne != null) {
-                    traiterLigne(ligne, files);
+					for (String champ : ligne.split("<br />")) {
+						traiterLigne(champ, files);
+					}
                     ligne = bufReader.readLine();
                 }
             } finally {

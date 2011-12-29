@@ -14,16 +14,17 @@
 
 package fr.ybo.opendata.rennes;
 
-import fr.ybo.opendata.rennes.exceptions.KeolisReseauException;
-import fr.ybo.opendata.rennes.modele.gtfs.GtfsFeedInfo;
-import fr.ybo.opendata.rennes.modele.gtfs.GtfsFile;
-import org.junit.Before;
-import org.junit.Test;
+import static junit.framework.Assert.assertEquals;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
 
-import static junit.framework.Assert.assertEquals;
+import org.junit.Before;
+import org.junit.Test;
+
+import fr.ybo.opendata.rennes.exceptions.KeolisReseauException;
+import fr.ybo.opendata.rennes.modele.gtfs.GtfsFeedInfo;
+import fr.ybo.opendata.rennes.modele.gtfs.GtfsFile;
 
 /**
  * Test de la classe {@link Gtfs}.
@@ -82,5 +83,5 @@ public class GtfsTest {
         assertEquals("20111114", new SimpleDateFormat("yyyyMMdd").format(info.getStartDate()));
         assertEquals("20111218", new SimpleDateFormat("yyyyMMdd").format(info.getEndDate()));
         assertEquals("Horaires d'hiver 2011 - Modifications du 14/11/2011.", info.getVersion());
-    }
+	}
 }
