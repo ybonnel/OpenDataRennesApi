@@ -7,13 +7,7 @@ fr.ybo.opendata.rennes.modele.parkrelais
 fr.ybo.opendata.rennes.modele.pointsdevente
 fr.ybo.opendata.rennes.modele.villes
 fr.ybo.opendata.rennes.modele
-fr.ybo.opendata.rennes.sax.bus
-fr.ybo.opendata.rennes.sax.equipements
-fr.ybo.opendata.rennes.sax.metros
-fr.ybo.opendata.rennes.sax.parkrelais
-fr.ybo.opendata.rennes.sax.pointsdevente
-fr.ybo.opendata.rennes.sax.velos
-fr.ybo.opendata.rennes.sax.villes
+fr.ybo.opendata.rennes.modele.votes
 fr.ybo.opendata.rennes.sax
 fr.ybo.opendata.rennes.util
 fr.ybo.opendata.rennes.exceptions

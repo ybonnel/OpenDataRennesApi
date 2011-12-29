@@ -1,26 +1,26 @@
 -classpath
-'/scratch/hudson/workspace/OpenDataRennesApi/target/classes:/scratch/hudson/workspace/OpenDataRennesApi/.repository/fr/ybo/moteurcsv/1.0.3/moteurcsv-1.0.3.jar'
+'/scratch/hudson/workspace/OpenDataRennesApi-release/target/classes:/scratch/hudson/workspace/OpenDataRennesApi-release/.repository/fr/ybo/moteurcsv/1.0.3/moteurcsv-1.0.3.jar'
 -encoding
 'UTF-8'
 -public
 -sourcepath
-'/scratch/hudson/workspace/OpenDataRennesApi/src/main/java'
+'/scratch/hudson/workspace/OpenDataRennesApi-release/src/main/java'
 -author
 -bottom
 'Copyright &#169; 2011. All Rights Reserved.'
 -charset
 'UTF-8'
 -d
-'/scratch/hudson/workspace/OpenDataRennesApi/target/site/apidocs'
+'/scratch/hudson/workspace/OpenDataRennesApi-release/target/site/apidocs'
 -docencoding
 'UTF-8'
 -doctitle
-'open-data-rennes-api 1.5-SNAPSHOT API'
+'open-data-rennes-api 1.5 API'
 -link
 'http://java.sun.com/j2se/1.6.0/docs/api'
 -linkoffline
-'http://download.oracle.com/javase/6/docs/api' '/scratch/hudson/workspace/OpenDataRennesApi/target/javadoc-bundle-options'
+'http://download.oracle.com/javase/6/docs/api' '/scratch/hudson/workspace/OpenDataRennesApi-release/target/javadoc-bundle-options'
 -use
 -version
 -windowtitle
-'open-data-rennes-api 1.5-SNAPSHOT API'
+'open-data-rennes-api 1.5 API'
