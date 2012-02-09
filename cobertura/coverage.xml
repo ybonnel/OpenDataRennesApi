@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
 
-<coverage line-rate="0.810368349249659" branch-rate="0.632183908045977" lines-covered="594" lines-valid="733" branches-covered="110" branches-valid="174" complexity="1.5938697318007662" version="1.9.4.1" timestamp="1325139715864">
+<coverage line-rate="0.810368349249659" branch-rate="0.632183908045977" lines-covered="594" lines-valid="733" branches-covered="110" branches-valid="174" complexity="1.5938697318007662" version="1.9.4.1" timestamp="1328822760261">
 	<sources>
 		<source>--source</source>
 		<source>/scratch/hudson/workspace/OpenDataRennesApi-release/src/main/java</source>
