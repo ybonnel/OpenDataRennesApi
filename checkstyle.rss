@@ -239,7 +239,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="https://github.com/ybonnel/OpenDataRennesApi/checkstyle.html#fr.ybo.opendata.rennes.sax.GenericKmlHandler.java">fr/ybo/opendata/rennes/sax/GenericKmlHandler.java</a>
+                  <a href="https://github.com/ybonnel/OpenDataRennesApi/checkstyle.html#fr.ybo.opendata.rennes.modele.ParametreUrl.java">fr/ybo/opendata/rennes/modele/ParametreUrl.java</a>
                 </td>
                 <td>
                   0
@@ -253,7 +253,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="https://github.com/ybonnel/OpenDataRennesApi/checkstyle.html#fr.ybo.opendata.rennes.modele.ParametreUrl.java">fr/ybo/opendata/rennes/modele/ParametreUrl.java</a>
+                  <a href="https://github.com/ybonnel/OpenDataRennesApi/checkstyle.html#fr.ybo.opendata.rennes.sax.GenericKmlHandler.java">fr/ybo/opendata/rennes/sax/GenericKmlHandler.java</a>
                 </td>
                 <td>
                   0
@@ -309,7 +309,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="https://github.com/ybonnel/OpenDataRennesApi/checkstyle.html#fr.ybo.opendata.rennes.Keolis.java">fr/ybo/opendata/rennes/Keolis.java</a>
+                  <a href="https://github.com/ybonnel/OpenDataRennesApi/checkstyle.html#fr.ybo.opendata.rennes.sax.BaliseXml.java">fr/ybo/opendata/rennes/sax/BaliseXml.java</a>
                 </td>
                 <td>
                   0
@@ -323,7 +323,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="https://github.com/ybonnel/OpenDataRennesApi/checkstyle.html#fr.ybo.opendata.rennes.sax.BaliseXml.java">fr/ybo/opendata/rennes/sax/BaliseXml.java</a>
+                  <a href="https://github.com/ybonnel/OpenDataRennesApi/checkstyle.html#fr.ybo.opendata.rennes.Keolis.java">fr/ybo/opendata/rennes/Keolis.java</a>
                 </td>
                 <td>
                   0
@@ -547,7 +547,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="https://github.com/ybonnel/OpenDataRennesApi/checkstyle.html#fr.ybo.opendata.rennes.modele.velos.Station.java">fr/ybo/opendata/rennes/modele/velos/Station.java</a>
+                  <a href="https://github.com/ybonnel/OpenDataRennesApi/checkstyle.html#fr.ybo.opendata.rennes.sax.BaliseSimpleData.java">fr/ybo/opendata/rennes/sax/BaliseSimpleData.java</a>
                 </td>
                 <td>
                   0
@@ -561,7 +561,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="https://github.com/ybonnel/OpenDataRennesApi/checkstyle.html#fr.ybo.opendata.rennes.sax.BaliseSimpleData.java">fr/ybo/opendata/rennes/sax/BaliseSimpleData.java</a>
+                  <a href="https://github.com/ybonnel/OpenDataRennesApi/checkstyle.html#fr.ybo.opendata.rennes.modele.velos.Station.java">fr/ybo/opendata/rennes/modele/velos/Station.java</a>
                 </td>
                 <td>
                   0
